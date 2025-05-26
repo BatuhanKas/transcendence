@@ -3,11 +3,7 @@ import tournamentRoutes from "../routes/routes";
 
 const server = Fastify();
 
-server.get('/hello', async (req, reply) => {
-    return { msg: 'Hello from Fastify!' };
-});
-
-server.register(tournamentRoutes, { prefix: '/tournament' });
+server.register(tournamentRoutes, { prefix: '/api' });
 
 const start = async () => {
     try {

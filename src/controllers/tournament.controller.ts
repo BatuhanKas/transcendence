@@ -1,8 +1,20 @@
 import { FastifyRequest, FastifyReply } from 'fastify';
-import { getTournamentByIdService } from '../services/tournament.service';
+import { createTournamentService } from '../services/tournament.service';
+import {TournamentDto} from "../dto/tournament.dto";
 
-export async function getTournamentById(request: FastifyRequest, reply: FastifyReply) {
-    const { id } = request.params as { id: string };
-    const tournament = await getTournamentByIdService(id);
-    return reply.send(tournament);
+export async function createTournament(request: FastifyRequest, reply: FastifyReply) {
+    const body = request.body as TournamentDto;
+
+    const result = await createTournamentService(body);
+    if (result.statusCode >= 400)
+        return reply.status(result.statusCode).send({
+            statusCode: result.statusCode,
+            error: result.message
+    });
+
+    return reply.status(result.statusCode).send({
+        statusCode: result.statusCode,
+        data: result.data,
+        message: result.message,
+    });
 }
