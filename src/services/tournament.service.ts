@@ -31,19 +31,12 @@ export async function createTournamentService(tournamentDto: TournamentDto) {
 }
 
 export async function joinTournamentService(id: string, body: ParticipantDto) {
+    const result = await tournamentControls(id);
+    if (result.statusCode !== StatusCodes.OK || !result.data) {
+        return result;
+    }
     const tournamentNumber = Number(id);
-    if (!Number.isInteger(tournamentNumber)) {
-        return new Result(StatusCodes.BAD_REQUEST, null, 'Tournament ID must be a number');
-    }
-
-    if (!tournamentCache.has(tournamentNumber)) {
-        return new Result(StatusCodes.NOT_FOUND, null, 'Tournament not found');
-    }
-
-    const tournament = tournamentCache.get(tournamentNumber);
-    if (!tournament) {
-        return new Result(StatusCodes.NOT_FOUND, null, 'Tournament not found');
-    }
+    const tournament = result.data;
 
     if (tournament.status !== 'created') {
         return new Result(StatusCodes.BAD_REQUEST, null, 'Tournament is not in a state to join');
@@ -56,4 +49,41 @@ export async function joinTournamentService(id: string, body: ParticipantDto) {
     tournamentCache.set(tournamentNumber, tournament);
 
     return new Result(StatusCodes.OK, null, `Participant ${body.name} joined tournament ${tournamentNumber} successfully`);
+}
+
+export async function tournamentControls(id: string) {
+    const tournamentNumber = Number(id);
+    if (!Number.isInteger(tournamentNumber)) {
+        return new Result(StatusCodes.BAD_REQUEST, undefined, 'Tournament ID must be a number');
+    }
+
+    if (!tournamentCache.has(tournamentNumber)) {
+        return new Result(StatusCodes.NOT_FOUND, undefined, 'Tournament not found');
+    }
+
+    const tournament = tournamentCache.get(tournamentNumber);
+    if (!tournament) {
+        return new Result(StatusCodes.NOT_FOUND, undefined, 'Tournament not found');
+    }
+
+    return new Result(StatusCodes.OK, tournament, '');
+}
+
+export async function leaveTournamentService(id: string, body: ParticipantDto) {
+    const result = await tournamentControls(id);
+    if (result.statusCode !== StatusCodes.OK || !result.data) {
+        return result;
+    }
+
+    const tournamentNumber = Number(id);
+    const tournament = result.data;
+    const participantIndex = tournament.participants.findIndex(p => p.username === body.name);
+    if (participantIndex === -1) {
+        return new Result(StatusCodes.NOT_FOUND, null, 'Participant not found in the tournament');
+    }
+
+    tournament.participants.splice(participantIndex, 1);
+    tournamentCache.set(tournamentNumber, tournament);
+
+    return new Result(StatusCodes.OK, null, `Participant ${body.name} left tournament ${tournamentNumber} successfully`);
 }
