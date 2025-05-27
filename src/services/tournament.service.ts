@@ -27,7 +27,7 @@ export async function createTournamentService(tournamentDto: TournamentDto) {
         status: 'created',
     });
 
-    return new Result(StatusCodes.CREATED, tournamentCache.get(newRoomId), `Tournament with ID ${newRoomId} created successfully`,)
+    return new Result(StatusCodes.CREATED, null, `Tournament with ID ${newRoomId} created successfully`,)
 }
 
 export async function joinTournamentService(id: string, body: ParticipantDto) {
@@ -61,12 +61,7 @@ export async function tournamentControls(id: string) {
         return new Result(StatusCodes.NOT_FOUND, undefined, 'Tournament not found');
     }
 
-    const tournament = tournamentCache.get(tournamentNumber);
-    if (!tournament) {
-        return new Result(StatusCodes.NOT_FOUND, undefined, 'Tournament not found');
-    }
-
-    return new Result(StatusCodes.OK, tournament, '');
+    return new Result(StatusCodes.OK, tournamentCache.get(tournamentNumber), '');
 }
 
 export async function leaveTournamentService(id: string, body: ParticipantDto) {
@@ -86,4 +81,37 @@ export async function leaveTournamentService(id: string, body: ParticipantDto) {
     tournamentCache.set(tournamentNumber, tournament);
 
     return new Result(StatusCodes.OK, null, `Participant ${body.name} left tournament ${tournamentNumber} successfully`);
+}
+
+export async function deleteTournamentService(id: string) {
+    const result = await tournamentControls(id);
+    if (result.statusCode !== StatusCodes.OK || !result.data) {
+        return result;
+    }
+
+    const tournamentNumber = Number(id);
+    const tournament = result.data;
+
+    if (tournament.status !== 'created') {
+        return new Result(StatusCodes.BAD_REQUEST, null, 'Tournament is not in a state to be deleted');
+    }
+
+    tournamentCache.delete(tournamentNumber);
+    return new Result(StatusCodes.OK, null, `Tournament with ID ${tournamentNumber} deleted successfully`);
+}
+
+export async function getTournamentParticipantsService(id: string) {
+    const result = await tournamentControls(id);
+    if (result.statusCode !== StatusCodes.OK || !result.data) {
+        return result;
+    }
+
+    const tournamentNumber = Number(id);
+    const tournament = result.data;
+
+    if (tournament.participants.length === 0) {
+        return new Result(StatusCodes.NOT_FOUND, null, `No participants found for tournament ${tournamentNumber}`);
+    }
+
+    return new Result(StatusCodes.OK, tournament.participants, `Participants for tournament ${tournamentNumber} retrieved successfully`);
 }

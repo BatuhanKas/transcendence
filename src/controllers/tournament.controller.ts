@@ -1,5 +1,10 @@
 import {FastifyReply, FastifyRequest} from 'fastify';
-import {createTournamentService, joinTournamentService, leaveTournamentService} from '../services/tournament.service';
+import {
+    createTournamentService,
+    deleteTournamentService, getTournamentParticipantsService,
+    joinTournamentService,
+    leaveTournamentService
+} from '../services/tournament.service';
 import {TournamentDto} from "../dto/tournament.dto";
 import {ParticipantDto} from "../dto/participant.dto";
 import Result from "../bean/result";
@@ -9,11 +14,13 @@ const getResult = <T>(result: Result<T>, reply: FastifyReply) => {
 
     if (statusCode >= 400) {
         return reply.status(statusCode).send({
+            status: "FAIL",
             error: message,
         });
     }
 
     return reply.status(statusCode).send({
+        status: "OK",
         message,
     });
 };
@@ -39,4 +46,32 @@ export async function leaveTournament(request: FastifyRequest, reply: FastifyRep
 
     const result = await leaveTournamentService(id, body);
     return getResult(result, reply);
+}
+
+export async function deleteTournament(request: FastifyRequest, reply: FastifyReply) {
+    const { id } = request.params as { id: string };
+
+    const result = await deleteTournamentService(id);
+    return getResult(result, reply);
+}
+
+export async function getTournamentParticipants(request: FastifyRequest, reply: FastifyReply) {
+    const { id } = request.params as { id: string };
+
+    const result = await getTournamentParticipantsService(id);
+
+    const { statusCode, data, message } = result;
+
+    if (statusCode >= 400) {
+        return reply.status(statusCode).send({
+            "status": "FAIL",
+            error: message,
+        });
+    }
+
+    return reply.status(statusCode).send({
+        "status": "OK",
+        message,
+        data
+    });
 }
