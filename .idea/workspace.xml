@@ -47,28 +47,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Node.js.auth.server.ts.executor": "Run",
-    "Node.js.greet.ts.executor": "Run",
-    "Node.js.server.ts.executor": "Run",
-    "Node.js.tournament.controller.ts.executor": "Run",
-    "Node.js.tournament.repository.ts.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "last_opened_file_path": "/home/batuhan/Desktop/Backend/auth/src/server/auth.server.ts",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "vcs.Git",
-    "ts.external.directory.path": "/home/batuhan/Desktop/Backend/tournament/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Node.js.auth.server.ts.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.greet.ts.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.server.ts.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.tournament.controller.ts.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.tournament.repository.ts.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/batuhan/Desktop/Backend/auth/src/server/auth.server.ts&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/batuhan/Desktop/Backend/tournament/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/auth" />
@@ -114,7 +114,7 @@
       <workItem from="1748352575702" duration="12530000" />
       <workItem from="1748367806409" duration="836000" />
       <workItem from="1748368832391" duration="1260000" />
-      <workItem from="1748370148440" duration="2635000" />
+      <workItem from="1748370148440" duration="2812000" />
     </task>
     <task id="LOCAL-00001" summary="createTournament finished">
       <option name="closed" value="true" />
