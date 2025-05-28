@@ -1,9 +1,16 @@
 import Fastify from "fastify";
 import authRoutes from "../routes/auth.routes";
+import jwt from "@fastify/jwt";
 
 const authServer = Fastify();
 
 authServer.register(authRoutes, { prefix: '/api' });
+authServer.register(jwt, {
+    secret: process.env.JWT_SECRET || "super-secret-key",
+    sign: {
+        expiresIn: '1h'
+    }
+});
 
 const start = async () => {
     try {

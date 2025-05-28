@@ -1,4 +1,4 @@
-import { TournamentData } from '../models/tournament';
+import { TournamentData } from '../entities/tournament';
 
 const tournamentCache = new Map<number, TournamentData>();
 
