@@ -4,15 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="register endpoint finished, database connection done">
+    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="register methods fixed and validations added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/auth/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/auth/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/auth/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/src/database/db.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/database/db.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/src/database/sqlite/data.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/database/sqlite/data.sqlite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/src/repositories/auth.repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/repositories/auth.repository.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/src/services/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/services/auth.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/database/sqlite/data.sqlite" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,12 +33,12 @@
   <component name="GithubDefaultAccount">
     <option name="defaultAccountId" value="9c3a9a85-e7e2-4202-b34b-34881ac7ada7" />
   </component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/BatuhanKas/transcendence.git&quot;,
-    &quot;accountId&quot;: &quot;9c3a9a85-e7e2-4202-b34b-34881ac7ada7&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "git@github.com:BatuhanKas/transcendence.git",
+    "accountId": "9c3a9a85-e7e2-4202-b34b-34881ac7ada7"
   }
-}</component>
+}]]></component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/routes/routes.ts" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -131,7 +125,7 @@
       <workItem from="1748370148440" duration="3594000" />
       <workItem from="1748440129983" duration="5480000" />
       <workItem from="1748446913444" duration="15671000" />
-      <workItem from="1748527987622" duration="2822000" />
+      <workItem from="1748527987622" duration="3230000" />
     </task>
     <task id="LOCAL-00001" summary="createTournament finished">
       <option name="closed" value="true" />
@@ -189,7 +183,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748469315145</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="register methods fixed and validations added">
+      <option name="closed" value="true" />
+      <created>1748531215602</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1748531215602</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -220,6 +222,7 @@
     <MESSAGE value="delete tournament and get tournament participants services done" />
     <MESSAGE value="proje iki kisma ayrildi" />
     <MESSAGE value="register endpoint finished, database connection done" />
-    <option name="LAST_COMMIT_MESSAGE" value="register endpoint finished, database connection done" />
+    <MESSAGE value="register methods fixed and validations added" />
+    <option name="LAST_COMMIT_MESSAGE" value="register methods fixed and validations added" />
   </component>
 </project>
