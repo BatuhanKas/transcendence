@@ -1,8 +1,14 @@
 import Fastify from "fastify";
 import authRoutes from "../routes/auth.routes";
 import jwt from "@fastify/jwt";
+import 'dotenv/config';
 
 const authServer = Fastify();
+
+if (!process.env.JWT_SECRET) {
+    console.error('JWT_SECRET is not defined in .env file');
+    process.exit(1);
+}
 
 authServer.register(authRoutes, { prefix: '/api' });
 authServer.register(jwt, {
