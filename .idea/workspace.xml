@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment=".env file position fixed">
-      <change beforePath="$PROJECT_DIR$/auth/src/server/auth.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/server/auth.server.ts" afterDir="false" />
+    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment=".env file control fixed">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/auth/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/auth/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/database/db.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/database/db.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,12 +37,12 @@
   <component name="GithubDefaultAccount">
     <option name="defaultAccountId" value="9c3a9a85-e7e2-4202-b34b-34881ac7ada7" />
   </component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "git@github.com:BatuhanKas/transcendence.git",
-    "accountId": "9c3a9a85-e7e2-4202-b34b-34881ac7ada7"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:BatuhanKas/transcendence.git&quot;,
+    &quot;accountId&quot;: &quot;9c3a9a85-e7e2-4202-b34b-34881ac7ada7&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/routes/routes.ts" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -56,7 +61,7 @@
   "keyToString": {
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Node.js.auth.server.ts.executor": "Debug",
+    "Node.js.auth.server.ts.executor": "Run",
     "Node.js.greet.ts.executor": "Run",
     "Node.js.server.ts.executor": "Run",
     "Node.js.tournament.controller.ts.executor": "Run",
@@ -78,14 +83,14 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/auth/src/database/sqlite" />
       <recent name="$PROJECT_DIR$/auth" />
+      <recent name="$PROJECT_DIR$/auth/src/database" />
       <recent name="$PROJECT_DIR$/auth/src/services" />
       <recent name="$PROJECT_DIR$/auth/src" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/tournament" />
     </key>
   </component>
-  <component name="RunManager" selected="Node.js.auth.server.ts">
+  <component name="RunManager" selected="Node.js.server.ts">
     <configuration name="auth.server.ts" type="NodeJSConfigurationType" path-to-js-file="src/server/auth.server.ts" typescript-loader="bundled" working-dir="$PROJECT_DIR$/auth">
       <method v="2" />
     </configuration>
@@ -124,7 +129,8 @@
       <workItem from="1748370148440" duration="3594000" />
       <workItem from="1748440129983" duration="5480000" />
       <workItem from="1748446913444" duration="15671000" />
-      <workItem from="1748527987622" duration="14143000" />
+      <workItem from="1748527987622" duration="19102000" />
+      <workItem from="1748549223220" duration="1880000" />
     </task>
     <task id="LOCAL-00001" summary="createTournament finished">
       <option name="closed" value="true" />
@@ -214,11 +220,43 @@
       <option name="project" value="LOCAL" />
       <updated>1748542702104</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary=".env file control fixed">
+      <option name="closed" value="true" />
+      <created>1748542770557</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1748542770557</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/auth/src/database/db.js" />
+        <option value="$PROJECT_DIR$/auth/src/services/auth.service.js" />
+        <option value="$PROJECT_DIR$/tournament/src/dto/participant.dto.js" />
+        <option value="$PROJECT_DIR$/tournament/src/dto/tournament.dto.js" />
+        <option value="$PROJECT_DIR$/tournament/src/entities/tournament.js" />
+        <option value="$PROJECT_DIR$/tournament/src/entities/participant.js" />
+        <option value="$PROJECT_DIR$/auth/src/server/auth.server.js" />
+        <option value="$PROJECT_DIR$/auth/src/repositories/auth.repository.js" />
+        <option value="$PROJECT_DIR$/tournament/src/cache/tournament.cache.js" />
+        <option value="$PROJECT_DIR$/tournament/src/services/tournament.service.js" />
+        <option value="$PROJECT_DIR$/auth/src/routes/auth.routes.js" />
+        <option value="$PROJECT_DIR$/auth/src/controllers/auth.controller.js" />
+        <option value="$PROJECT_DIR$/tournament/src/bean/result.js" />
+        <option value="$PROJECT_DIR$/tournament/src/server/server.js" />
+        <option value="$PROJECT_DIR$/tournament/src/repositories/tournament.repository.js" />
+        <option value="$PROJECT_DIR$/auth/src/bean/result.js" />
+        <option value="$PROJECT_DIR$/auth/src/entities/user.js" />
+        <option value="$PROJECT_DIR$/tournament/src/util/id.counter.js" />
+        <option value="$PROJECT_DIR$/tournament/src/routes/routes.js" />
+        <option value="$PROJECT_DIR$/tournament/src/controllers/tournament.controller.js" />
+      </list>
+    </option>
   </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName=".env" />
@@ -249,6 +287,7 @@
     <MESSAGE value="database settings fixed" />
     <MESSAGE value="authentication jwt token login service completed" />
     <MESSAGE value=".env file position fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value=".env file position fixed" />
+    <MESSAGE value=".env file control fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value=".env file control fixed" />
   </component>
 </project>
