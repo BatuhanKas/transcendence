@@ -1,5 +1,5 @@
 import {FastifyReply, FastifyRequest} from 'fastify';
-import {registerService} from "../services/auth.service";
+import {loginService, registerService} from "../services/auth.service";
 import {User} from "../entities/user";
 import Result from "../bean/result";
 
@@ -19,15 +19,35 @@ const getResult = <T>(result: Result<T>, reply: FastifyReply) => {
     });
 };
 
+const getResultAndToken = async <T>(result: Result<T>, reply: FastifyReply) => {
+    const { statusCode, data, message } = result;
+
+    if (statusCode >= 400) {
+        return reply.status(statusCode).send({
+            status: "FAIL",
+            error: message,
+        });
+    }
+
+    const userData = data as { uuid: string; username: string, email: string };
+    const token = await reply.jwtSign({
+        uuid: userData.uuid,
+        username: userData.username,
+        email: userData.email
+    });
+
+    return reply.status(statusCode).send({
+        status: "OK",
+        message,
+        token: token
+    });
+}
+
 export async function login(request: FastifyRequest, reply: FastifyReply) {
-    // const { username, password } = request.body as { username: string; password: string };
-    //
-    // // Implement your authentication logic here
-    // if (username === 'test' && password === 'password') {
-    //     return reply.status(200).send({ message: 'Login successful' });
-    // } else {
-    //     return reply.status(401).send({ error: 'Invalid credentials' });
-    // }
+    const { email, password } = request.body as User;
+
+    const result = await loginService(email, password);
+    return await getResultAndToken(result, reply);
 }
 
 export async function register(request: FastifyRequest, reply: FastifyReply) {

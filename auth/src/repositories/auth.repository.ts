@@ -1,4 +1,5 @@
 import database from '../database/db';
+import {User} from '../entities/user';
 
 export async function saveUser(user: any){
     database
@@ -6,16 +7,14 @@ export async function saveUser(user: any){
         .run(user.uuid, user.username, user.email, user.password);
 }
 
-export async function getUserByEmail(email: string) {
-    const user = database
+export async function findUserByEmail(email: string): Promise<User | null> {
+    return database
         .prepare('SELECT * FROM users WHERE email = ?')
-        .get(email);
-    return user;
+        .get(email) as User | null;
 }
 
-export async function getUserByUUID(uuid: string) {
-    const user = database
-        .prepare('SELECT * FROM users WHERE uuid = ?')
-        .get(uuid);
-    return user;
-}
+// export async function findUserByUUID(uuid: string): Promise<User | null> {
+//     return database
+//         .prepare('SELECT * FROM users WHERE uuid = ?')
+//         .get(uuid);
+// }
