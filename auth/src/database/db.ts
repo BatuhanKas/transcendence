@@ -11,7 +11,7 @@ db.prepare(`
      uuid TEXT NOT NULL UNIQUE,
      username TEXT NOT NULL,
      email TEXT NOT NULL UNIQUE,
-     password TEXT,
+     password TEXT NOT NULL,
      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )
 `).run();
