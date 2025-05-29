@@ -12,7 +12,7 @@ if (!process.env.JWT_SECRET) {
 
 authServer.register(authRoutes, { prefix: '/api' });
 authServer.register(jwt, {
-    secret: process.env.JWT_SECRET || "super-secret-key",
+    secret: process.env.JWT_SECRET,
     sign: {
         expiresIn: '1h'
     }
