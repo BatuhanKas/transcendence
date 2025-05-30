@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment=".env file control fixed">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="build fixes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/auth/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/auth/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/src/database/db.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/database/db.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/controllers/auth.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/controllers/auth.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/routes/auth.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/routes/auth.routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/server/auth.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/server/auth.server.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/services/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/services/auth.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +61,7 @@
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "Node.js.auth.server.ts.executor": "Run",
+    "Node.js.auth.ts.executor": "Run",
     "Node.js.greet.ts.executor": "Run",
     "Node.js.server.ts.executor": "Run",
     "Node.js.tournament.controller.ts.executor": "Run",
@@ -90,8 +90,8 @@
       <recent name="$PROJECT_DIR$/auth/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Node.js.server.ts">
-    <configuration name="auth.server.ts" type="NodeJSConfigurationType" path-to-js-file="src/server/auth.server.ts" typescript-loader="bundled" working-dir="$PROJECT_DIR$/auth">
+  <component name="RunManager" selected="Node.js.auth.ts">
+    <configuration name="auth.ts" type="NodeJSConfigurationType" path-to-js-file="src/server/auth.server.ts" typescript-loader="bundled" working-dir="$PROJECT_DIR$/auth">
       <method v="2" />
     </configuration>
     <configuration name="server.ts" type="NodeJSConfigurationType" nameIsGenerated="true" path-to-js-file="src/server/server.ts" typescript-loader="bundled" working-dir="$PROJECT_DIR$/tournament">
@@ -99,7 +99,7 @@
     </configuration>
     <list>
       <item itemvalue="Node.js.server.ts" />
-      <item itemvalue="Node.js.auth.server.ts" />
+      <item itemvalue="Node.js.auth.ts" />
     </list>
   </component>
   <component name="SharedIndexes">
@@ -130,7 +130,8 @@
       <workItem from="1748440129983" duration="5480000" />
       <workItem from="1748446913444" duration="15671000" />
       <workItem from="1748527987622" duration="19102000" />
-      <workItem from="1748549223220" duration="1880000" />
+      <workItem from="1748549223220" duration="2111000" />
+      <workItem from="1748624676323" duration="9692000" />
     </task>
     <task id="LOCAL-00001" summary="createTournament finished">
       <option name="closed" value="true" />
@@ -228,7 +229,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748542770557</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="build fixes">
+      <option name="closed" value="true" />
+      <created>1748551799800</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1748551799800</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -288,6 +297,7 @@
     <MESSAGE value="authentication jwt token login service completed" />
     <MESSAGE value=".env file position fixed" />
     <MESSAGE value=".env file control fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value=".env file control fixed" />
+    <MESSAGE value="build fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="build fixes" />
   </component>
 </project>

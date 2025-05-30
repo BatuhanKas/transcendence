@@ -5,6 +5,28 @@ import {StatusCodes} from "http-status-codes";
 import {findUserByEmail, saveUser} from "../repositories/auth.repository";
 import validator from 'validator';
 import {User} from "../entities/user";
+import {FastifyInstance, FastifyRequest} from "fastify";
+
+export async function validateService(request: FastifyRequest) {
+    const authHeader = request.headers.authorization as string;
+    const server = request.server as FastifyInstance;
+
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        return new Result(StatusCodes.UNAUTHORIZED, null, 'Authorization header is missing or invalid');
+    }
+
+    const token = authHeader.split(' ')[1];
+    if (!token) {
+        return new Result(StatusCodes.UNAUTHORIZED, null, 'Token is missing');
+    }
+
+    try {
+        const decoded = server.jwt.verify(token);
+        return new Result(StatusCodes.OK, decoded, 'Token is valid');
+    } catch (err) {
+        return new Result(StatusCodes.UNAUTHORIZED, null, 'Invalid token');
+    }
+}
 
 export async function loginService(email: string, password: string) {
     if (!email || !password) {

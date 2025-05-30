@@ -1,5 +1,5 @@
 import {FastifyReply, FastifyRequest} from 'fastify';
-import {loginService, registerService} from "../services/auth.service";
+import {loginService, registerService, validateService} from "../services/auth.service";
 import {User} from "../entities/user";
 import Result from "../bean/result";
 
@@ -54,5 +54,10 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
     const { username, email, password } = request.body as User;
 
     const result = await registerService(username, email, password);
+    return getResult(result, reply);
+}
+
+export async function validate(request: FastifyRequest, reply: FastifyReply) {
+    const result = await validateService(request);
     return getResult(result, reply);
 }
