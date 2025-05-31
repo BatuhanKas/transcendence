@@ -43,6 +43,23 @@ const getResultAndToken = async <T>(result: Result<T>, reply: FastifyReply) => {
     });
 }
 
+const getResultAndDecodedToken = async <T>(result: Result<T>, reply: FastifyReply) => {
+    const { statusCode, data, message } = result;
+
+    if (statusCode >= 400) {
+        return reply.status(statusCode).send({
+            status: "FAIL",
+            error: message,
+        });
+    }
+
+    return reply.status(statusCode).send({
+        status: "OK",
+        message,
+        data: data
+    });
+}
+
 export async function login(request: FastifyRequest, reply: FastifyReply) {
     const { email, password } = request.body as User;
 
@@ -59,5 +76,5 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
 
 export async function validate(request: FastifyRequest, reply: FastifyReply) {
     const result = await validateService(request);
-    return getResult(result, reply);
+    return getResultAndDecodedToken(result, reply);
 }

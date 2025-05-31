@@ -1,13 +1,15 @@
 import {FastifyReply, FastifyRequest} from 'fastify';
 import {
     createTournamentService,
-    deleteTournamentService, getTournamentParticipantsService,
+    deleteTournamentService,
+    getTournamentParticipantsService,
     joinTournamentService,
     leaveTournamentService
 } from '../services/tournament.service';
 import {TournamentDto} from "../dto/tournament.dto";
 import {ParticipantDto} from "../dto/participant.dto";
 import Result from "../bean/result";
+import {authMiddleware} from "../middleware/middleware";
 
 const getResult = <T>(result: Result<T>, reply: FastifyReply) => {
     const { statusCode, message } = result;
@@ -26,6 +28,11 @@ const getResult = <T>(result: Result<T>, reply: FastifyReply) => {
 };
 
 export async function createTournament(request: FastifyRequest, reply: FastifyReply) {
+    const { statusCode, message } = await authMiddleware(request, reply);
+    if (statusCode != 200) {
+        return getResult(new Result(statusCode, null, message), reply);
+    }
+
     const body = request.body as TournamentDto;
 
     const result = await createTournamentService(body);
