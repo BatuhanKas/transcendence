@@ -1,5 +1,5 @@
 import Fastify from "fastify";
-import authRoutes from "../routes/auth.routes";
+import routes from "../routes/routes";
 import jwt from "@fastify/jwt";
 import 'dotenv/config';
 
@@ -10,7 +10,7 @@ if (!process.env.JWT_SECRET) {
     process.exit(1);
 }
 
-authServer.register(authRoutes, { prefix: '/api' });
+authServer.register(routes, { prefix: '/api' });
 authServer.register(jwt, {
     secret: process.env.JWT_SECRET,
     sign: {

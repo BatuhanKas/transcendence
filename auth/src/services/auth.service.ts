@@ -2,7 +2,7 @@ import Result from '../bean/result';
 import randomUUID from 'crypto';
 import bcrypt from 'bcryptjs';
 import {StatusCodes} from "http-status-codes";
-import {findUserByEmail, saveUser} from "../repositories/auth.repository";
+import {findUserByEmail, saveUser} from "../repositories/repository";
 import validator from 'validator';
 import {User} from "../entities/user";
 import {FastifyInstance, FastifyRequest} from "fastify";
