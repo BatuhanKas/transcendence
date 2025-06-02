@@ -54,11 +54,11 @@ export async function joinTournamentService(id: string, body: ParticipantDto) {
 export async function tournamentControls(id: string) {
     const tournamentNumber = Number(id);
     if (!Number.isInteger(tournamentNumber)) {
-        return new Result(StatusCodes.BAD_REQUEST, undefined, 'Tournament ID must be a number');
+        return new Result(StatusCodes.BAD_REQUEST, null, 'Tournament ID must be a number');
     }
 
     if (!tournamentCache.has(tournamentNumber)) {
-        return new Result(StatusCodes.NOT_FOUND, undefined, 'Tournament not found');
+        return new Result(StatusCodes.NOT_FOUND, null, 'Tournament not found');
     }
 
     return new Result(StatusCodes.OK, tournamentCache.get(tournamentNumber), '');
@@ -103,13 +103,13 @@ export async function deleteTournamentService(id: string) {
 export async function getTournamentParticipantsService(id: string) {
     const result = await tournamentControls(id);
     if (result.statusCode !== StatusCodes.OK || !result.data) {
-        return result;
+        return new Result(result.statusCode, null, result.message);
     }
 
     const tournamentNumber = Number(id);
     const tournament = result.data;
 
-    if (tournament.participants.length === 0) {
+    if (!tournament.participants || tournament.participants.length === 0) {
         return new Result(StatusCodes.NOT_FOUND, null, `No participants found for tournament ${tournamentNumber}`);
     }
 

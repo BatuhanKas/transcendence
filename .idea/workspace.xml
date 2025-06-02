@@ -4,15 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="validate endpoint finished">
-      <change afterPath="$PROJECT_DIR$/tournament/src/middleware/middleware.ts" afterDir="false" />
+    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="microservice and middleware finished. /validate endpoint updated.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/src/controllers/auth.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/controllers/auth.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/bean/result.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/bean/result.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/src/bean/result.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/bean/result.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tournament/src/controllers/tournament.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/controllers/tournament.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/src/entities/tournament.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/entities/tournament.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/src/services/tournament.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/services/tournament.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +90,7 @@
       <recent name="$PROJECT_DIR$/auth/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Node.js.auth.ts">
+  <component name="RunManager" selected="Node.js.server.ts">
     <configuration name="auth.ts" type="NodeJSConfigurationType" path-to-js-file="src/server/auth.server.ts" typescript-loader="bundled" working-dir="$PROJECT_DIR$/auth">
       <method v="2" />
     </configuration>
@@ -138,7 +135,8 @@
       <workItem from="1748681053510" duration="841000" />
       <workItem from="1748682089304" duration="8158000" />
       <workItem from="1748690486579" duration="1272000" />
-      <workItem from="1748692589979" duration="5600000" />
+      <workItem from="1748692589979" duration="8314000" />
+      <workItem from="1748879232740" duration="6561000" />
     </task>
     <task id="LOCAL-00001" summary="createTournament finished">
       <option name="closed" value="true" />
@@ -252,7 +250,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748638667007</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="microservice and middleware finished. /validate endpoint updated.">
+      <option name="closed" value="true" />
+      <created>1748699044916</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1748699044916</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -314,6 +320,8 @@
     <MESSAGE value=".env file control fixed" />
     <MESSAGE value="build fixes" />
     <MESSAGE value="validate endpoint finished" />
-    <option name="LAST_COMMIT_MESSAGE" value="validate endpoint finished" />
+    <MESSAGE value="microservice finished and /validate endpoint updated." />
+    <MESSAGE value="microservice and middleware finished. /validate endpoint updated." />
+    <option name="LAST_COMMIT_MESSAGE" value="microservice and middleware finished. /validate endpoint updated." />
   </component>
 </project>

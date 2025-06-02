@@ -1,7 +1,7 @@
 class Result<T> {
-    statusCode: number;
-    data?: T;
-    message?: string;
+    public statusCode: number;
+    public data?: T;
+    public message?: string;
 
     constructor(statusCode: number, data?: T, message?: string) {
         this.statusCode = statusCode;
