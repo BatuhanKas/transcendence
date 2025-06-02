@@ -10,39 +10,7 @@ import {TournamentDto} from "../dto/tournament.dto";
 import {ParticipantDto} from "../dto/participant.dto";
 import Result from "../bean/result";
 import {authMiddleware} from "../middleware/middleware";
-
-const getResult = <T>(result: Result<T>, reply: FastifyReply) => {
-    const { statusCode, message } = result;
-
-    if (statusCode >= 400) {
-        return reply.status(statusCode).send({
-            status: "FAIL",
-            error: message,
-        });
-    }
-
-    return reply.status(statusCode).send({
-        status: "OK",
-        message,
-    });
-};
-
-const getResultAndData = async <T>(result: Result<T>, reply: FastifyReply) => {
-    const { statusCode, data, message } = result;
-
-    if (statusCode >= 400) {
-        return reply.status(statusCode).send({
-            status: "FAIL",
-            error: message,
-        });
-    }
-
-    return reply.status(statusCode).send({
-        status: "OK",
-        message,
-        data: data
-    });
-}
+import {getResult, getResultAndData} from "../responses/responses";
 
 export async function createTournament(request: FastifyRequest, reply: FastifyReply) {
     const { statusCode, message } = await authMiddleware(request, reply);
