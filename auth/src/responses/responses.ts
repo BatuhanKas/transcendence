@@ -42,6 +42,9 @@ export const getResultAndToken = async <T>(result: Result<T>, reply: FastifyRepl
     return reply.status(statusCode).send({
         status: "OK",
         message,
+        uuid: userData.uuid,
+        username: userData.username,
+        email: userData.email,
         token: token
     });
 }
