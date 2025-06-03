@@ -4,22 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="refactor: login method updated.">
-      <change afterPath="$PROJECT_DIR$/tournament/src/entities/auth.response.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tournament/src/entities/user.ts" afterDir="false" />
+    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="refactor: middleware updated, all tournament methods updated and changed.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/src/cache/tournament.cache.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/cache/tournament.cache.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/src/controllers/tournament.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/controllers/tournament.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/src/dto/participant.dto.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/src/entities/participant.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/entities/participant.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/src/entities/tournament.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/entities/tournament.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/src/middleware/middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/middleware/middleware.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/src/routes/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/routes/routes.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tournament/src/services/tournament.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/services/tournament.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/src/util/id.counter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/util/id.counter.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +134,7 @@
       <workItem from="1748690486579" duration="1272000" />
       <workItem from="1748692589979" duration="8314000" />
       <workItem from="1748879232740" duration="17655000" />
-      <workItem from="1748960646835" duration="17651000" />
+      <workItem from="1748960646835" duration="19289000" />
     </task>
     <task id="LOCAL-00001" summary="createTournament finished">
       <option name="closed" value="true" />
@@ -309,7 +296,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748964761924</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="refactor: middleware updated, all tournament methods updated and changed.">
+      <option name="closed" value="true" />
+      <created>1748979071492</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1748979071492</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -354,6 +349,7 @@
     <MESSAGE value="refactor: responses fixed." />
     <MESSAGE value="refactor: update method updated." />
     <MESSAGE value="refactor: login method updated." />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: login method updated." />
+    <MESSAGE value="refactor: middleware updated, all tournament methods updated and changed." />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: middleware updated, all tournament methods updated and changed." />
   </component>
 </project>

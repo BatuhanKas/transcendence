@@ -80,6 +80,10 @@ export async function leaveTournamentService(code: string, participant: Particip
         return new Result(StatusCodes.NOT_FOUND, null, 'Participant not found in the tournament');
     }
 
+    if (tournament.admin_id === participant.uuid) {
+        return new Result(StatusCodes.FORBIDDEN, null, 'Tournament admin cannot leave the tournament');
+    }
+
     tournament.participants.splice(participantIndex, 1);
     tournamentCache.set(code, tournament);
 
