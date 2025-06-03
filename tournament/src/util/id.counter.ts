@@ -1,10 +1,13 @@
-let roomIdCounter = 100;
-let userIdCounter = 1;
+import { customAlphabet } from 'nanoid';
 
-export function getNextRoomId(): number {
-    return roomIdCounter++;
+let roomIdCounter = 0;
+
+const generateRoomCode = customAlphabet('ABCDEFGHJKLMNPQRSTUVWXYZ23456789', 6);
+
+export function getRoomCode(): string {
+    return generateRoomCode();
 }
 
-export function getNextUserId(): number {
-    return userIdCounter++;
+export function getNextRoomId(): number {
+    return ++roomIdCounter;
 }

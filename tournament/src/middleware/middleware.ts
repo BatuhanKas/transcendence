@@ -1,9 +1,9 @@
-import {FastifyReply, FastifyRequest} from "fastify";
+import {FastifyRequest} from "fastify";
 import { request as unitRequest } from "undici";
 import {StatusCodes} from "http-status-codes";
 import Result from "../bean/result";
 
-export async function authMiddleware(request: FastifyRequest, reply: FastifyReply) {
+export async function authMiddleware(request: FastifyRequest) {
     try {
         const responseData = await unitRequest('http://localhost:8081/api/auth/validate', {
             method: 'POST',
@@ -13,7 +13,8 @@ export async function authMiddleware(request: FastifyRequest, reply: FastifyRepl
         });
 
         if (responseData.statusCode === StatusCodes.OK) {
-            return new Result(StatusCodes.OK, responseData.body, "Token is valid");
+            const jsonData = await responseData.body.json();
+            return new Result(StatusCodes.OK, jsonData, "Token is valid");
         }
 
         return new Result(StatusCodes.UNAUTHORIZED, null, "Invalid token");

@@ -8,8 +8,8 @@ import {
 
 export default async function tournamentRoutes(server: FastifyInstance) {
     server.post('/tournament', createTournament);
-    server.post('/tournament/:id/join', joinTournament);
-    server.post('/tournament/:id/leave', leaveTournament);
-    server.delete('/tournament/:id', deleteTournament);
-    server.get('/tournament/:id/participants', getTournamentParticipants);
+    server.post('/tournament/:code/join', joinTournament);
+    server.post('/tournament/:code/leave', leaveTournament);
+    server.delete('/tournament/:code', deleteTournament);
+    server.get('/tournament/:code/participants', getTournamentParticipants);
 }
