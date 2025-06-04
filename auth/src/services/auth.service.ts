@@ -33,9 +33,21 @@ export async function loginService(email: string, password: string) {
         return new Result(StatusCodes.BAD_REQUEST, null, 'Email and password are required');
     }
 
+    if (email.length < 5 || email.length > 50) {
+        return new Result(StatusCodes.BAD_REQUEST, null, 'Email must be between 5 and 50 characters long');
+    }
+
+    if (!validator.isEmail(email)) {
+        return new Result(StatusCodes.BAD_REQUEST, null, 'Invalid email format');
+    }
+
     const user = await findUserByEmail(email) as User;
     if (!user || user.email !== email) {
         return new Result(StatusCodes.UNAUTHORIZED, null, 'Invalid email adress!');
+    }
+
+    if (password.length < 6 || password.length > 25) {
+        return new Result(StatusCodes.BAD_REQUEST, null, 'Password must be at least 6 characters long');
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
@@ -53,6 +65,10 @@ export async function registerService(username: string, email: string, password:
 
     if (username.length < 3 || username.length > 20) {
         return new Result(StatusCodes.BAD_REQUEST, null, 'Username must be between 3 and 20 characters long');
+    }
+
+    if (email.length < 5 || email.length > 50) {
+        return new Result(StatusCodes.BAD_REQUEST, null, 'Email must be between 5 and 50 characters long');
     }
 
     if (!validator.isEmail(email)) {
