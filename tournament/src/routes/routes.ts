@@ -11,5 +11,5 @@ export default async function tournamentRoutes(server: FastifyInstance) {
     server.post('/tournament/:code/join', joinTournament);
     server.post('/tournament/:code/leave', leaveTournament);
     server.delete('/tournament/:code', deleteTournament);
-    server.get('/tournament/:code/participants', getTournamentParticipants);
+    server.get('/tournament/:code', getTournamentParticipants);
 }

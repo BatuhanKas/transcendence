@@ -1,6 +1,6 @@
 import {FastifyInstance} from "fastify";
 import {login, register, validate} from "../controllers/auth.controller";
-import {updateUser} from "../controllers/user.controller";
+import {update} from "../controllers/user.controller";
 
 export default async function routes(server: FastifyInstance) {
     /**
@@ -13,5 +13,5 @@ export default async function routes(server: FastifyInstance) {
     /**
      * User Management Routes
      */
-    server.put('/user/updateUser', updateUser);
+    server.put('/auth/:uuid', update);
 }
