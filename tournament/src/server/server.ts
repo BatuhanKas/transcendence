@@ -10,7 +10,7 @@ const start = async () => {
         await server.listen({ port: 8080 });
         console.log('Server is running on http://localhost:8080');
     } catch (err) {
-        server.log.error(err);
+        console.log(err);
         process.exit(1);
     }
 };

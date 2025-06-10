@@ -11,6 +11,7 @@ import {Participant} from "../entities/participant";
 import Result from "../bean/result";
 import {authMiddleware} from "../middleware/middleware";
 import {getResult, getResultAndData} from "../responses/responses";
+import {AuthResponse} from "../entities/auth.response";
 
 export async function createTournament(request: FastifyRequest, reply: FastifyReply) {
     const { statusCode, data, message } = await authMiddleware(request);
