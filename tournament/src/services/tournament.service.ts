@@ -1,13 +1,13 @@
-// import { getTournamentByIdRepository } from '../services/tournament.repository';
 import tournamentCache from '../cache/tournament.cache';
-import { StatusCodes } from 'http-status-codes';
-import { TournamentDto } from "../dto/tournament.dto";
+import {StatusCodes} from 'http-status-codes';
+import {TournamentDto} from "../dto/tournament.dto";
 import {getNextRoomId, getRoomCode, getRoundNumber} from "../util/id.counter";
 import Result from '../bean/result';
 import {Participant} from "../entities/participant";
-import {Match, TournamentData, TournamentStart} from "../entities/tournament";
+import {Match, TournamentData, TournamentStart, TournamentStatus} from "../entities/tournament";
 import {shuffleArray} from "../util/shuffle";
-import {match} from "node:assert";
+import {Winner} from "../entities/winner";
+import roundWinners from "../cache/winners.cache";
 
 export async function createTournamentService(tournamentDto: TournamentDto, participant: Participant) {
     if (!tournamentDto) {
@@ -31,7 +31,7 @@ export async function createTournamentService(tournamentDto: TournamentDto, part
         name: tournamentDto.name,
         admin_id: participant.uuid,
         participants: [],
-        status: 'created',
+        status: TournamentStatus.CREATED,
     }
 
     tournamentData.participants.push(participant);
@@ -48,7 +48,7 @@ export async function joinTournamentService(code: string, participant: Participa
 
     const tournament = result.data;
 
-    if (tournament.status !== 'created') {
+    if (tournament.status !== TournamentStatus.CREATED) {
         return new Result(StatusCodes.BAD_REQUEST, null, 'Tournament is not in a state to join');
     }
 
@@ -100,7 +100,7 @@ export async function deleteTournamentService(code: string, participant: Partici
 
     const tournament = result.data;
 
-    if (tournament.status !== 'created') {
+    if (tournament.status !== TournamentStatus.CREATED) {
         return new Result(StatusCodes.BAD_REQUEST, null, 'Tournament is not in a state to be deleted');
     }
 
@@ -124,10 +124,10 @@ export async function getTournamentParticipantsService(code: string) {
         return new Result(StatusCodes.NOT_FOUND, null, `No participants found for tournament ${code}`);
     }
 
-    return new Result(StatusCodes.OK, tournament.participants, `Participants for tournament ${code} retrieved successfully`);
+    return new Result(StatusCodes.OK, tournament, `Participants for tournament ${code} retrieved successfully`);
 }
 
-export async function startTournamentService(code: string, body: { participants: Participant[] | null }) {
+export async function startTournamentService(code: string) {
     const result = await tournamentControls(code);
     if (result.statusCode !== StatusCodes.OK || !result.data) {
         return result;
@@ -135,7 +135,7 @@ export async function startTournamentService(code: string, body: { participants:
 
     const tournament = result.data;
 
-    if (tournament.status !== 'created') {
+    if (tournament.status !== TournamentStatus.CREATED) {
         return new Result(StatusCodes.BAD_REQUEST, null, 'Tournament is not in a state to be started');
     }
 
@@ -143,18 +143,10 @@ export async function startTournamentService(code: string, body: { participants:
         return new Result(StatusCodes.BAD_REQUEST, null, 'Not enough participants to start the tournament');
     }
 
-    tournament.status = 'ongoing';
-    tournamentCache.set(code, tournament);
-
     const winners = [];
-    const participants = body.participants === null ? tournament.participants : body.participants;
-    // if (participants.length < 2) {
-    //     tournament.status = 'completed';
-    //     return new Result(StatusCodes.OK, participants[0], `Tournament ${code} winner is ${participants[0].username}`);
-    // }
+    const participants = tournament.participants;
 
     const shuffledParticipants = await shuffleArray(participants);
-
     if (shuffledParticipants.length % 2 !== 0) {
         winners.push(shuffledParticipants[0]);
         shuffledParticipants.splice(0, 1);
@@ -162,21 +154,14 @@ export async function startTournamentService(code: string, body: { participants:
 
     const matches: Match[] = [];
     for (let i = 0; i < shuffledParticipants.length; i += 2) {
-        matches.push(
-            {
-                participant1: shuffledParticipants[i],
-                participant2: shuffledParticipants[i + 1]
-            }
-        );
+        const match: Match = {
+            participant1: shuffledParticipants[i],
+            participant2: shuffledParticipants[i + 1]
+        }
+        matches.push(match);
     }
 
     const tournamentStart: TournamentStart = {
-        id: tournament.id,
-        name: tournament.name,
-        admin_id: tournament.admin_id,
-        status: tournament.status,
-        code: tournament.code,
-        participants: tournament.participants,
         rounds: [
             {
                 round_number: getRoundNumber(),
@@ -186,6 +171,35 @@ export async function startTournamentService(code: string, body: { participants:
         ]
     }
 
-    return new Result(StatusCodes.OK, tournamentStart, `Tournament ${code} started successfully`);
+    tournament.status = TournamentStatus.ONGOING;
+    tournament.start_time = new Date();
+    tournament.tournament_start = tournamentStart;
+    tournamentCache.set(code, tournament);
 
+    return new Result(StatusCodes.OK, null, `Tournament ${code} started successfully`);
+}
+
+export async function addWinnerService(code: string, body: Winner) {
+    const tournament = tournamentCache.get(code);
+    if (!tournament) {
+        return new Result(StatusCodes.NOT_FOUND, null, 'Tournament not found');
+    }
+
+    if (tournament.status !== TournamentStatus.ONGOING) {
+        return new Result(StatusCodes.BAD_REQUEST, null, 'Tournament is not in a state to add winners');
+    }
+
+    if (!tournament.tournament_start || !tournament.tournament_start.rounds) {
+        return new Result(StatusCodes.BAD_REQUEST, null, 'No rounds found in the tournament');
+    }
+
+    const round = tournament.tournament_start.rounds.find(r => r.round_number === body.round);
+    if (!round) {
+        return new Result(StatusCodes.BAD_REQUEST, null, 'Round not found');
+    }
+
+    const existingWinners = roundWinners.get(round.round_number) || [];
+    const participant = body.winner as Participant;
+    existingWinners.push(participant);
+    roundWinners.set(round.round_number, existingWinners);
 }

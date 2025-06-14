@@ -1,17 +1,24 @@
 import { Participant } from "./participant";
 
+export enum TournamentStatus {
+    CREATED = 'created',
+    ONGOING = 'ongoing',
+    COMPLETED = 'completed'
+}
+
 export type TournamentData = {
     id: number;
     code: string;
     name: string;
     admin_id: string;
     participants: Participant[];
-    status: 'created' | 'ongoing' | 'completed';
+    status: TournamentStatus
+    start_time?: Date;
+    end_time?: Date;
+    tournament_start?: TournamentStart | null;
 };
 
-export type TournamentStart = TournamentData &{
-    code: string;
-    participants: Participant[];
+export type TournamentStart = {
     rounds: [
         {
             round_number: number;
