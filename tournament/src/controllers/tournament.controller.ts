@@ -4,7 +4,7 @@ import {
     deleteTournamentService,
     getTournamentParticipantsService,
     joinTournamentService,
-    leaveTournamentService
+    leaveTournamentService, startTournamentService
 } from '../services/tournament.service';
 import {TournamentDto} from "../dto/tournament.dto";
 import {Participant} from "../entities/participant";
@@ -92,6 +92,21 @@ export async function getTournamentParticipants(request: FastifyRequest, reply: 
 
     const { code } = request.params as { code: string };
     const result = await getTournamentParticipantsService(code);
+    if (result.statusCode !== 200 || !result.data) {
+        return getResult(result, reply);
+    }
+    return getResultAndData(result, reply);
+}
+
+export async function startTournament(request: FastifyRequest, reply: FastifyReply) {
+    const { statusCode, message } = await authMiddleware(request);
+    if (statusCode != 200) {
+        return getResult(new Result(statusCode, null, message), reply);
+    }
+
+    const { code } = request.params as { code: string };
+    const { body } = request.body === undefined ? { body: { participants: null } } : request.body as { body: { participants: Participant[] } };
+    const result = await startTournamentService(code, body);
     if (result.statusCode !== 200 || !result.data) {
         return getResult(result, reply);
     }

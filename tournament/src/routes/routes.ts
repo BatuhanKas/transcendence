@@ -3,7 +3,7 @@ import {
     createTournament,
     deleteTournament, getTournamentParticipants,
     joinTournament,
-    leaveTournament
+    leaveTournament, startTournament
 } from '../controllers/tournament.controller';
 
 export default async function tournamentRoutes(server: FastifyInstance) {
@@ -12,4 +12,5 @@ export default async function tournamentRoutes(server: FastifyInstance) {
     server.post('/tournament/:code/leave', leaveTournament);
     server.delete('/tournament/:code', deleteTournament);
     server.get('/tournament/:code', getTournamentParticipants);
+    server.post('/tournament/:code/start', startTournament);
 }

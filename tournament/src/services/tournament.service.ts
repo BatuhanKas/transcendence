@@ -2,10 +2,12 @@
 import tournamentCache from '../cache/tournament.cache';
 import { StatusCodes } from 'http-status-codes';
 import { TournamentDto } from "../dto/tournament.dto";
-import {getNextRoomId, getRoomCode} from "../util/id.counter";
+import {getNextRoomId, getRoomCode, getRoundNumber} from "../util/id.counter";
 import Result from '../bean/result';
 import {Participant} from "../entities/participant";
-import {TournamentData} from "../entities/tournament";
+import {Match, TournamentData, TournamentStart} from "../entities/tournament";
+import {shuffleArray} from "../util/shuffle";
+import {match} from "node:assert";
 
 export async function createTournamentService(tournamentDto: TournamentDto, participant: Participant) {
     if (!tournamentDto) {
@@ -123,4 +125,67 @@ export async function getTournamentParticipantsService(code: string) {
     }
 
     return new Result(StatusCodes.OK, tournament.participants, `Participants for tournament ${code} retrieved successfully`);
+}
+
+export async function startTournamentService(code: string, body: { participants: Participant[] | null }) {
+    const result = await tournamentControls(code);
+    if (result.statusCode !== StatusCodes.OK || !result.data) {
+        return result;
+    }
+
+    const tournament = result.data;
+
+    if (tournament.status !== 'created') {
+        return new Result(StatusCodes.BAD_REQUEST, null, 'Tournament is not in a state to be started');
+    }
+
+    if (tournament.participants.length < 2) {
+        return new Result(StatusCodes.BAD_REQUEST, null, 'Not enough participants to start the tournament');
+    }
+
+    tournament.status = 'ongoing';
+    tournamentCache.set(code, tournament);
+
+    const winners = [];
+    const participants = body.participants === null ? tournament.participants : body.participants;
+    // if (participants.length < 2) {
+    //     tournament.status = 'completed';
+    //     return new Result(StatusCodes.OK, participants[0], `Tournament ${code} winner is ${participants[0].username}`);
+    // }
+
+    const shuffledParticipants = await shuffleArray(participants);
+
+    if (shuffledParticipants.length % 2 !== 0) {
+        winners.push(shuffledParticipants[0]);
+        shuffledParticipants.splice(0, 1);
+    }
+
+    const matches: Match[] = [];
+    for (let i = 0; i < shuffledParticipants.length; i += 2) {
+        matches.push(
+            {
+                participant1: shuffledParticipants[i],
+                participant2: shuffledParticipants[i + 1]
+            }
+        );
+    }
+
+    const tournamentStart: TournamentStart = {
+        id: tournament.id,
+        name: tournament.name,
+        admin_id: tournament.admin_id,
+        status: tournament.status,
+        code: tournament.code,
+        participants: tournament.participants,
+        rounds: [
+            {
+                round_number: getRoundNumber(),
+                matches: matches,
+                winner: winners.length > 0 ? winners : null
+            }
+        ]
+    }
+
+    return new Result(StatusCodes.OK, tournamentStart, `Tournament ${code} started successfully`);
+
 }
