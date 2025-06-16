@@ -1,3 +1,8 @@
+/**
+ * Fisher-Yates shuffle algorithm to randomly shuffle an array.
+ * @param array
+ */
+
 export async function shuffleArray<T>(array: T[]): Promise<T[]> {
     const shuffled = [...array];
     for (let i = shuffled.length - 1; i > 0; i--) {
