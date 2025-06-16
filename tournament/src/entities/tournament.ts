@@ -19,13 +19,15 @@ export type TournamentData = {
 };
 
 export type TournamentStart = {
-    rounds: [
-        {
-            round_number: number;
-            matches: Match[];
-            winner: Participant[] | null;
-        }
-    ]
+    rounds: Round[];
+}
+
+export type Round = {
+    round_number: number;
+    matches: Match[];
+    winner: Participant[] | null;
+    expected_winner_count: number;
+    is_completed: boolean;
 }
 
 export type Match = {
