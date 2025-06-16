@@ -1,7 +1,7 @@
 import Result from "../bean/result";
 import {FastifyReply} from "fastify";
 
-export const getResult = <T>(result: Result<T>, reply: FastifyReply) => {
+export const getResult = (result: Result<any>, reply: FastifyReply) => {
     const { statusCode, message } = result;
 
     if (statusCode >= 400) {
@@ -17,7 +17,7 @@ export const getResult = <T>(result: Result<T>, reply: FastifyReply) => {
     });
 };
 
-export const getResultAndData = async <T>(result: Result<T>, reply: FastifyReply) => {
+export const getResultAndData = async (result: Result<any>, reply: FastifyReply) => {
     const { statusCode, data, message } = result;
 
     if (statusCode >= 400) {
