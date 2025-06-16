@@ -129,13 +129,17 @@ export async function getTournamentParticipantsService(code: string) {
     return new Result(StatusCodes.OK, tournament, `Participants for tournament ${code} retrieved successfully`);
 }
 
-export async function startTournamentService(code: string) {
+export async function startTournamentService(code: string, participant: Participant) {
     const result = await tournamentControls(code);
     if (result.statusCode !== StatusCodes.OK || !result.data) {
         return result;
     }
 
     const tournament = result.data;
+
+    if (tournament.admin_id !== participant.uuid) {
+        return new Result(StatusCodes.FORBIDDEN, null, 'Only the tournament admin can start the tournament');
+    }
 
     if (tournament.status !== TournamentStatus.CREATED) {
         return new Result(StatusCodes.BAD_REQUEST, null, 'Tournament is not in a state to be started');
@@ -222,7 +226,7 @@ export async function addWinnerService(code: string, body: Winner) {
 
     if (existingWinners.length !== round.expected_winner_count) {
         round.is_completed = false;
-        round.winner = null;
+        round.winner = existingWinners;
         tournament.tournament_start!.rounds = tournament.tournament_start!.rounds.map(r => r.round_number === round.round_number ? round : r);
         tournamentCache.set(code, tournament);
         return new Result(StatusCodes.OK, null, 'Winner added successfully');
