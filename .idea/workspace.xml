@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="refactor: tournament data type changed.">
-      <change afterPath="$PROJECT_DIR$/tournament/src/factories/tournament.factory.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tournament/src/factories/tournament.validator.ts" afterDir="false" />
+    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="feat: tournament validations added.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tournament/src/controllers/tournament.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/controllers/tournament.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/src/entities/user.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/tournament/src/services/tournament.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/services/tournament.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -142,7 +142,8 @@
       <workItem from="1749894835346" duration="14026000" />
       <workItem from="1749914010539" duration="11905000" />
       <workItem from="1750080549941" duration="5996000" />
-      <workItem from="1750088978247" duration="14046000" />
+      <workItem from="1750088978247" duration="15603000" />
+      <workItem from="1750106870776" duration="2058000" />
     </task>
     <task id="LOCAL-00001" summary="createTournament finished">
       <option name="closed" value="true" />
@@ -392,7 +393,23 @@
       <option name="project" value="LOCAL" />
       <updated>1750105116448</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="feat: add winners method added.">
+      <option name="closed" value="true" />
+      <created>1750105185923</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1750105185923</updated>
+    </task>
+    <task id="LOCAL-00033" summary="feat: tournament validations added.">
+      <option name="closed" value="true" />
+      <created>1750105205707</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1750105205707</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -416,8 +433,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="register methods fixed and validations added" />
-    <MESSAGE value="database settings fixed" />
     <MESSAGE value="authentication jwt token login service completed" />
     <MESSAGE value=".env file position fixed" />
     <MESSAGE value=".env file control fixed" />
@@ -441,6 +456,8 @@
     <MESSAGE value="refactor: responses made full-generic." />
     <MESSAGE value="refactor: winner type name changed." />
     <MESSAGE value="refactor: tournament data type changed." />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: tournament data type changed." />
+    <MESSAGE value="feat: add winners method added." />
+    <MESSAGE value="feat: tournament validations added." />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: tournament validations added." />
   </component>
 </project>
