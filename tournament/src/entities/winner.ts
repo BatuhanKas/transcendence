@@ -1,6 +1,6 @@
 import {Participant} from "./participant";
 
 export type Winner = {
-    round: number;
+    round_number: number;
     winner: Participant;
 };
