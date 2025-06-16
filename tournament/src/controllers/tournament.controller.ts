@@ -121,5 +121,8 @@ export async function addWinners(request: FastifyRequest, reply: FastifyReply) {
     const body = request.body as Winner;
 
     const result = await addWinnerService(code, body);
-
+    if (result.statusCode !== 200 || !result.data) {
+        return getResult(result, reply);
+    }
+    return getResultAndData(result, reply);
 }

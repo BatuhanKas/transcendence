@@ -1,13 +1,15 @@
 import tournamentCache from '../cache/tournament.cache';
 import {StatusCodes} from 'http-status-codes';
 import {TournamentDto} from "../dto/tournament.dto";
-import {getNextRoomId, getRoomCode, getRoundNumber} from "../util/id.counter";
+import {getNextRoomId, getRoomCode} from "../util/id.counter";
 import Result from '../bean/result';
 import {Participant} from "../entities/participant";
-import {Match, TournamentData, TournamentStart, TournamentStatus} from "../entities/tournament";
+import {Round, TournamentData, TournamentStart, TournamentStatus} from "../entities/tournament";
 import {shuffleArray} from "../util/shuffle";
 import {Winner} from "../entities/winner";
 import roundWinners from "../cache/winners.cache";
+import {createMatches, createRound} from "../factories/tournament.factory";
+import {validateRoundState, validateTournamentState} from "../factories/tournament.validator";
 
 export async function createTournamentService(tournamentDto: TournamentDto, participant: Participant) {
     if (!tournamentDto) {
@@ -143,32 +145,27 @@ export async function startTournamentService(code: string) {
         return new Result(StatusCodes.BAD_REQUEST, null, 'Not enough participants to start the tournament');
     }
 
-    const winners = [];
+    const winners: Participant[] = [];
     const participants = tournament.participants;
 
+    /**
+     * which means if there is an odd number of participants,
+     * shuffled first participant will be automatically added as a winner
+     */
     const shuffledParticipants = await shuffleArray(participants);
     if (shuffledParticipants.length % 2 !== 0) {
         winners.push(shuffledParticipants[0]);
         shuffledParticipants.splice(0, 1);
     }
 
-    const matches: Match[] = [];
-    for (let i = 0; i < shuffledParticipants.length; i += 2) {
-        const match: Match = {
-            participant1: shuffledParticipants[i],
-            participant2: shuffledParticipants[i + 1]
-        }
-        matches.push(match);
-    }
+    const matches = createMatches(shuffledParticipants);
+
+    const rounds: Round[] = [];
+    const firstRound = createRound(matches, winners);
+    rounds.push(firstRound);
 
     const tournamentStart: TournamentStart = {
-        rounds: [
-            {
-                round_number: getRoundNumber(),
-                matches: matches,
-                winner: winners.length > 0 ? winners : null
-            }
-        ]
+        rounds: rounds
     }
 
     tournament.status = TournamentStatus.ONGOING;
@@ -185,21 +182,75 @@ export async function addWinnerService(code: string, body: Winner) {
         return new Result(StatusCodes.NOT_FOUND, null, 'Tournament not found');
     }
 
-    if (tournament.status !== TournamentStatus.ONGOING) {
-        return new Result(StatusCodes.BAD_REQUEST, null, 'Tournament is not in a state to add winners');
+    const result = await validateTournamentState(tournament);
+    if (result.statusCode !== StatusCodes.OK || !result.data) {
+        return result;
     }
 
-    if (!tournament.tournament_start || !tournament.tournament_start.rounds) {
-        return new Result(StatusCodes.BAD_REQUEST, null, 'No rounds found in the tournament');
+    const validTournament = result.data;
+
+    const currentRound = await validateRoundState(validTournament, body.round_number);
+    if (currentRound.statusCode !== StatusCodes.OK || !currentRound.data) {
+        return currentRound;
     }
 
-    const round = tournament.tournament_start.rounds.find(r => r.round_number === body.round);
-    if (!round) {
-        return new Result(StatusCodes.BAD_REQUEST, null, 'Round not found');
+    const round = currentRound.data as Round;
+
+    // Java stream().anyMatch() equivalent in JavaScript
+    const isValidWinner = round.matches.some(match =>
+        (match.participant1.uuid === body.winner.uuid) ||
+        (match.participant2.uuid === body.winner.uuid)
+    );
+
+    if (!isValidWinner) {
+        return new Result(StatusCodes.BAD_REQUEST, null, 'Winner is not part of the current matches');
     }
 
     const existingWinners = roundWinners.get(round.round_number) || [];
+
+    if (existingWinners.length >= round.expected_winner_count) {
+        return new Result(StatusCodes.BAD_REQUEST, null, 'Round is already completed');
+    }
+
+    if (existingWinners.some(winner => winner.uuid === body.winner.uuid)) {
+        return new Result(StatusCodes.CONFLICT, null, 'Winner already added for this round');
+    }
+
     const participant = body.winner as Participant;
     existingWinners.push(participant);
     roundWinners.set(round.round_number, existingWinners);
+
+    if (existingWinners.length !== round.expected_winner_count) {
+        round.is_completed = false;
+        round.winner = null;
+        tournament.tournament_start!.rounds = tournament.tournament_start!.rounds.map(r => r.round_number === round.round_number ? round : r);
+        tournamentCache.set(code, tournament);
+        return new Result(StatusCodes.OK, null, 'Winner added successfully');
+    }
+
+    round.is_completed = true;
+    round.winner = existingWinners;
+
+    if (round.expected_winner_count === 1) {
+        tournament.status = TournamentStatus.COMPLETED;
+        tournament.end_time = new Date();
+        tournamentCache.set(code, tournament);
+        return new Result(StatusCodes.OK, round.winner.at(0), 'Tournament completed successfully');
+    }
+
+    const shuffledParticipants = await shuffleArray(existingWinners);
+    const winners: Participant[] = [];
+
+    if (shuffledParticipants.length % 2 !== 0) {
+        winners.push(shuffledParticipants[0]);
+        shuffledParticipants.splice(0, 1);
+    }
+
+    const newMatches = createMatches(shuffledParticipants);
+    const newRound = createRound(newMatches, winners);
+    tournament.tournament_start!.rounds.push(newRound);
+
+    tournament.tournament_start!.rounds = tournament.tournament_start!.rounds.map(r => r.round_number === round.round_number ? round : r);
+    tournamentCache.set(code, tournament);
+    return new Result(StatusCodes.OK, null, 'Winner added and next round started successfully');
 }
