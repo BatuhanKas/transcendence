@@ -1,7 +1,7 @@
 import tournamentCache from '../cache/tournament.cache';
 import {StatusCodes} from 'http-status-codes';
 import {TournamentDto} from "../dto/tournament.dto";
-import {getNextRoomId, getRoomCode} from "../util/id.counter";
+import {getNextRoomId, getRoomCode, resetRoundNumber} from "../util/id.counter";
 import Result from '../bean/result';
 import {Participant} from "../entities/participant";
 import {Round, TournamentData, TournamentStart, TournamentStatus} from "../entities/tournament";
@@ -225,6 +225,7 @@ export async function addWinnerService(code: string, body: Winner) {
         tournament.status = TournamentStatus.COMPLETED;
         tournament.end_time = new Date();
         tournamentCache.set(code, tournament);
+        resetRoundNumber();
         return new Result(StatusCodes.OK, round.winner.at(0), 'Tournament completed successfully');
     }
 

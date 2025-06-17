@@ -17,3 +17,7 @@ export function getNextRoomId(): number {
 export function getRoundNumber(): number {
     return ++roundNumber;
 }
+
+export function resetRoundNumber(): void {
+    roundNumber = 0;
+}
