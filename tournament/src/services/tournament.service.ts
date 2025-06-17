@@ -223,17 +223,16 @@ export async function addWinnerService(code: string, body: Winner) {
     const participant = body.winner as Participant;
     existingWinners.push(participant);
     roundWinners.set(round.round_number, existingWinners);
+    round.winner = existingWinners;
 
     if (existingWinners.length !== round.expected_winner_count) {
         round.is_completed = false;
-        round.winner = existingWinners;
         tournament.tournament_start!.rounds = tournament.tournament_start!.rounds.map(r => r.round_number === round.round_number ? round : r);
         tournamentCache.set(code, tournament);
         return new Result(StatusCodes.OK, null, 'Winner added successfully');
     }
 
     round.is_completed = true;
-    round.winner = existingWinners;
 
     if (round.expected_winner_count === 1) {
         tournament.status = TournamentStatus.COMPLETED;
