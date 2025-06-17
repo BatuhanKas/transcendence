@@ -9,7 +9,7 @@ import {shuffleArray} from "../util/shuffle";
 import {Winner} from "../entities/winner";
 import roundWinners from "../cache/winners.cache";
 import {createMatches, createRound} from "../factories/tournament.factory";
-import {validateRoundState, validateTournamentState} from "../factories/tournament.validator";
+import {validateRoundState, validateTournamentState, validateWinners} from "../factories/tournament.validator";
 
 export async function createTournamentService(tournamentDto: TournamentDto, participant: Participant) {
     if (!tournamentDto) {
@@ -200,24 +200,11 @@ export async function addWinnerService(code: string, body: Winner) {
 
     const round = currentRound.data as Round;
 
-    // Java stream().anyMatch() equivalent in JavaScript
-    const isValidWinner = round.matches.some(match =>
-        (match.participant1.uuid === body.winner.uuid) ||
-        (match.participant2.uuid === body.winner.uuid)
-    );
-
-    if (!isValidWinner) {
-        return new Result(StatusCodes.BAD_REQUEST, null, 'Winner is not part of the current matches');
-    }
-
     const existingWinners = roundWinners.get(round.round_number) || [];
 
-    if (existingWinners.length >= round.expected_winner_count) {
-        return new Result(StatusCodes.BAD_REQUEST, null, 'Round is already completed');
-    }
-
-    if (existingWinners.some(winner => winner.uuid === body.winner.uuid)) {
-        return new Result(StatusCodes.CONFLICT, null, 'Winner already added for this round');
+    const validationResult = await validateWinners(body.winner as Participant, round, existingWinners);
+    if (validationResult.statusCode !== StatusCodes.OK) {
+        return validationResult;
     }
 
     const participant = body.winner as Participant;
@@ -225,7 +212,7 @@ export async function addWinnerService(code: string, body: Winner) {
     roundWinners.set(round.round_number, existingWinners);
     round.winner = existingWinners;
 
-    if (existingWinners.length !== round.expected_winner_count) {
+    if (existingWinners.length < round.expected_winner_count) {
         round.is_completed = false;
         tournament.tournament_start!.rounds = tournament.tournament_start!.rounds.map(r => r.round_number === round.round_number ? round : r);
         tournamentCache.set(code, tournament);
@@ -234,7 +221,7 @@ export async function addWinnerService(code: string, body: Winner) {
 
     round.is_completed = true;
 
-    if (round.expected_winner_count === 1) {
+    if (round.expected_winner_count === 1 && existingWinners.length === 1) {
         tournament.status = TournamentStatus.COMPLETED;
         tournament.end_time = new Date();
         tournamentCache.set(code, tournament);

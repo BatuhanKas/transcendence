@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="refactor: admin controls added.">
+    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="fix: existing winners duplicate solved.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/src/factories/tournament.factory.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/factories/tournament.factory.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/src/factories/tournament.validator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/factories/tournament.validator.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tournament/src/services/tournament.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/services/tournament.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -142,7 +144,7 @@
       <workItem from="1750080549941" duration="5996000" />
       <workItem from="1750088978247" duration="15603000" />
       <workItem from="1750106870776" duration="4111000" />
-      <workItem from="1750172049326" duration="1949000" />
+      <workItem from="1750172049326" duration="12082000" />
     </task>
     <task id="LOCAL-00001" summary="createTournament finished">
       <option name="closed" value="true" />
@@ -424,7 +426,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750109050198</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="fix: existing winners duplicate solved.">
+      <option name="closed" value="true" />
+      <created>1750174495563</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1750174495563</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -448,7 +458,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value=".env file control fixed" />
     <MESSAGE value="build fixes" />
     <MESSAGE value="validate endpoint finished" />
     <MESSAGE value="microservice finished and /validate endpoint updated." />
@@ -473,6 +482,25 @@
     <MESSAGE value="feat: tournament validations added." />
     <MESSAGE value="feat: user.ts removed in tournament." />
     <MESSAGE value="refactor: admin controls added." />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: admin controls added." />
+    <MESSAGE value="fix: existing winners duplicate solved." />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: existing winners duplicate solved." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/tournament/src/services/tournament.service.ts</url>
+          <line>204</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/tournament/src/services/tournament.service.ts</url>
+          <line>202</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
