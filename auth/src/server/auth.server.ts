@@ -2,6 +2,7 @@ import Fastify from "fastify";
 import routes from "../routes/routes";
 import jwt from "@fastify/jwt";
 import 'dotenv/config';
+import fastifyCors from "@fastify/cors";
 
 const authServer = Fastify();
 
@@ -17,6 +18,9 @@ authServer.register(jwt, {
         expiresIn: '30d'
     }
 });
+authServer.register(fastifyCors, {
+    origin: '*'
+})
 
 const start = async () => {
     try {

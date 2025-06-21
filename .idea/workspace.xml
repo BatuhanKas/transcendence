@@ -4,11 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="fix: reset round number after tournament finished.">
+    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="fix: round number bug fixed.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/src/factories/tournament.factory.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/factories/tournament.factory.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/src/services/tournament.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/services/tournament.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/src/util/id.counter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/util/id.counter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/auth/node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/auth/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/auth/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/server/auth.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/server/auth.server.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/src/server/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/server/server.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +152,8 @@
       <workItem from="1750172049326" duration="16052000" />
       <workItem from="1750193245885" duration="1080000" />
       <workItem from="1750263882844" duration="705000" />
-      <workItem from="1750510102754" duration="7871000" />
+      <workItem from="1750510102754" duration="13087000" />
+      <workItem from="1750536325161" duration="773000" />
     </task>
     <task id="LOCAL-00001" summary="createTournament finished">
       <option name="closed" value="true" />
@@ -461,7 +467,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750193434341</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="fix: round number bug fixed.">
+      <option name="closed" value="true" />
+      <created>1750518189567</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1750518189567</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -485,7 +499,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="microservice and middleware finished. /validate endpoint updated." />
     <MESSAGE value="refactor: token controls added, getParticipants method fixed." />
     <MESSAGE value="feat: update method added." />
     <MESSAGE value="refactor: responses fixed." />
@@ -510,6 +523,7 @@
     <MESSAGE value="fix: round winners added to create." />
     <MESSAGE value="fix: addWinner validations added." />
     <MESSAGE value="fix: reset round number after tournament finished." />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: reset round number after tournament finished." />
+    <MESSAGE value="fix: round number bug fixed." />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: round number bug fixed." />
   </component>
 </project>

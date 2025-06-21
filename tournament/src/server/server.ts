@@ -1,9 +1,13 @@
 import Fastify from 'fastify';
 import tournamentRoutes from "../routes/routes";
+import fastifyCors from "@fastify/cors";
 
 const server = Fastify();
 
 server.register(tournamentRoutes, { prefix: '/api' });
+server.register(fastifyCors, {
+    origin: '*'
+});
 
 const start = async () => {
     try {
