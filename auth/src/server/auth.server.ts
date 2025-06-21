@@ -19,7 +19,9 @@ authServer.register(jwt, {
     }
 });
 authServer.register(fastifyCors, {
-    origin: '*'
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+    credentials: true
 })
 
 const start = async () => {

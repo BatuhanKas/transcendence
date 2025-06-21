@@ -6,7 +6,9 @@ const server = Fastify();
 
 server.register(tournamentRoutes, { prefix: '/api' });
 server.register(fastifyCors, {
-    origin: '*'
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+    credentials: true
 });
 
 const start = async () => {
