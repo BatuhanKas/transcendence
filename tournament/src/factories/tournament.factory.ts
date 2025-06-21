@@ -1,6 +1,5 @@
 import {Participant} from "../entities/participant";
 import {Match, Round} from "../entities/tournament";
-import {getRoundNumber} from "../util/id.counter";
 import roundWinners from "../cache/winners.cache";
 
 export const createMatches = (shuffledParticipants: Participant[]) => {
@@ -15,9 +14,9 @@ export const createMatches = (shuffledParticipants: Participant[]) => {
     return matches;
 }
 
-export const createRound = (matches: Match[], winners: any[]) => {
+export const createRound = (matches: Match[], winners: any[], roundNumber: number) => {
     const newRound: Round = {
-        round_number: getRoundNumber(),
+        round_number: roundNumber,
         matches: matches,
         winner: winners.length > 0 ? winners : null,
         expected_winner_count: matches.length,

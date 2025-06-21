@@ -1,7 +1,7 @@
 import tournamentCache from '../cache/tournament.cache';
 import {StatusCodes} from 'http-status-codes';
 import {TournamentDto} from "../dto/tournament.dto";
-import {getNextRoomId, getRoomCode, resetRoundNumber} from "../util/id.counter";
+import {getNextRoomId, getRoomCode} from "../util/id.counter";
 import Result from '../bean/result';
 import {Participant} from "../entities/participant";
 import {Round, TournamentData, TournamentStart, TournamentStatus} from "../entities/tournament";
@@ -165,7 +165,7 @@ export async function startTournamentService(code: string, participant: Particip
     const matches = createMatches(shuffledParticipants);
 
     const rounds: Round[] = [];
-    const firstRound = createRound(matches, winners);
+    const firstRound = createRound(matches, winners, 1);
     rounds.push(firstRound);
 
     const tournamentStart: TournamentStart = {
@@ -225,7 +225,6 @@ export async function addWinnerService(code: string, body: Winner) {
         tournament.status = TournamentStatus.COMPLETED;
         tournament.end_time = new Date();
         tournamentCache.set(code, tournament);
-        resetRoundNumber();
         return new Result(StatusCodes.OK, round.winner.at(0), 'Tournament completed successfully');
     }
 
@@ -238,7 +237,8 @@ export async function addWinnerService(code: string, body: Winner) {
     }
 
     const newMatches = createMatches(shuffledParticipants);
-    const newRound = createRound(newMatches, winners);
+    const roundNumber = round.round_number + 1;
+    const newRound = createRound(newMatches, winners, roundNumber);
     tournament.tournament_start!.rounds.push(newRound);
 
     tournament.tournament_start!.rounds = tournament.tournament_start!.rounds.map(r => r.round_number === round.round_number ? round : r);

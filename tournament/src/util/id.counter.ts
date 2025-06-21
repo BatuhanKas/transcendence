@@ -2,8 +2,6 @@ import { customAlphabet } from 'nanoid';
 
 let roomIdCounter = 0;
 
-let roundNumber = 0;
-
 const generateRoomCode = customAlphabet('ABCDEFGHJKLMNPQRSTUVWXYZ23456789', 6);
 
 export function getRoomCode(): string {
@@ -12,12 +10,4 @@ export function getRoomCode(): string {
 
 export function getNextRoomId(): number {
     return ++roomIdCounter;
-}
-
-export function getRoundNumber(): number {
-    return ++roundNumber;
-}
-
-export function resetRoundNumber(): void {
-    roundNumber = 0;
 }
