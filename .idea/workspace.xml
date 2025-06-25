@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="fix: cors error fixed.">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="fix: cors error fixed hopefully.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/src/server/auth.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/server/auth.server.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/src/middleware/middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/middleware/middleware.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tournament/src/server/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/server/server.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -94,7 +93,7 @@
       <recent name="$PROJECT_DIR$/auth/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Node.js.auth.ts">
+  <component name="RunManager" selected="Node.js.server.ts">
     <configuration name="auth.ts" type="NodeJSConfigurationType" path-to-js-file="src/server/auth.server.ts" typescript-loader="bundled" working-dir="$PROJECT_DIR$/auth">
       <method v="2" />
     </configuration>
@@ -156,7 +155,8 @@
       <workItem from="1750536325161" duration="2738000" />
       <workItem from="1750539174000" duration="43000" />
       <workItem from="1750788813755" duration="238000" />
-      <workItem from="1750789246103" duration="2771000" />
+      <workItem from="1750789246103" duration="7012000" />
+      <workItem from="1750877988290" duration="1031000" />
     </task>
     <task id="LOCAL-00001" summary="createTournament finished">
       <option name="closed" value="true" />
@@ -494,7 +494,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750538727046</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="fix: cors error fixed hopefully.">
+      <option name="closed" value="true" />
+      <created>1750792057915</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1750792057915</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -518,7 +526,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="feat: update method added." />
     <MESSAGE value="refactor: responses fixed." />
     <MESSAGE value="refactor: update method updated." />
     <MESSAGE value="refactor: login method updated." />
@@ -543,6 +550,25 @@
     <MESSAGE value="fix: reset round number after tournament finished." />
     <MESSAGE value="fix: round number bug fixed." />
     <MESSAGE value="fix: cors error fixed." />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: cors error fixed." />
+    <MESSAGE value="fix: cors error fixed hopefully." />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: cors error fixed hopefully." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/tournament/src/middleware/middleware.ts</url>
+          <line>7</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/auth/src/services/auth.service.ts</url>
+          <line>10</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
