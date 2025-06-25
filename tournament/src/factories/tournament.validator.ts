@@ -3,7 +3,11 @@ import Result from "../bean/result";
 import {StatusCodes} from "http-status-codes";
 import {Participant} from "../entities/participant";
 
-export async function validateTournamentState(tournament: TournamentData) {
+export async function validateTournamentState(tournament: TournamentData, admin: Participant) {
+    if (tournament.admin_id !== admin.uuid) {
+        return new Result(StatusCodes.FORBIDDEN, null, 'You are not authorized to perform this action on the tournament');
+    }
+
     if (tournament.status !== TournamentStatus.ONGOING) {
         return new Result(StatusCodes.BAD_REQUEST, null, 'Tournament is not in a state to add winners');
     }

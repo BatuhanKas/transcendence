@@ -117,15 +117,20 @@ export async function startTournament(request: FastifyRequest, reply: FastifyRep
 }
 
 export async function addWinners(request: FastifyRequest, reply: FastifyReply) {
-    const { statusCode, message } = await authMiddleware(request);
+    const { statusCode, data, message } = await authMiddleware(request);
     if (statusCode != 200) {
         return getResult(new Result(statusCode, null, message), reply);
     }
 
     const { code } = request.params as { code: string };
+    const authData = data as AuthResponse;
+    const admin: Participant = {
+        uuid: authData.data.uuid,
+        username: authData.data.username
+    }
     const body = request.body as Winner;
 
-    const result = await addWinnerService(code, body);
+    const result = await addWinnerService(code, body, admin);
     if (result.statusCode !== 200 || !result.data) {
         return getResult(result, reply);
     }

@@ -183,13 +183,13 @@ export async function startTournamentService(code: string, participant: Particip
     return new Result(StatusCodes.OK, null, `Tournament ${code} started successfully`);
 }
 
-export async function addWinnerService(code: string, body: Winner) {
+export async function addWinnerService(code: string, body: Winner, admin: Participant) {
     const tournament = tournamentCache.get(code);
     if (!tournament) {
         return new Result(StatusCodes.NOT_FOUND, null, 'Tournament not found');
     }
 
-    const result = await validateTournamentState(tournament);
+    const result = await validateTournamentState(tournament, admin);
     if (result.statusCode !== StatusCodes.OK || !result.data) {
         return result;
     }
