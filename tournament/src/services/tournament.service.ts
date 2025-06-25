@@ -23,6 +23,10 @@ export async function createTournamentService(tournamentDto: TournamentDto, part
         return new Result(StatusCodes.CONFLICT, null, 'Tournament name already exists');
     }
 
+    if (tournamentDto.name.length > 20) {
+        return new Result(StatusCodes.BAD_REQUEST, null, 'Tournament name cannot be more than 20 characters');
+    }
+
     const roomCode = getRoomCode();
     const roomId = getNextRoomId();
 

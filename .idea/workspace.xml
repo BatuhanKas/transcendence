@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="refactor: port changes.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/src/server/auth.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/server/auth.server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/src/entities/tournament.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/entities/tournament.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/src/factories/tournament.factory.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/factories/tournament.factory.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/src/factories/tournament.validator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/factories/tournament.validator.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/src/server/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/server/server.ts" afterDir="false" />
+    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="refactor: addWinners round conflict fixed.">
       <change beforePath="$PROJECT_DIR$/tournament/src/services/tournament.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/services/tournament.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -160,7 +154,7 @@
       <workItem from="1750539174000" duration="43000" />
       <workItem from="1750788813755" duration="238000" />
       <workItem from="1750789246103" duration="7012000" />
-      <workItem from="1750877988290" duration="12503000" />
+      <workItem from="1750877988290" duration="12669000" />
     </task>
     <task id="LOCAL-00001" summary="createTournament finished">
       <option name="closed" value="true" />
@@ -522,7 +516,15 @@
       <option name="project" value="LOCAL" />
       <updated>1750891087426</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="refactor: addWinners round conflict fixed.">
+      <option name="closed" value="true" />
+      <created>1750891098807</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1750891098808</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -546,7 +548,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="refactor: login method updated." />
     <MESSAGE value="refactor: middleware updated, all tournament methods updated and changed." />
     <MESSAGE value="fix: leave method fixed." />
     <MESSAGE value="fix: routes fixed for restful." />
@@ -571,6 +572,7 @@
     <MESSAGE value="fix: cors error fixed hopefully." />
     <MESSAGE value="fix: server port changed." />
     <MESSAGE value="refactor: port changes." />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: port changes." />
+    <MESSAGE value="refactor: addWinners round conflict fixed." />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: addWinners round conflict fixed." />
   </component>
 </project>
