@@ -7,7 +7,6 @@ import {Participant} from "../entities/participant";
 import {Round, TournamentData, TournamentStart, TournamentStatus} from "../entities/tournament";
 import {shuffleArray} from "../util/shuffle";
 import {Winner} from "../entities/winner";
-import roundWinners from "../cache/winners.cache";
 import {createMatches, createRound} from "../factories/tournament.factory";
 import {validateRoundState, validateTournamentState, validateWinners} from "../factories/tournament.validator";
 
@@ -199,8 +198,7 @@ export async function addWinnerService(code: string, body: Winner) {
     }
 
     const round = currentRound.data as Round;
-
-    const existingWinners = roundWinners.get(round.round_number) || [];
+    const existingWinners = round.winners || [];
 
     const validationResult = await validateWinners(body.winner as Participant, round, existingWinners);
     if (validationResult.statusCode !== StatusCodes.OK) {
@@ -209,8 +207,7 @@ export async function addWinnerService(code: string, body: Winner) {
 
     const participant = body.winner as Participant;
     existingWinners.push(participant);
-    roundWinners.set(round.round_number, existingWinners);
-    round.winner = existingWinners;
+    round.winners = existingWinners;
 
     if (existingWinners.length < round.expected_winner_count) {
         round.is_completed = false;
@@ -225,7 +222,7 @@ export async function addWinnerService(code: string, body: Winner) {
         tournament.status = TournamentStatus.COMPLETED;
         tournament.end_time = new Date();
         tournamentCache.set(code, tournament);
-        return new Result(StatusCodes.OK, round.winner.at(0), 'Tournament completed successfully');
+        return new Result(StatusCodes.OK, round.winners.at(0), 'Tournament completed successfully');
     }
 
     const shuffledParticipants = await shuffleArray(existingWinners);
@@ -239,8 +236,9 @@ export async function addWinnerService(code: string, body: Winner) {
     const newMatches = createMatches(shuffledParticipants);
     const roundNumber = round.round_number + 1;
     const newRound = createRound(newMatches, winners, roundNumber);
+    // Pushing the new round to the round array
     tournament.tournament_start!.rounds.push(newRound);
-
+    // Updating the changed round on the round array
     tournament.tournament_start!.rounds = tournament.tournament_start!.rounds.map(r => r.round_number === round.round_number ? round : r);
     tournamentCache.set(code, tournament);
     return new Result(StatusCodes.OK, null, 'Winner added and next round started successfully');

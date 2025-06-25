@@ -21,12 +21,15 @@ export async function validateRoundState(tournament: TournamentData, roundNumber
         return new Result(StatusCodes.BAD_REQUEST, null, 'Round not found');
     }
 
-    const currentRound = tournament.tournament_start!.rounds.find(r => !r.is_completed);
-    if (!currentRound) {
-        return new Result(StatusCodes.BAD_REQUEST, null, 'No active round found');
+    if (round.is_completed) {
+        return new Result(StatusCodes.BAD_REQUEST, null, 'Round is already completed');
     }
 
-    return new Result(StatusCodes.OK, currentRound, '');
+    if (round.round_number !== roundNumber) {
+        return new Result(StatusCodes.BAD_REQUEST, null, 'Round number does not match the current active round');
+    }
+
+    return new Result(StatusCodes.OK, round, '');
 }
 
 export async function validateWinners(winner: Participant, round: Round, existingWinners: Participant[]) {

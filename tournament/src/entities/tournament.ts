@@ -25,7 +25,7 @@ export type TournamentStart = {
 export type Round = {
     round_number: number;
     matches: Match[];
-    winner: Participant[] | null;
+    winners: Participant[] | null;
     expected_winner_count: number;
     is_completed: boolean;
 }
