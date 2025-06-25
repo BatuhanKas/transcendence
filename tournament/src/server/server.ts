@@ -14,7 +14,7 @@ server.register(fastifyCors, {
 const start = async () => {
     try {
         await server.listen({ port: 8083 });
-        console.log('Server is running on http://localhost:8080');
+        console.log('Server is running on http://tournament.transendence.com:8083');
     } catch (err) {
         console.log(err);
         process.exit(1);

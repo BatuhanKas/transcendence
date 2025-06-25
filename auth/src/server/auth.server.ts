@@ -27,7 +27,7 @@ authServer.register(fastifyCors, {
 const start = async () => {
     try {
         await authServer.listen({ port: 8081 });
-        console.log('Authentication server is running on http://localhost:8081');
+        console.log('Authentication server is running on http://auth.transendence.com:8081');
     } catch (err) {
         authServer.log.error(err);
         process.exit(1);
