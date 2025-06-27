@@ -1,6 +1,11 @@
 import Result from "../bean/result";
 import {FastifyReply} from "fastify";
 
+/**
+ * Utility functions to handle responses in Fastify.
+ * @param result
+ * @param reply
+ */
 export const getResult = (result: Result<any>, reply: FastifyReply) => {
     const { statusCode, message } = result;
 
