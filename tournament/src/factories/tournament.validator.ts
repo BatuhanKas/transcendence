@@ -3,6 +3,11 @@ import Result from "../bean/result";
 import {StatusCodes} from "http-status-codes";
 import {Participant} from "../entities/participant";
 
+/**
+ * Validate states of the tournament before adding winners.
+ * @param tournament
+ * @param admin
+ */
 export async function validateTournamentState(tournament: TournamentData, admin: Participant) {
     if (tournament.admin_id !== admin.uuid) {
         return new Result(StatusCodes.FORBIDDEN, null, 'You are not authorized to perform this action on the tournament');

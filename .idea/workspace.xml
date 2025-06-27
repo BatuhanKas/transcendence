@@ -6,12 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="docs: update user service.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/src/middleware/middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/middleware/middleware.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/src/routes/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/routes/routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/src/server/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/server/server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/src/services/tournament.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/services/tournament.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/src/factories/tournament.validator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/factories/tournament.validator.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,31 +55,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Node.js.auth.server.ts.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.auth.ts.executor&quot;: &quot;Debug&quot;,
-    &quot;Node.js.greet.ts.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.server.ts.executor&quot;: &quot;Debug&quot;,
-    &quot;Node.js.tournament.controller.ts.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.tournament.repository.ts.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/batuhan/Desktop/Backend&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_interpreter_path&quot;: &quot;/home/batuhan/.nvm/versions/node/v22.16.0/bin/node&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.nodejs&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/home/batuhan/Desktop/Backend/auth/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Node.js.auth.server.ts.executor": "Run",
+    "Node.js.auth.ts.executor": "Debug",
+    "Node.js.greet.ts.executor": "Run",
+    "Node.js.server.ts.executor": "Debug",
+    "Node.js.tournament.controller.ts.executor": "Run",
+    "Node.js.tournament.repository.ts.executor": "Run",
+    "Node.js.tournament.ts.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/home/batuhan/Desktop/transcendence",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "/home/batuhan/.nvm/versions/node/v22.16.0/bin/node",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "settings.nodejs",
+    "ts.external.directory.path": "/snap/webstorm/487/plugins/javascript-plugin/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -97,16 +93,16 @@
       <recent name="$PROJECT_DIR$/auth/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Node.js.server.ts">
+  <component name="RunManager" selected="Node.js.tournament.ts">
     <configuration name="auth.ts" type="NodeJSConfigurationType" path-to-js-file="src/server/auth.server.ts" typescript-loader="bundled" working-dir="$PROJECT_DIR$/auth">
       <method v="2" />
     </configuration>
-    <configuration name="server.ts" type="NodeJSConfigurationType" nameIsGenerated="true" path-to-js-file="src/server/server.ts" typescript-loader="bundled" working-dir="$PROJECT_DIR$/tournament">
+    <configuration name="tournament.ts" type="NodeJSConfigurationType" path-to-js-file="src/server/server.ts" typescript-loader="bundled" working-dir="$PROJECT_DIR$/tournament">
       <method v="2" />
     </configuration>
     <list>
       <item itemvalue="Node.js.auth.ts" />
-      <item itemvalue="Node.js.server.ts" />
+      <item itemvalue="Node.js.tournament.ts" />
     </list>
   </component>
   <component name="SharedIndexes">
@@ -162,6 +158,9 @@
       <workItem from="1750789246103" duration="7012000" />
       <workItem from="1750877988290" duration="15547000" />
       <workItem from="1751029987123" duration="8549000" />
+      <workItem from="1751042665297" duration="5000" />
+      <workItem from="1751042703713" duration="116000" />
+      <workItem from="1751042971567" duration="277000" />
     </task>
     <task id="LOCAL-00008" summary="register methods fixed and validations added">
       <option name="closed" value="true" />
