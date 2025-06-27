@@ -21,6 +21,7 @@ export async function validateService(request: FastifyRequest) {
     }
 
     try {
+        // Verify the JWT token using the server's jwt plugin
         const decoded = server.jwt.verify(token);
         return new Result(StatusCodes.OK, decoded, 'Token is valid');
     } catch (err) {
@@ -50,6 +51,7 @@ export async function loginService(email: string, password: string) {
         return new Result(StatusCodes.BAD_REQUEST, null, 'Password must be at least 6 characters long');
     }
 
+    // Compare the provided password with the hashed password stored in the database
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
         return new Result(StatusCodes.UNAUTHORIZED, null, 'Invalid password!');
