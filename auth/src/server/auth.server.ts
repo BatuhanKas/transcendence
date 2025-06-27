@@ -24,6 +24,9 @@ authServer.register(fastifyCors, {
     credentials: true
 })
 
+/**
+ * * Start the authentication server
+ */
 const start = async () => {
     await authServer.listen({ port: 8081 });
 };
