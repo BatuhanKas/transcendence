@@ -7,6 +7,10 @@ import {
     leaveTournament, startTournament
 } from '../controllers/tournament.controller';
 
+/**
+ * Tournament routes with the Fastify server instance.
+ * @param server
+ */
 export default async function tournamentRoutes(server: FastifyInstance) {
     server.post('/tournament', createTournament);
     server.post('/tournament/:code/join', joinTournament);
