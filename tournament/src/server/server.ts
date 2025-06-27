@@ -11,6 +11,9 @@ server.register(fastifyCors, {
     credentials: true
 });
 
+/**
+ * Start the tournament server
+ */
 const start = async () => {
     await server.listen({ port: 8083 });
 };
