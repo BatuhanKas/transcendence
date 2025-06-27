@@ -5,6 +5,10 @@ import bcrypt from 'bcryptjs';
 import {findUserByEmail, findUserByUuid, updateUserRepository} from "../repositories/repository";
 import validator from "validator";
 
+/**
+ * Service to update user information.
+ * @param requestUser
+ */
 export async function updateUserService(requestUser: Partial<User>) {
     const user = await findUserByUuid(requestUser.uuid!);
 
