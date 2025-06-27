@@ -19,6 +19,10 @@ export async function findUserByUuid(uuid: string): Promise<User | null> {
         .get(uuid) as User | null;
 }
 
+/**
+ * * Updates user information in the database.
+ * @param user
+ */
 export async function updateUserRepository(user: Partial<User>): Promise<void> {
     const fields: string[] = [];
     const values: any[] = [];
