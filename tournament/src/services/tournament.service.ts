@@ -30,6 +30,9 @@ export async function createTournamentService(tournamentDto: TournamentDto, part
     const roomCode = getRoomCode();
     const roomId = getNextRoomId();
 
+    /**
+     * Creating a new tournament for the first time.
+     */
     const tournamentData: TournamentData = {
         id: roomId,
         code: roomCode,
