@@ -3,6 +3,10 @@ import { request as unitRequest } from "undici";
 import {StatusCodes} from "http-status-codes";
 import Result from "../bean/result";
 
+/**
+ * Middleware to authenticate requests by validating the token.
+ * @param request
+ */
 export async function authMiddleware(request: FastifyRequest) {
     try {
         const responseData = await unitRequest('http://auth.transendence.com:8081/api/auth/validate', {
