@@ -12,19 +12,14 @@ server.register(fastifyCors, {
 });
 
 const start = async () => {
-    try {
-        await server.listen({ port: 8083 });
-        console.log('Server is running on http://tournament.transendence.com:8083');
-    } catch (err) {
-        console.log(err);
-        process.exit(1);
-    }
+    await server.listen({ port: 8083 });
 };
 
 start()
     .then(() => {
-        console.log('Server started successfully');
+        console.log('Server is running on http://tournament.transendence.com:8083');
     })
     .catch((err) => {
         console.error('Error starting server:', err);
+        process.exit(1);
 });
