@@ -25,6 +25,7 @@ export async function authMiddleware(request: FastifyRequest) {
 
         return new Result(StatusCodes.UNAUTHORIZED, null, "Invalid token");
     } catch (error) {
+        console.error(error);
         return new Result(StatusCodes.INTERNAL_SERVER_ERROR, null, "Authentication service error");
     }
 }
