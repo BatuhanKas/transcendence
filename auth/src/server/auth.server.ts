@@ -19,7 +19,9 @@ authServer.register(jwt, {
     }
 });
 authServer.register(fastifyCors, {
-    origin: 'http://auth.transendence.com',
+    // http://auth.transendence.com:8081 -- local
+    // http://auth.transendence.com -- production
+    origin: '*',
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
     credentials: true
 })

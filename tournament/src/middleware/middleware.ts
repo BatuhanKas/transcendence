@@ -9,7 +9,9 @@ import Result from "../bean/result";
  */
 export async function authMiddleware(request: FastifyRequest) {
     try {
-        const responseData = await unitRequest('http://auth.transendence.com:8081/api/auth/validate', {
+        // http://auth.transendence.com:8081/api/auth/validate -- local
+        // http://auth.transendence.com/api/auth/validate -- production
+        const responseData = await unitRequest('http://auth.transendence.com/api/auth/validate', {
             method: 'POST',
             headers: {
                 'Authorization': request.headers.authorization as string,
