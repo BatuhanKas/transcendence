@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="docs: update user service.">
+    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="docs: validate states explained.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/src/factories/tournament.validator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/factories/tournament.validator.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,15 +159,7 @@
       <workItem from="1751029987123" duration="8549000" />
       <workItem from="1751042665297" duration="5000" />
       <workItem from="1751042703713" duration="116000" />
-      <workItem from="1751042971567" duration="277000" />
-    </task>
-    <task id="LOCAL-00008" summary="register methods fixed and validations added">
-      <option name="closed" value="true" />
-      <created>1748531215602</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1748531215602</updated>
+      <workItem from="1751042971567" duration="326000" />
     </task>
     <task id="LOCAL-00009" summary="database settings fixed">
       <option name="closed" value="true" />
@@ -554,7 +545,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751034996858</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="docs: validate states explained.">
+      <option name="closed" value="true" />
+      <created>1751043271740</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1751043271741</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -578,7 +577,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="refactor: tournament data type changed." />
     <MESSAGE value="feat: add winners method added." />
     <MESSAGE value="feat: tournament validations added." />
     <MESSAGE value="feat: user.ts removed in tournament." />
@@ -603,6 +601,7 @@
     <MESSAGE value="docs: jwt verify and bcrypt.compare explained." />
     <MESSAGE value="docs: update repository explained." />
     <MESSAGE value="docs: update user service." />
-    <option name="LAST_COMMIT_MESSAGE" value="docs: update user service." />
+    <MESSAGE value="docs: validate states explained." />
+    <option name="LAST_COMMIT_MESSAGE" value="docs: validate states explained." />
   </component>
 </project>

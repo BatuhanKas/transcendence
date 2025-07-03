@@ -6,7 +6,7 @@ const server = Fastify();
 
 server.register(tournamentRoutes, { prefix: '/api' });
 server.register(fastifyCors, {
-    origin: 'http://tournament.transendence.com',
+    origin: '*',
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
     credentials: true
 });

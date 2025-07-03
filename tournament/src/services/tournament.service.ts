@@ -186,10 +186,16 @@ export async function startTournamentService(code: string, participant: Particip
     return new Result(StatusCodes.OK, null, `Tournament ${code} started successfully`);
 }
 
-export async function addWinnerService(code: string, body: Winner, admin: Participant) {
+export async function addWinnerService(code: string, body: Winner) {
     const tournament = tournamentCache.get(code);
     if (!tournament) {
         return new Result(StatusCodes.NOT_FOUND, null, 'Tournament not found');
+    }
+    
+    const adminId: string = tournament.admin_id;
+    const admin: Participant | undefined = tournament.participants.find(p => p.uuid == adminId);
+    if (!admin) {
+        return new Result(StatusCodes.NOT_FOUND, null, 'Admin not found in the tournament.');
     }
 
     const result = await validateTournamentState(tournament, admin);

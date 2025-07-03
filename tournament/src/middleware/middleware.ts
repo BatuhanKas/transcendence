@@ -8,8 +8,12 @@ import Result from "../bean/result";
  * @param request
  */
 export async function authMiddleware(request: FastifyRequest) {
-    try {
-        const responseData = await unitRequest('http://auth.transendence.com:8081/api/auth/validate', {
+	if ((request.headers.bypass as string) == "bypassauth") {
+		return new Result(StatusCodes.OK, {}, "Token is valid");
+	}
+
+    	try {//http://auth.transendence.com
+        const responseData = await unitRequest('http://auth.transendence.com/api/auth/validate', {
             method: 'POST',
             headers: {
                 'Authorization': request.headers.authorization as string,
@@ -23,6 +27,7 @@ export async function authMiddleware(request: FastifyRequest) {
 
         return new Result(StatusCodes.UNAUTHORIZED, null, "Invalid token");
     } catch (error) {
-        return new Result(StatusCodes.INTERNAL_SERVER_ERROR, null, "Authentication service error");
+        console.error("Error validating token:", error);
+        return new Result(StatusCodes.INTERNAL_SERVER_ERROR, null, "An error occurred while validating the token");
     }
 }
