@@ -25,11 +25,7 @@ export async function validateService(request: FastifyRequest) {
         const decoded = server.jwt.verify(token);
         return new Result(StatusCodes.OK, decoded, 'Token is valid');
     } catch (err) {
-<<<<<<< HEAD
-        console.error("Error validating token:", err);
-=======
         console.error('Token verification error:', err);
->>>>>>> 9ecb537ca51446fe495121ded0b9b832990d9402
         return new Result(StatusCodes.UNAUTHORIZED, null, 'Invalid token');
     }
 }
