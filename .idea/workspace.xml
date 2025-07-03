@@ -4,8 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="docs: validate states explained.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="chore: remember to change cors origin.">
+      <change beforePath="$PROJECT_DIR$/auth/src/services/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/services/auth.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/src/middleware/middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/middleware/middleware.ts" afterDir="false" />
+>>>>>>> 9ecb537ca51446fe495121ded0b9b832990d9402
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +23,7 @@
       <list>
         <option value="package.json" />
         <option value="TypeScript File" />
+        <option value="Dockerfile" />
       </list>
     </option>
   </component>
@@ -54,32 +61,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Node.js.auth.server.ts.executor": "Run",
-    "Node.js.auth.ts.executor": "Debug",
-    "Node.js.greet.ts.executor": "Run",
-    "Node.js.server.ts.executor": "Debug",
-    "Node.js.tournament.controller.ts.executor": "Run",
-    "Node.js.tournament.repository.ts.executor": "Run",
-    "Node.js.tournament.ts.executor": "Debug",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/batuhan/Desktop/transcendence",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_interpreter_path": "/home/batuhan/.nvm/versions/node/v22.16.0/bin/node",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "settings.nodejs",
-    "ts.external.directory.path": "/snap/webstorm/487/plugins/javascript-plugin/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Node.js.auth.server.ts.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.auth.ts.executor&quot;: &quot;Debug&quot;,
+    &quot;Node.js.greet.ts.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.server.ts.executor&quot;: &quot;Debug&quot;,
+    &quot;Node.js.tournament.controller.ts.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.tournament.repository.ts.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.tournament.ts.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/batuhan/Desktop/v1&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;/home/batuhan/.nvm/versions/node/v22.16.0/bin/node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.nodejs&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/batuhan/Desktop/transcendence/tournament/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -160,6 +167,7 @@
       <workItem from="1751042665297" duration="5000" />
       <workItem from="1751042703713" duration="116000" />
       <workItem from="1751042971567" duration="326000" />
+<<<<<<< HEAD
     </task>
     <task id="LOCAL-00009" summary="database settings fixed">
       <option name="closed" value="true" />
@@ -184,6 +192,11 @@
       <option name="presentableId" value="LOCAL-00011" />
       <option name="project" value="LOCAL" />
       <updated>1748542702104</updated>
+=======
+      <workItem from="1751045233309" duration="61000" />
+      <workItem from="1751045355450" duration="7557000" />
+      <workItem from="1751202898777" duration="674000" />
+>>>>>>> 9ecb537ca51446fe495121ded0b9b832990d9402
     </task>
     <task id="LOCAL-00012" summary=".env file control fixed">
       <option name="closed" value="true" />
@@ -553,7 +566,35 @@
       <option name="project" value="LOCAL" />
       <updated>1751043271741</updated>
     </task>
+<<<<<<< HEAD
     <option name="localTasksCounter" value="58" />
+=======
+    <task id="LOCAL-00058" summary="build: dependency versions updated.">
+      <option name="closed" value="true" />
+      <created>1751055027549</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1751055027549</updated>
+    </task>
+    <task id="LOCAL-00059" summary="ci: methods dockerized.">
+      <option name="closed" value="true" />
+      <created>1751055083657</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1751055083657</updated>
+    </task>
+    <task id="LOCAL-00060" summary="chore: remember to change cors origin.">
+      <option name="closed" value="true" />
+      <created>1751203463398</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1751203463399</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
+>>>>>>> 9ecb537ca51446fe495121ded0b9b832990d9402
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -577,9 +618,12 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
+<<<<<<< HEAD
     <MESSAGE value="feat: add winners method added." />
     <MESSAGE value="feat: tournament validations added." />
     <MESSAGE value="feat: user.ts removed in tournament." />
+=======
+>>>>>>> 9ecb537ca51446fe495121ded0b9b832990d9402
     <MESSAGE value="refactor: admin controls added." />
     <MESSAGE value="fix: existing winners duplicate solved." />
     <MESSAGE value="fix: round winners added to create." />
@@ -602,6 +646,13 @@
     <MESSAGE value="docs: update repository explained." />
     <MESSAGE value="docs: update user service." />
     <MESSAGE value="docs: validate states explained." />
+<<<<<<< HEAD
     <option name="LAST_COMMIT_MESSAGE" value="docs: validate states explained." />
+=======
+    <MESSAGE value="build: dependency versions updated." />
+    <MESSAGE value="ci: methods dockerized." />
+    <MESSAGE value="chore: remember to change cors origin." />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: remember to change cors origin." />
+>>>>>>> 9ecb537ca51446fe495121ded0b9b832990d9402
   </component>
 </project>
