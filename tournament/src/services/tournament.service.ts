@@ -3,8 +3,8 @@ import {StatusCodes} from 'http-status-codes';
 import {TournamentDto} from "../dto/tournament.dto";
 import {getNextRoomId, getRoomCode} from "../util/id.counter";
 import Result from '../bean/result';
-import {Participant} from "../entities/participant";
-import {Round, TournamentData, TournamentStart, TournamentStatus} from "../entities/tournament";
+import {Participant, ParticipantStatus} from "../entities/participant";
+import {MatchStatus, Round, TournamentData, TournamentStart, TournamentStatus} from "../entities/tournament";
 import {shuffleArray} from "../util/shuffle";
 import {Winner} from "../entities/winner";
 import {createMatches, createRound} from "../factories/tournament.factory";
@@ -30,9 +30,6 @@ export async function createTournamentService(tournamentDto: TournamentDto, part
     const roomCode = getRoomCode();
     const roomId = getNextRoomId();
 
-    /**
-     * Creating a new tournament for the first time.
-     */
     const tournamentData: TournamentData = {
         id: roomId,
         code: roomCode,
@@ -55,6 +52,10 @@ export async function joinTournamentService(code: string, participant: Participa
     }
 
     const tournament = result.data;
+
+    if (tournament.participants.length > 10) {
+        return new Result(StatusCodes.BAD_REQUEST, null, 'Tournament cannot have more than 10 participants');
+    }
 
     if (tournament.status !== TournamentStatus.CREATED) {
         return new Result(StatusCodes.BAD_REQUEST, null, 'Tournament is not in a state to join');
@@ -221,6 +222,19 @@ export async function addWinnerService(code: string, body: Winner) {
     const participant = body.winner as Participant;
     existingWinners.push(participant);
     round.winners = existingWinners;
+    round.matches.forEach(match => {
+        if (match.participant1.uuid === participant.uuid || match.participant2.uuid === participant.uuid) {
+            if (match.status !== MatchStatus.ONGOING && match.status !== MatchStatus.WAITING_PLAYER) {
+                return new Result(StatusCodes.BAD_REQUEST, null, `Match for participant ${participant.username} is not ongoing`);
+            }
+
+            if (match.participant1.uuid === participant.uuid) {
+                match.status = MatchStatus.COMPLETED;
+            } else if (match.participant2.uuid === participant.uuid) {
+                match.status = MatchStatus.COMPLETED;
+            }
+        }
+    });
 
     if (existingWinners.length < round.expected_winner_count) {
         round.is_completed = false;
@@ -255,4 +269,55 @@ export async function addWinnerService(code: string, body: Winner) {
     tournament.tournament_start!.rounds = tournament.tournament_start!.rounds.map(r => r.round_number === round.round_number ? round : r);
     tournamentCache.set(code, tournament);
     return new Result(StatusCodes.OK, null, 'Winner added and next round started successfully');
+}
+
+export async function joinMatchService(code: string, body: Winner) {
+    const tournament = tournamentCache.get(code);
+    if (!tournament) {
+        return new Result(StatusCodes.NOT_FOUND, null, 'Tournament not found');
+    }
+
+    if (tournament.status !== TournamentStatus.ONGOING) {
+        return new Result(StatusCodes.BAD_REQUEST, null, 'Tournament is not in a state to join matches');
+    }
+
+    const roundNumber = body.round_number;
+    const round = tournament.tournament_start!.rounds.find(r => r.round_number === roundNumber);
+    if (!round) {
+        return new Result(StatusCodes.NOT_FOUND, null, `Round ${roundNumber} not found in tournament ${code}`);
+    }
+
+    if (round.is_completed) {
+        return new Result(StatusCodes.BAD_REQUEST, null, `Round ${roundNumber} is already completed`);
+    }
+
+    round.matches.forEach(match => {
+        if (match.participant1.uuid === body.winner.uuid || match.participant2.uuid === body.winner.uuid) {
+            if (match.status === MatchStatus.ONGOING) {
+                return new Result(StatusCodes.BAD_REQUEST, null, `Match for participant ${body.winner.username} is already in progress`);
+            }
+
+            if (match.participant1.uuid === body.winner.uuid) {
+                if (match.participant1.status === ParticipantStatus.JOINED) {
+                    return new Result(StatusCodes.BAD_REQUEST, null, `Participant ${body.winner.username} is already joined in the match`);
+                }
+                match.participant1.status = ParticipantStatus.JOINED;
+            } else {
+                if (match.participant2.status === ParticipantStatus.JOINED) {
+                    return new Result(StatusCodes.BAD_REQUEST, null, `Participant ${body.winner.username} is already joined in the match`);
+                }
+                match.participant2.status = ParticipantStatus.JOINED;
+            }
+
+            if (match.status === MatchStatus.CREATED) {
+                match.status = MatchStatus.WAITING_PLAYER;
+            } else if (match.status === MatchStatus.WAITING_PLAYER) {
+                match.status = MatchStatus.ONGOING;
+            }
+        }
+    });
+
+    tournament.tournament_start!.rounds = tournament.tournament_start!.rounds.map(r => r.round_number === roundNumber ? round : r);
+    tournamentCache.set(code, tournament);
+    return new Result(StatusCodes.OK, null, `Participant ${body.winner.username} joined the match successfully`);
 }

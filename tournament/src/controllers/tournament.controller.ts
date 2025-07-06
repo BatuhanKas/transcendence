@@ -3,7 +3,7 @@ import {
     addWinnerService,
     createTournamentService,
     deleteTournamentService,
-    getTournamentParticipantsService,
+    getTournamentParticipantsService, joinMatchService,
     joinTournamentService,
     leaveTournamentService, startTournamentService
 } from '../services/tournament.service';
@@ -125,4 +125,12 @@ export async function addWinners(request: FastifyRequest, reply: FastifyReply) {
         return getResult(result, reply);
     }
     return getResultAndData(result, reply);
+}
+
+export async function joinMatch(request: FastifyRequest, reply: FastifyReply) {
+    const { code } = request.params as { code: string };
+    const body = request.body as Winner;
+
+    const result = await joinMatchService(code, body);
+    return getResult(result, reply);
 }

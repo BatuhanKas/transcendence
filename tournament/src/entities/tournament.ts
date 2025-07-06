@@ -6,6 +6,13 @@ export enum TournamentStatus {
     COMPLETED = 'completed'
 }
 
+export enum MatchStatus {
+    CREATED = 'created',
+    WAITING_PLAYER = 'waiting_player',
+    ONGOING = 'ongoing',
+    COMPLETED = 'completed'
+}
+
 export type TournamentData = {
     id: number;
     code: string;
@@ -33,4 +40,5 @@ export type Round = {
 export type Match = {
     participant1: Participant;
     participant2: Participant;
+    status: MatchStatus;
 }

@@ -2,7 +2,7 @@ import { FastifyInstance } from 'fastify';
 import {
     addWinners,
     createTournament,
-    deleteTournament, getTournamentParticipants,
+    deleteTournament, getTournamentParticipants, joinMatch,
     joinTournament,
     leaveTournament, startTournament
 } from '../controllers/tournament.controller';
@@ -19,4 +19,5 @@ export default async function tournamentRoutes(server: FastifyInstance) {
     server.post('/tournament/:code/start', startTournament);
     server.get('/tournament/:code', getTournamentParticipants);
     server.patch('/tournament/:code', addWinners);
+    server.post('/tournament/:code/join-match', joinMatch);
 }

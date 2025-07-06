@@ -1,12 +1,19 @@
-import {Participant} from "../entities/participant";
-import {Match, Round} from "../entities/tournament";
+import {Participant, ParticipantStatus} from "../entities/participant";
+import {Match, MatchStatus, Round} from "../entities/tournament";
 
 export const createMatches = (shuffledParticipants: Participant[]) => {
     const matches: Match[] = [];
     for (let i = 0; i < shuffledParticipants.length; i += 2) {
+        const firstParticipant = { ...shuffledParticipants[i] };
+        firstParticipant.status = ParticipantStatus.DISCONNECTED;
+
+        const secondParticipant = { ...shuffledParticipants[i + 1] };
+        secondParticipant.status = ParticipantStatus.DISCONNECTED;
+
         const match: Match = {
-            participant1: shuffledParticipants[i],
-            participant2: shuffledParticipants[i + 1]
+            participant1: firstParticipant,
+            participant2: secondParticipant,
+            status: MatchStatus.CREATED
         }
         matches.push(match);
     }
