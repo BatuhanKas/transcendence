@@ -222,19 +222,19 @@ export async function addWinnerService(code: string, body: Winner) {
     const participant = body.winner as Participant;
     existingWinners.push(participant);
     round.winners = existingWinners;
-    round.matches.forEach(match => {
-        if (match.participant1.uuid === participant.uuid || match.participant2.uuid === participant.uuid) {
-            if (match.status !== MatchStatus.ONGOING && match.status !== MatchStatus.WAITING_PLAYER) {
-                return new Result(StatusCodes.BAD_REQUEST, null, `Match for participant ${participant.username} is not ongoing`);
-            }
 
-            if (match.participant1.uuid === participant.uuid) {
-                match.status = MatchStatus.COMPLETED;
-            } else if (match.participant2.uuid === participant.uuid) {
-                match.status = MatchStatus.COMPLETED;
-            }
+    for (const match of round.matches) {
+        const isP1 = match.participant1.uuid === participant.uuid;
+        const isP2 = match.participant2.uuid === participant.uuid;
+
+        if (!isP1 && !isP2) continue;
+
+        if (match.status !== MatchStatus.WAITING_PLAYER && match.status !== MatchStatus.ONGOING) {
+            return new Result(StatusCodes.BAD_REQUEST, null, `Match for participant ${participant.username} is not in progress`);
         }
-    });
+
+        match.status = MatchStatus.COMPLETED;
+    }
 
     if (existingWinners.length < round.expected_winner_count) {
         round.is_completed = false;
@@ -291,31 +291,30 @@ export async function joinMatchService(code: string, body: Winner) {
         return new Result(StatusCodes.BAD_REQUEST, null, `Round ${roundNumber} is already completed`);
     }
 
-    round.matches.forEach(match => {
-        if (match.participant1.uuid === body.winner.uuid || match.participant2.uuid === body.winner.uuid) {
-            if (match.status === MatchStatus.ONGOING) {
-                return new Result(StatusCodes.BAD_REQUEST, null, `Match for participant ${body.winner.username} is already in progress`);
-            }
+    for (const match of round.matches) {
+        const isP1 = match.participant1.uuid === body.winner.uuid;
+        const isP2 = match.participant2.uuid === body.winner.uuid;
 
-            if (match.participant1.uuid === body.winner.uuid) {
-                if (match.participant1.status === ParticipantStatus.JOINED) {
-                    return new Result(StatusCodes.BAD_REQUEST, null, `Participant ${body.winner.username} is already joined in the match`);
-                }
-                match.participant1.status = ParticipantStatus.JOINED;
-            } else {
-                if (match.participant2.status === ParticipantStatus.JOINED) {
-                    return new Result(StatusCodes.BAD_REQUEST, null, `Participant ${body.winner.username} is already joined in the match`);
-                }
-                match.participant2.status = ParticipantStatus.JOINED;
-            }
+        if (!isP1 && !isP2) continue;
 
-            if (match.status === MatchStatus.CREATED) {
-                match.status = MatchStatus.WAITING_PLAYER;
-            } else if (match.status === MatchStatus.WAITING_PLAYER) {
-                match.status = MatchStatus.ONGOING;
-            }
+        if (match.status === MatchStatus.ONGOING) {
+            return new Result(StatusCodes.BAD_REQUEST, null, `Match for participant ${body.winner.username} is already in progress`);
         }
-    });
+
+        const participant = isP1 ? match.participant1 : match.participant2;
+
+        if (participant.status === ParticipantStatus.JOINED) {
+            return new Result(StatusCodes.BAD_REQUEST, null, `Participant ${body.winner.username} is already joined in the match`);
+        }
+
+        participant.status = ParticipantStatus.JOINED;
+
+        if (match.status === MatchStatus.CREATED) {
+            match.status = MatchStatus.WAITING_PLAYER;
+        } else if (match.status === MatchStatus.WAITING_PLAYER) {
+            match.status = MatchStatus.ONGOING;
+        }
+    }
 
     tournament.tournament_start!.rounds = tournament.tournament_start!.rounds.map(r => r.round_number === roundNumber ? round : r);
     tournamentCache.set(code, tournament);

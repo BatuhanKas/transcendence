@@ -4,16 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="chore: remember to change cors origin.">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="feat: joinMatch service added.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/src/controllers/tournament.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/controllers/tournament.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/src/entities/participant.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/entities/participant.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/src/entities/tournament.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/entities/tournament.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/src/factories/tournament.factory.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/factories/tournament.factory.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/src/middleware/middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/middleware/middleware.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/src/routes/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/routes/routes.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tournament/src/services/tournament.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/services/tournament.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -176,15 +168,10 @@
       <workItem from="1751657656860" duration="1148000" />
       <workItem from="1751659083778" duration="4079000" />
       <workItem from="1751746486791" duration="7100000" />
-      <workItem from="1751825531210" duration="9138000" />
-    </task>
-    <task id="LOCAL-00012" summary=".env file control fixed">
-      <option name="closed" value="true" />
-      <created>1748542770557</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1748542770557</updated>
+      <workItem from="1751825531210" duration="9736000" />
+      <workItem from="1752169929831" duration="2362000" />
+      <workItem from="1752172327506" duration="74000" />
+      <workItem from="1752172446557" duration="1419000" />
     </task>
     <task id="LOCAL-00013" summary="build fixes">
       <option name="closed" value="true" />
@@ -570,7 +557,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751203463399</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="feat: joinMatch service added.">
+      <option name="closed" value="true" />
+      <created>1751835409284</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1751835409285</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -594,7 +589,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="refactor: admin controls added." />
     <MESSAGE value="fix: existing winners duplicate solved." />
     <MESSAGE value="fix: round winners added to create." />
     <MESSAGE value="fix: addWinner validations added." />
@@ -619,6 +613,7 @@
     <MESSAGE value="build: dependency versions updated." />
     <MESSAGE value="ci: methods dockerized." />
     <MESSAGE value="chore: remember to change cors origin." />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: remember to change cors origin." />
+    <MESSAGE value="feat: joinMatch service added." />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: joinMatch service added." />
   </component>
 </project>
