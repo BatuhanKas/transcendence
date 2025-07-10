@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="feat: joinMatch service added.">
+    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="refactor: joinMatch service and addWinners methods refactored.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/src/controllers/tournament.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/controllers/tournament.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/src/entities/winner.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/entities/winner.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/src/routes/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/routes/routes.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tournament/src/services/tournament.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/services/tournament.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -171,15 +174,7 @@
       <workItem from="1751825531210" duration="9736000" />
       <workItem from="1752169929831" duration="2362000" />
       <workItem from="1752172327506" duration="74000" />
-      <workItem from="1752172446557" duration="1419000" />
-    </task>
-    <task id="LOCAL-00013" summary="build fixes">
-      <option name="closed" value="true" />
-      <created>1748551799800</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1748551799800</updated>
+      <workItem from="1752172446557" duration="5704000" />
     </task>
     <task id="LOCAL-00014" summary="validate endpoint finished">
       <option name="closed" value="true" />
@@ -565,7 +560,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751835409285</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="refactor: joinMatch service and addWinners methods refactored.">
+      <option name="closed" value="true" />
+      <created>1752174165262</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1752174165262</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -589,7 +592,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="fix: existing winners duplicate solved." />
     <MESSAGE value="fix: round winners added to create." />
     <MESSAGE value="fix: addWinner validations added." />
     <MESSAGE value="fix: reset round number after tournament finished." />
@@ -614,6 +616,7 @@
     <MESSAGE value="ci: methods dockerized." />
     <MESSAGE value="chore: remember to change cors origin." />
     <MESSAGE value="feat: joinMatch service added." />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: joinMatch service added." />
+    <MESSAGE value="refactor: joinMatch service and addWinners methods refactored." />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: joinMatch service and addWinners methods refactored." />
   </component>
 </project>

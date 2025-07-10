@@ -13,7 +13,7 @@ import Result from "../bean/result";
 import {authMiddleware} from "../middleware/middleware";
 import {getResult, getResultAndData} from "../responses/responses";
 import {AuthResponse} from "../entities/auth.response";
-import {Winner} from "../entities/winner";
+import {MatchParticipant, Winner} from "../entities/winner";
 
 export async function createTournament(request: FastifyRequest, reply: FastifyReply) {
     const { statusCode, data, message } = await authMiddleware(request);
@@ -129,7 +129,7 @@ export async function addWinners(request: FastifyRequest, reply: FastifyReply) {
 
 export async function joinMatch(request: FastifyRequest, reply: FastifyReply) {
     const { code } = request.params as { code: string };
-    const body = request.body as Winner;
+    const body = request.body as MatchParticipant;
 
     const result = await joinMatchService(code, body);
     return getResult(result, reply);

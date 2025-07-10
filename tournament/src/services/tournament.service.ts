@@ -6,7 +6,7 @@ import Result from '../bean/result';
 import {Participant, ParticipantStatus} from "../entities/participant";
 import {MatchStatus, Round, TournamentData, TournamentStart, TournamentStatus} from "../entities/tournament";
 import {shuffleArray} from "../util/shuffle";
-import {Winner} from "../entities/winner";
+import {MatchParticipant, Winner} from "../entities/winner";
 import {createMatches, createRound} from "../factories/tournament.factory";
 import {validateRoundState, validateTournamentState, validateWinners} from "../factories/tournament.validator";
 
@@ -271,7 +271,7 @@ export async function addWinnerService(code: string, body: Winner) {
     return new Result(StatusCodes.OK, null, 'Winner added and next round started successfully');
 }
 
-export async function joinMatchService(code: string, body: Winner) {
+export async function joinMatchService(code: string, body: MatchParticipant) {
     const tournament = tournamentCache.get(code);
     if (!tournament) {
         return new Result(StatusCodes.NOT_FOUND, null, 'Tournament not found');
@@ -292,25 +292,36 @@ export async function joinMatchService(code: string, body: Winner) {
     }
 
     for (const match of round.matches) {
-        const isP1 = match.participant1.uuid === body.winner.uuid;
-        const isP2 = match.participant2.uuid === body.winner.uuid;
+        const isP1 = match.participant1.uuid === body.participant.uuid;
+        const isP2 = match.participant2.uuid === body.participant.uuid;
 
         if (!isP1 && !isP2) continue;
 
         if (match.status === MatchStatus.ONGOING) {
-            return new Result(StatusCodes.BAD_REQUEST, null, `Match for participant ${body.winner.username} is already in progress`);
+            return new Result(StatusCodes.BAD_REQUEST, null, `Match for participant ${body.participant.username} is already in progress`);
         }
 
         const participant = isP1 ? match.participant1 : match.participant2;
 
         if (participant.status === ParticipantStatus.JOINED) {
-            return new Result(StatusCodes.BAD_REQUEST, null, `Participant ${body.winner.username} is already joined in the match`);
+            return new Result(StatusCodes.BAD_REQUEST, null, `Participant ${body.participant.username} is already joined in the match`);
         }
 
         participant.status = ParticipantStatus.JOINED;
 
         if (match.status === MatchStatus.CREATED) {
             match.status = MatchStatus.WAITING_PLAYER;
+
+            setTimeout(() => {
+                if (match.status === MatchStatus.WAITING_PLAYER) {
+                    const winner: Winner = {
+                        round_number: roundNumber,
+                        winner: body.participant
+                    }
+                    addWinnerService(code, winner);
+                }
+            }, 3 * 60 * 1000)
+
         } else if (match.status === MatchStatus.WAITING_PLAYER) {
             match.status = MatchStatus.ONGOING;
         }
@@ -318,5 +329,5 @@ export async function joinMatchService(code: string, body: Winner) {
 
     tournament.tournament_start!.rounds = tournament.tournament_start!.rounds.map(r => r.round_number === roundNumber ? round : r);
     tournamentCache.set(code, tournament);
-    return new Result(StatusCodes.OK, null, `Participant ${body.winner.username} joined the match successfully`);
+    return new Result(StatusCodes.OK, null, `Participant ${body.participant.username} joined the match successfully`);
 }
