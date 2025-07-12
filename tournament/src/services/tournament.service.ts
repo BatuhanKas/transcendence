@@ -316,7 +316,7 @@ export async function joinMatchService(code: string, body: MatchParticipant) {
                 if (match.status === MatchStatus.WAITING_PLAYER) {
                     const winner: Winner = {
                         round_number: roundNumber,
-                        winner: body.participant
+                        winner: participant
                     }
                     addWinnerService(code, winner);
                 }
