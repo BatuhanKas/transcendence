@@ -10,3 +10,6 @@
 /auth/node_modules
 ./tournament/node_modules/
 ./auth/node_modules/
+./auth/src/database/sqlite/data.sqlite-shm
+./auth/src/database/sqlite/data.sqlite-wal
+./auth/.env
