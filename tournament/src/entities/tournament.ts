@@ -10,7 +10,8 @@ export enum MatchStatus {
     CREATED = 'created',
     WAITING_PLAYER = 'waiting_player',
     ONGOING = 'ongoing',
-    COMPLETED = 'completed'
+    COMPLETED = 'completed',
+    CANCELLED = 'cancelled'
 }
 
 export type TournamentData = {

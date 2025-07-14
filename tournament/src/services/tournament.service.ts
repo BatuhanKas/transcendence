@@ -9,6 +9,7 @@ import {shuffleArray} from "../util/shuffle";
 import {MatchParticipant, Winner} from "../entities/winner";
 import {createMatches, createRound} from "../factories/tournament.factory";
 import {validateRoundState, validateTournamentState, validateWinners} from "../factories/tournament.validator";
+import {setTimeoutFunc} from "../factories/tournament.settimeout";
 
 export async function createTournamentService(tournamentDto: TournamentDto, participant: Participant) {
     if (!tournamentDto) {
@@ -184,6 +185,7 @@ export async function startTournamentService(code: string, participant: Particip
     tournament.tournament_start = tournamentStart;
     tournamentCache.set(code, tournament);
 
+    await setTimeoutFunc(code, 1);
     return new Result(StatusCodes.OK, null, `Tournament ${code} started successfully`);
 }
 
@@ -213,28 +215,33 @@ export async function addWinnerService(code: string, body: Winner) {
 
     const round = currentRound.data as Round;
     const existingWinners = round.winners || [];
-
-    const validationResult = await validateWinners(body.winner as Participant, round, existingWinners);
-    if (validationResult.statusCode !== StatusCodes.OK) {
-        return validationResult;
-    }
-
     const participant = body.winner as Participant;
-    existingWinners.push(participant);
-    round.winners = existingWinners;
 
-    for (const match of round.matches) {
-        const isP1 = match.participant1.uuid === participant.uuid;
-        const isP2 = match.participant2.uuid === participant.uuid;
-
-        if (!isP1 && !isP2) continue;
-
-        if (match.status !== MatchStatus.WAITING_PLAYER && match.status !== MatchStatus.ONGOING) {
-            return new Result(StatusCodes.BAD_REQUEST, null, `Match for participant ${participant.username} is not in progress`);
+    /**
+     * If the participant is null, it means the winner is not specified;
+     * Code should be working for the case where the round is completed without a winner
+     */
+    if (participant) {
+        const validationResult = await validateWinners(participant, round, existingWinners);
+        if (validationResult.statusCode !== StatusCodes.OK) {
+            return validationResult;
         }
 
-        match.status = MatchStatus.COMPLETED;
+        existingWinners.push(participant);
+        for (const match of round.matches) {
+            const isP1 = match.participant1.uuid === participant.uuid;
+            const isP2 = match.participant2.uuid === participant.uuid;
+
+            if (!isP1 && !isP2) continue;
+
+            if (match.status !== MatchStatus.WAITING_PLAYER && match.status !== MatchStatus.ONGOING) {
+                return new Result(StatusCodes.BAD_REQUEST, null, `Match for participant ${participant.username} is not in progress`);
+            }
+
+            match.status = MatchStatus.COMPLETED;
+        }
     }
+    round.winners = existingWinners;
 
     if (existingWinners.length < round.expected_winner_count) {
         round.is_completed = false;
@@ -245,11 +252,12 @@ export async function addWinnerService(code: string, body: Winner) {
 
     round.is_completed = true;
 
-    if (round.expected_winner_count === 1 && existingWinners.length === 1) {
+    if (round.expected_winner_count <= 1 && existingWinners.length <= 1) {
         tournament.status = TournamentStatus.COMPLETED;
         tournament.end_time = new Date();
         tournamentCache.set(code, tournament);
-        return new Result(StatusCodes.OK, round.winners.at(0), 'Tournament completed successfully');
+        const winner = round.winners[0] ? round.winners.at(0) : null;
+        return new Result(StatusCodes.OK, winner, 'Tournament completed successfully');
     }
 
     const shuffledParticipants = await shuffleArray(existingWinners);
@@ -268,6 +276,7 @@ export async function addWinnerService(code: string, body: Winner) {
     // Updating the changed round on the round array
     tournament.tournament_start!.rounds = tournament.tournament_start!.rounds.map(r => r.round_number === round.round_number ? round : r);
     tournamentCache.set(code, tournament);
+    await setTimeoutFunc(code, roundNumber);
     return new Result(StatusCodes.OK, null, 'Winner added and next round started successfully');
 }
 
@@ -297,8 +306,8 @@ export async function joinMatchService(code: string, body: MatchParticipant) {
 
         if (!isP1 && !isP2) continue;
 
-        if (match.status === MatchStatus.ONGOING) {
-            return new Result(StatusCodes.BAD_REQUEST, null, `Match for participant ${body.participant.username} is already in progress`);
+        if (match.status === MatchStatus.ONGOING || match.status === MatchStatus.COMPLETED) {
+            return new Result(StatusCodes.BAD_REQUEST, null, `Match for participant ${body.participant.username} is not in a state to join`);
         }
 
         const participant = isP1 ? match.participant1 : match.participant2;
@@ -316,18 +325,23 @@ export async function joinMatchService(code: string, body: MatchParticipant) {
                 if (match.status === MatchStatus.WAITING_PLAYER) {
                     const winner: Winner = {
                         round_number: roundNumber,
-                        winner: participant
+                        winner: {
+                            'uuid': participant.uuid,
+                            'username': participant.username
+                        }
                     }
                     addWinnerService(code, winner);
                 }
-            }, 3 * 60 * 1000)
+            }, 60 * 1000)
 
         } else if (match.status === MatchStatus.WAITING_PLAYER) {
             match.status = MatchStatus.ONGOING;
         }
+
+        tournament.tournament_start!.rounds = tournament.tournament_start!.rounds.map(r => r.round_number === roundNumber ? round : r);
+        tournamentCache.set(code, tournament);
+        return new Result(StatusCodes.OK, null, `Participant ${body.participant.username} joined the match successfully`);
     }
 
-    tournament.tournament_start!.rounds = tournament.tournament_start!.rounds.map(r => r.round_number === roundNumber ? round : r);
-    tournamentCache.set(code, tournament);
-    return new Result(StatusCodes.OK, null, `Participant ${body.participant.username} joined the match successfully`);
+    return new Result(StatusCodes.NOT_FOUND, null, `Participant ${body.participant.username} not found in any match of round ${roundNumber}`);
 }

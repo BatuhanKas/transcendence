@@ -4,8 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="fix: joinMatch service fixed and 3 minute delay added.">
+    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="fix: joinMatch participant fix.">
+      <change afterPath="$PROJECT_DIR$/tournament/src/factories/tournament.settimeout.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/src/entities/tournament.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/entities/tournament.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tournament/src/services/tournament.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/services/tournament.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -17,8 +21,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="package.json" />
-        <option value="TypeScript File" />
         <option value="Dockerfile" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -172,15 +176,8 @@
       <workItem from="1752169929831" duration="2362000" />
       <workItem from="1752172327506" duration="74000" />
       <workItem from="1752172446557" duration="6804000" />
-      <workItem from="1752334319553" duration="800000" />
-    </task>
-    <task id="LOCAL-00017" summary="feat: update method added.">
-      <option name="closed" value="true" />
-      <created>1748900983158</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1748900983158</updated>
+      <workItem from="1752334319553" duration="12325000" />
+      <workItem from="1752520266211" duration="6310000" />
     </task>
     <task id="LOCAL-00018" summary="refactor: responses fixed.">
       <option name="closed" value="true" />
@@ -566,7 +563,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752178597588</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="fix: joinMatch participant fix.">
+      <option name="closed" value="true" />
+      <created>1752335139887</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1752335139888</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -590,7 +595,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="fix: round number bug fixed." />
     <MESSAGE value="fix: cors error fixed." />
     <MESSAGE value="fix: cors error fixed hopefully." />
     <MESSAGE value="fix: server port changed." />
@@ -615,6 +619,7 @@
     <MESSAGE value="fix: joinMatch service changed to patch request." />
     <MESSAGE value="refactor: MatchParticipant added." />
     <MESSAGE value="fix: joinMatch service fixed and 3 minute delay added." />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: joinMatch service fixed and 3 minute delay added." />
+    <MESSAGE value="fix: joinMatch participant fix." />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: joinMatch participant fix." />
   </component>
 </project>
