@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="fix: tournament name isAlphanumeric added.">
+    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="fix: validator lib imported to tournament service.">
       <change afterPath="$PROJECT_DIR$/auth/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/src/services/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/services/auth.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/src/services/tournament.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/services/tournament.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/src/util/alphanumregex.ts" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,15 +175,7 @@
       <workItem from="1752172446557" duration="6804000" />
       <workItem from="1752334319553" duration="12325000" />
       <workItem from="1752520266211" duration="7422000" />
-      <workItem from="1752571090423" duration="6180000" />
-    </task>
-    <task id="LOCAL-00024" summary="fix: login and register services email controls fixed.">
-      <option name="closed" value="true" />
-      <created>1749059744629</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1749059744629</updated>
+      <workItem from="1752571090423" duration="6339000" />
     </task>
     <task id="LOCAL-00025" summary="fix: AuthResponse fixed">
       <option name="closed" value="true" />
@@ -573,7 +561,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752575960285</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="fix: validator lib imported to tournament service.">
+      <option name="closed" value="true" />
+      <created>1752577903704</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1752577903705</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -597,7 +593,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="fix: tournament name length fixed." />
     <MESSAGE value="fix: cache deleted." />
     <MESSAGE value="fix: only admin can use addWinners method." />
     <MESSAGE value="fix: http-status-codes added to package.json." />
@@ -622,6 +617,7 @@
     <MESSAGE value="fix: setTimeout func for round start." />
     <MESSAGE value="unversioned files" />
     <MESSAGE value="fix: tournament name isAlphanumeric added." />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: tournament name isAlphanumeric added." />
+    <MESSAGE value="fix: validator lib imported to tournament service." />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: validator lib imported to tournament service." />
   </component>
 </project>

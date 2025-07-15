@@ -13,3 +13,4 @@
 ./auth/src/database/sqlite/data.sqlite-shm
 ./auth/src/database/sqlite/data.sqlite-wal
 ./auth/.env
+/auth/.env
