@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="unversioned files">
-      <change afterPath="$PROJECT_DIR$/tournament/src/util/alphanumregex.ts" afterDir="false" />
+    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="fix: tournament name isAlphanumeric added.">
+      <change afterPath="$PROJECT_DIR$/auth/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/services/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/services/auth.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tournament/src/services/tournament.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/services/tournament.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/src/util/alphanumregex.ts" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,15 +179,7 @@
       <workItem from="1752172446557" duration="6804000" />
       <workItem from="1752334319553" duration="12325000" />
       <workItem from="1752520266211" duration="7422000" />
-      <workItem from="1752571090423" duration="4317000" />
-    </task>
-    <task id="LOCAL-00023" summary="fix: routes fixed for restful.">
-      <option name="closed" value="true" />
-      <created>1749053057878</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1749053057878</updated>
+      <workItem from="1752571090423" duration="6180000" />
     </task>
     <task id="LOCAL-00024" summary="fix: login and register services email controls fixed.">
       <option name="closed" value="true" />
@@ -569,7 +565,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752528860697</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="fix: tournament name isAlphanumeric added.">
+      <option name="closed" value="true" />
+      <created>1752575960285</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1752575960285</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -593,7 +597,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="refactor: addWinners round conflict fixed." />
     <MESSAGE value="fix: tournament name length fixed." />
     <MESSAGE value="fix: cache deleted." />
     <MESSAGE value="fix: only admin can use addWinners method." />
@@ -618,6 +621,7 @@
     <MESSAGE value="fix: major tournament changes." />
     <MESSAGE value="fix: setTimeout func for round start." />
     <MESSAGE value="unversioned files" />
-    <option name="LAST_COMMIT_MESSAGE" value="unversioned files" />
+    <MESSAGE value="fix: tournament name isAlphanumeric added." />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: tournament name isAlphanumeric added." />
   </component>
 </project>

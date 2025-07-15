@@ -3,7 +3,7 @@ import randomUUID from 'crypto';
 import bcrypt from 'bcryptjs';
 import {StatusCodes} from "http-status-codes";
 import {findUserByEmail, saveUser} from "../repositories/repository";
-import validator from 'validator';
+import validator, {isAlphanumeric} from 'validator';
 import {User} from "../entities/user";
 import {FastifyInstance, FastifyRequest} from "fastify";
 
@@ -64,6 +64,10 @@ export async function loginService(email: string, password: string) {
 export async function registerService(username: string, email: string, password: string) {
     if (!username || !email || !password) {
         return new Result(StatusCodes.BAD_REQUEST, null, 'Username, email, and password are required');
+    }
+
+    if (!isAlphanumeric(username)) {
+        return new Result(StatusCodes.BAD_REQUEST, null, 'Username must be alphanumeric');
     }
 
     if (username.length < 3 || username.length > 20) {

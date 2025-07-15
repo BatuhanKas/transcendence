@@ -10,7 +10,7 @@ import {MatchParticipant, Winner} from "../entities/winner";
 import {createMatches, createRound} from "../factories/tournament.factory";
 import {validateRoundState, validateTournamentState, validateWinners} from "../factories/tournament.validator";
 import {setTimeoutFunc} from "../factories/tournament.settimeout";
-import {isAlphanumeric} from "../util/alphanumregex";
+import {isAlphanumeric} from "validator";
 
 export async function createTournamentService(tournamentDto: TournamentDto, participant: Participant) {
     if (!tournamentDto) {
@@ -21,7 +21,7 @@ export async function createTournamentService(tournamentDto: TournamentDto, part
         return new Result(StatusCodes.BAD_REQUEST, null, 'Tournament name cannot be empty');
     }
 
-    if (!await isAlphanumeric(tournamentDto.name)) {
+    if (!isAlphanumeric(tournamentDto.name)) {
         return new Result(StatusCodes.BAD_REQUEST, null, 'Tournament name can only contain alphanumeric characters');
     }
 
