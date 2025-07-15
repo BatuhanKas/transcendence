@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="unversioned files">
-      <change beforePath="$PROJECT_DIR$/auth/src/database/sqlite/data.sqlite-shm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/src/database/sqlite/data.sqlite-wal" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/tournament/src/util/alphanumregex.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/src/services/tournament.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/services/tournament.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +95,7 @@
       <recent name="$PROJECT_DIR$/auth/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Node.js.tournament.ts">
+  <component name="RunManager" selected="Node.js.auth.ts">
     <configuration name="auth.ts" type="NodeJSConfigurationType" path-to-js-file="src/server/auth.server.ts" typescript-loader="bundled" working-dir="$PROJECT_DIR$/auth">
       <method v="2" />
     </configuration>
@@ -173,15 +174,8 @@
       <workItem from="1752172327506" duration="74000" />
       <workItem from="1752172446557" duration="6804000" />
       <workItem from="1752334319553" duration="12325000" />
-      <workItem from="1752520266211" duration="6598000" />
-    </task>
-    <task id="LOCAL-00022" summary="fix: leave method fixed.">
-      <option name="closed" value="true" />
-      <created>1748980627841</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1748980627841</updated>
+      <workItem from="1752520266211" duration="7422000" />
+      <workItem from="1752571090423" duration="4317000" />
     </task>
     <task id="LOCAL-00023" summary="fix: routes fixed for restful.">
       <option name="closed" value="true" />
@@ -567,7 +561,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752528836806</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="unversioned files">
+      <option name="closed" value="true" />
+      <created>1752528860697</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1752528860697</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
