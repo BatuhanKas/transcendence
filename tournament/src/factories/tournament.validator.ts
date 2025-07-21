@@ -1,4 +1,4 @@
-import {Round, TournamentData, TournamentStatus} from "../entities/tournament";
+import {Match, MatchStatus, Round, TournamentData, TournamentStatus} from "../entities/tournament";
 import Result from "../bean/result";
 import {StatusCodes} from "http-status-codes";
 import {Participant} from "../entities/participant";
@@ -9,9 +9,9 @@ import {Participant} from "../entities/participant";
  * @param admin
  */
 export async function validateTournamentState(tournament: TournamentData, admin: Participant) {
-    if (tournament.admin_id !== admin.uuid) {
-        return new Result(StatusCodes.FORBIDDEN, null, 'You are not authorized to perform this action on the tournament');
-    }
+    // if (tournament.admin_id !== admin.uuid) {
+    //     return new Result(StatusCodes.FORBIDDEN, null, 'You are not authorized to perform this action on the tournament');
+    // }
 
     if (tournament.status !== TournamentStatus.ONGOING) {
         return new Result(StatusCodes.BAD_REQUEST, null, 'Tournament is not in a state to add winners');
@@ -66,4 +66,8 @@ export async function validateWinners(winner: Participant, round: Round, existin
     }
 
     return new Result(StatusCodes.OK, null, '');
+}
+
+export async function isAllMatchesCompleted(matches: Match[]) {
+    return matches.every(match => match.status === MatchStatus.COMPLETED || match.status === MatchStatus.CANCELLED);
 }

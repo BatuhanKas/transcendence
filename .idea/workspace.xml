@@ -4,10 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="fix: validator lib imported to tournament service.">
+    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="fix: .gitignore .env added.">
       <change afterPath="$PROJECT_DIR$/auth/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/src/controllers/tournament.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/controllers/tournament.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/src/factories/tournament.settimeout.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/factories/tournament.settimeout.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/src/factories/tournament.validator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/factories/tournament.validator.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/src/middleware/middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/middleware/middleware.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/src/routes/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/routes/routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/src/server/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/server/server.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/src/services/tournament.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/services/tournament.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,15 +183,11 @@
       <workItem from="1752172446557" duration="6804000" />
       <workItem from="1752334319553" duration="12325000" />
       <workItem from="1752520266211" duration="7422000" />
-      <workItem from="1752571090423" duration="6339000" />
-    </task>
-    <task id="LOCAL-00025" summary="fix: AuthResponse fixed">
-      <option name="closed" value="true" />
-      <created>1749581562537</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1749581562537</updated>
+      <workItem from="1752571090423" duration="9127000" />
+      <workItem from="1752934074937" duration="1983000" />
+      <workItem from="1752942554855" duration="11238000" />
+      <workItem from="1752959585897" duration="3301000" />
+      <workItem from="1753121283701" duration="12629000" />
     </task>
     <task id="LOCAL-00026" summary="feat: tournament start method added.">
       <option name="closed" value="true" />
@@ -569,7 +573,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752577903705</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="fix: .gitignore .env added.">
+      <option name="closed" value="true" />
+      <created>1752577976252</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1752577976252</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -593,7 +605,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="fix: cache deleted." />
     <MESSAGE value="fix: only admin can use addWinners method." />
     <MESSAGE value="fix: http-status-codes added to package.json." />
     <MESSAGE value="chore: removed node_modules files removed and package jsons updated." />
@@ -618,6 +629,34 @@
     <MESSAGE value="unversioned files" />
     <MESSAGE value="fix: tournament name isAlphanumeric added." />
     <MESSAGE value="fix: validator lib imported to tournament service." />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: validator lib imported to tournament service." />
+    <MESSAGE value="fix: .gitignore .env added." />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: .gitignore .env added." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/tournament/src/services/tournament.service.ts</url>
+          <line>258</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/tournament/src/services/tournament.service.ts</url>
+          <line>283</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/tournament/src/services/tournament.service.ts</url>
+          <line>292</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/tournament/src/services/tournament.service.ts</url>
+          <line>317</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
