@@ -2,7 +2,7 @@ import {FastifyReply, FastifyRequest} from 'fastify';
 import {
     addWinnerService,
     createTournamentService,
-    deleteTournamentService, getTournamentCodeByUUIDService,
+    deleteTournamentService, getTournamentByUUIDService,
     getTournamentParticipantsService, joinMatchService,
     joinTournamentService,
     leaveTournamentService, startTournamentService
@@ -100,9 +100,9 @@ export async function getTournamentParticipants(request: FastifyRequest, reply: 
     return getResultAndData(result, reply);
 }
 
-export async function getTournamentCodeByUUID(request: FastifyRequest, reply: FastifyReply) {
+export async function getTournamentByUUID(request: FastifyRequest, reply: FastifyReply) {
     const { uuid } = request.params as { uuid: string };
-    const result = await getTournamentCodeByUUIDService(uuid);
+    const result = await getTournamentByUUIDService(uuid);
     if (result.statusCode !== 200 || !result.data) {
         return getResult(result, reply);
     }

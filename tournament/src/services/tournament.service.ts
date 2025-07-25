@@ -161,7 +161,7 @@ export async function getTournamentParticipantsService(code: string) {
     return new Result(StatusCodes.OK, tournament, `Participants for tournament ${code} retrieved successfully`);
 }
 
-export async function getTournamentCodeByUUIDService(uuid: string) {
+export async function getTournamentByUUIDService(uuid: string) {
     const tournaments: TournamentData[] = Array.from(tournamentCache.values());
     const tournament = tournaments.find(t => t.participants.some(p => p.uuid === uuid));
 
@@ -169,7 +169,7 @@ export async function getTournamentCodeByUUIDService(uuid: string) {
         return new Result(StatusCodes.NOT_FOUND, null, 'Tournament not found for the given UUID');
     }
 
-    return new Result(StatusCodes.OK, tournament.code, `Tournament code for UUID ${uuid} retrieved successfully`);
+    return new Result(StatusCodes.OK, tournament, `Tournament for UUID ${uuid} retrieved successfully`);
 }
 
 export async function startTournamentService(code: string, participant: Participant) {

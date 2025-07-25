@@ -2,7 +2,7 @@ import { FastifyInstance } from 'fastify';
 import {
     addWinners,
     createTournament,
-    deleteTournament, getTournamentCodeByUUID, getTournamentParticipants, joinMatch,
+    deleteTournament, getTournamentByUUID, getTournamentParticipants, joinMatch,
     joinTournament,
     leaveTournament, startTournament
 } from '../controllers/tournament.controller';
@@ -66,13 +66,13 @@ export default async function tournamentRoutes(server: FastifyInstance) {
     server.get('/tournament/:code', getTournamentParticipants);
 
     /**
-     * Get tournament code by UUID
+     * Get tournament by UUID
      * @route GET /tournament/:uuid
      * @param {string} uuid.path.required - Tournament UUID
-     * @returns {object} 200 - Tournament code
+     * @returns {object} 200 - Tournament
      * @returns {Error} 404 - Tournament not found
      */
-    server.get('/tournament/uuid/:uuid', getTournamentCodeByUUID);
+    server.get('/tournament/uuid/:uuid', getTournamentByUUID);
 
     /**
      * Add winners to new round of a tournament
