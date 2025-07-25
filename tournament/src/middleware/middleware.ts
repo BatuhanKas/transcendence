@@ -13,7 +13,7 @@ export async function authMiddleware(request: FastifyRequest) {
 	}
 
     try {//http://auth.transendence.com
-        const responseData = await unitRequest('http://auth.transendence.com:8081/api/auth/validate', {
+        const responseData = await unitRequest('http://auth.transendence.com/api/auth/validate', {
             method: 'POST',
             headers: {
                 'Authorization': request.headers.authorization as string,

@@ -32,5 +32,5 @@ export async function setTimeoutFunc(code: string, roundNumber: number) {
         tournament.tournament_start!.rounds = tournament.tournament_start!.rounds.map(r => r.round_number === roundNumber ? round : r);
         tournamentCache.set(code, tournament);
 
-    }, 60 * 1000);
+    }, 5 * 60 * 1000);
 }

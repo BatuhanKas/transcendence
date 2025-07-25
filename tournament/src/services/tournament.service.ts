@@ -341,7 +341,7 @@ export async function joinMatchService(code: string, body: MatchParticipant) {
                     }
                     addWinnerService(code, winner);
                 }
-            }, 60 * 1000)
+            }, 3 * 60 * 1000)
 
         } else if (match.status === MatchStatus.WAITING_PLAYER) {
             match.status = MatchStatus.ONGOING;
