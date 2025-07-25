@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="fix: validator lib imported to tournament service.">
-      <change afterPath="$PROJECT_DIR$/auth/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="fix: middleware changed to x_api_key.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/src/controllers/tournament.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/controllers/tournament.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/src/middleware/middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/middleware/middleware.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/src/routes/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/routes/routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/src/services/tournament.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/services/tournament.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +97,7 @@
       <recent name="$PROJECT_DIR$/auth/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Node.js.auth.ts">
+  <component name="RunManager" selected="Node.js.tournament.ts">
     <configuration name="auth.ts" type="NodeJSConfigurationType" path-to-js-file="src/server/auth.server.ts" typescript-loader="bundled" working-dir="$PROJECT_DIR$/auth">
       <method v="2" />
     </configuration>
@@ -110,7 +112,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-WS-251.26927.40" />
+        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-WS-251.27812.50" />
       </set>
     </attachedChunks>
   </component>
@@ -175,39 +177,14 @@
       <workItem from="1752172446557" duration="6804000" />
       <workItem from="1752334319553" duration="12325000" />
       <workItem from="1752520266211" duration="7422000" />
-      <workItem from="1752571090423" duration="6339000" />
-    </task>
-    <task id="LOCAL-00025" summary="fix: AuthResponse fixed">
-      <option name="closed" value="true" />
-      <created>1749581562537</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1749581562537</updated>
-    </task>
-    <task id="LOCAL-00026" summary="feat: tournament start method added.">
-      <option name="closed" value="true" />
-      <created>1749905790809</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1749905790809</updated>
-    </task>
-    <task id="LOCAL-00027" summary="refactor: add winner method added.">
-      <option name="closed" value="true" />
-      <created>1749932113348</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1749932113348</updated>
-    </task>
-    <task id="LOCAL-00028" summary="refactor: fisher-yates shuffle algorithm.">
-      <option name="closed" value="true" />
-      <created>1750080801477</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1750080801477</updated>
+      <workItem from="1752571090423" duration="9127000" />
+      <workItem from="1752934074937" duration="1983000" />
+      <workItem from="1752942554855" duration="11238000" />
+      <workItem from="1752959585897" duration="3301000" />
+      <workItem from="1753121283701" duration="12988000" />
+      <workItem from="1753211963969" duration="1602000" />
+      <workItem from="1753458579249" duration="1716000" />
+      <workItem from="1753460350284" duration="437000" />
     </task>
     <task id="LOCAL-00029" summary="refactor: responses made full-generic.">
       <option name="closed" value="true" />
@@ -569,7 +546,39 @@
       <option name="project" value="LOCAL" />
       <updated>1752577903705</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="fix: .gitignore .env added.">
+      <option name="closed" value="true" />
+      <created>1752577976252</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1752577976252</updated>
+    </task>
+    <task id="LOCAL-00075" summary="fix &amp; feat: major changes.">
+      <option name="closed" value="true" />
+      <created>1753135937112</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1753135937112</updated>
+    </task>
+    <task id="LOCAL-00076" summary="style: routes explanation added.">
+      <option name="closed" value="true" />
+      <created>1753212418557</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1753212418557</updated>
+    </task>
+    <task id="LOCAL-00077" summary="fix: middleware changed to x_api_key.">
+      <option name="closed" value="true" />
+      <created>1753460789589</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1753460789590</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -593,10 +602,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="fix: cache deleted." />
-    <MESSAGE value="fix: only admin can use addWinners method." />
-    <MESSAGE value="fix: http-status-codes added to package.json." />
-    <MESSAGE value="chore: removed node_modules files removed and package jsons updated." />
     <MESSAGE value="perf: server starts changed." />
     <MESSAGE value="docs: server starts changed." />
     <MESSAGE value="docs: jwt verify and bcrypt.compare explained." />
@@ -618,6 +623,36 @@
     <MESSAGE value="unversioned files" />
     <MESSAGE value="fix: tournament name isAlphanumeric added." />
     <MESSAGE value="fix: validator lib imported to tournament service." />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: validator lib imported to tournament service." />
+    <MESSAGE value="fix: .gitignore .env added." />
+    <MESSAGE value="fix &amp; feat: major changes." />
+    <MESSAGE value="style: routes explanation added." />
+    <MESSAGE value="fix: middleware changed to x_api_key." />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: middleware changed to x_api_key." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/tournament/src/services/tournament.service.ts</url>
+          <line>258</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/tournament/src/services/tournament.service.ts</url>
+          <line>283</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/tournament/src/services/tournament.service.ts</url>
+          <line>292</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/tournament/src/services/tournament.service.ts</url>
+          <line>317</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

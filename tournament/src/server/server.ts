@@ -1,8 +1,14 @@
 import Fastify from 'fastify';
 import tournamentRoutes from "../routes/routes";
 import fastifyCors from "@fastify/cors";
+import 'dotenv/config';
 
 const server = Fastify();
+
+if (!process.env.X_API_KEY) {
+    console.error('X_API_KEY is not defined in .env file');
+    process.exit(1);
+}
 
 server.register(tournamentRoutes, { prefix: '/api' });
 server.register(fastifyCors, {

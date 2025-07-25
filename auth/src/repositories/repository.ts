@@ -7,6 +7,12 @@ export async function saveUser(user: any){
         .run(user.uuid, user.username, user.email, user.password);
 }
 
+export async function findUserByUsername(username: string): Promise<User | null> {
+    return database
+        .prepare('SELECT * FROM users WHERE username = ?')
+        .get(username) as User | null;
+}
+
 export async function findUserByEmail(email: string): Promise<User | null> {
     return database
         .prepare('SELECT * FROM users WHERE email = ?')

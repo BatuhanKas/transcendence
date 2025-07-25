@@ -8,7 +8,12 @@ import {MatchStatus, Round, TournamentData, TournamentStart, TournamentStatus} f
 import {shuffleArray} from "../util/shuffle";
 import {MatchParticipant, Winner} from "../entities/winner";
 import {createMatches, createRound} from "../factories/tournament.factory";
-import {validateRoundState, validateTournamentState, validateWinners} from "../factories/tournament.validator";
+import {
+    isAllMatchesCompleted,
+    validateRoundState,
+    validateTournamentState,
+    validateWinners
+} from "../factories/tournament.validator";
 import {setTimeoutFunc} from "../factories/tournament.settimeout";
 import {isAlphanumeric} from "validator";
 
@@ -33,6 +38,13 @@ export async function createTournamentService(tournamentDto: TournamentDto, part
         return new Result(StatusCodes.CONFLICT, null, 'Tournament name already exists');
     }
 
+    const tournaments: TournamentData[] = Array.from(tournamentCache.values());
+    for (const currTmt of tournaments) {
+        if (currTmt.participants.some(p => p.uuid === participant.uuid)) {
+            return new Result(StatusCodes.CONFLICT, null, 'Participant already joined a tournament');
+        }
+    }
+
     if (tournamentDto.name.length > 20) {
         return new Result(StatusCodes.BAD_REQUEST, null, 'Tournament name cannot be more than 20 characters');
     }
@@ -52,7 +64,7 @@ export async function createTournamentService(tournamentDto: TournamentDto, part
     tournamentData.participants.push(participant);
     tournamentCache.set(roomCode, tournamentData);
 
-    return new Result(StatusCodes.CREATED, tournamentData, `Tournament with ID ${roomId} created successfully`,)
+    return new Result(StatusCodes.CREATED, tournamentData, `Tournament with ID ${roomId} created successfully`);
 }
 
 export async function joinTournamentService(code: string, participant: Participant) {
@@ -71,8 +83,11 @@ export async function joinTournamentService(code: string, participant: Participa
         return new Result(StatusCodes.BAD_REQUEST, null, 'Tournament is not in a state to join');
     }
 
-    if (tournament.participants.some(p => p.uuid === participant.uuid)) {
-        return new Result(StatusCodes.CONFLICT, null, 'Participant already joined the tournament');
+    const tournaments: TournamentData[] = Array.from(tournamentCache.values());
+    for (const currTmt of tournaments) {
+        if (currTmt.participants.some(p => p.uuid === participant.uuid)) {
+            return new Result(StatusCodes.CONFLICT, null, 'Participant already joined a tournament');
+        }
     }
 
     tournament.participants.push(participant);
@@ -99,6 +114,10 @@ export async function leaveTournamentService(code: string, participant: Particip
     const participantIndex = tournament.participants.findIndex(p => p.uuid === participant.uuid);
     if (participantIndex === -1) {
         return new Result(StatusCodes.NOT_FOUND, null, 'Participant not found in the tournament');
+    }
+
+    if (tournament.status !== TournamentStatus.CREATED) {
+        return new Result(StatusCodes.BAD_REQUEST, null, 'Tournament is not in a state to leave');
     }
 
     if (tournament.admin_id === participant.uuid) {
@@ -139,11 +158,18 @@ export async function getTournamentParticipantsService(code: string) {
 
     const tournament = result.data;
 
-    if (!tournament.participants || tournament.participants.length === 0) {
-        return new Result(StatusCodes.NOT_FOUND, null, `No participants found for tournament ${code}`);
+    return new Result(StatusCodes.OK, tournament, `Participants for tournament ${code} retrieved successfully`);
+}
+
+export async function getTournamentByUUIDService(uuid: string) {
+    const tournaments: TournamentData[] = Array.from(tournamentCache.values());
+    const tournament = tournaments.find(t => t.participants.some(p => p.uuid === uuid));
+
+    if (!tournament) {
+        return new Result(StatusCodes.NOT_FOUND, null, 'Tournament not found for the given UUID');
     }
 
-    return new Result(StatusCodes.OK, tournament, `Participants for tournament ${code} retrieved successfully`);
+    return new Result(StatusCodes.OK, tournament, `Tournament for UUID ${uuid} retrieved successfully`);
 }
 
 export async function startTournamentService(code: string, participant: Participant) {
@@ -204,13 +230,13 @@ export async function addWinnerService(code: string, body: Winner) {
         return new Result(StatusCodes.NOT_FOUND, null, 'Tournament not found');
     }
     
-    const adminId: string = tournament.admin_id;
-    const admin: Participant | undefined = tournament.participants.find(p => p.uuid == adminId);
-    if (!admin) {
-        return new Result(StatusCodes.NOT_FOUND, null, 'Admin not found in the tournament.');
-    }
+    // const adminId: string = tournament.admin_id;
+    // const admin: Participant | undefined = tournament.participants.find(p => p.uuid == adminId);
+    // if (!admin) {
+    //     return new Result(StatusCodes.NOT_FOUND, null, 'Admin not found in the tournament.');
+    // }
 
-    const result = await validateTournamentState(tournament, admin);
+    const result = await validateTournamentState(tournament, null as any);
     if (result.statusCode !== StatusCodes.OK || !result.data) {
         return result;
     }
@@ -247,6 +273,9 @@ export async function addWinnerService(code: string, body: Winner) {
                 return new Result(StatusCodes.BAD_REQUEST, null, `Match for participant ${participant.username} is not in progress`);
             }
 
+            const loser = isP1 ? match.participant2 : match.participant1;
+            tournament.participants = tournament.participants.filter(p => p.uuid !== loser.uuid);
+
             match.status = MatchStatus.COMPLETED;
         }
     }
@@ -261,9 +290,10 @@ export async function addWinnerService(code: string, body: Winner) {
 
     round.is_completed = true;
 
-    if (round.expected_winner_count <= 1 && existingWinners.length <= 1) {
+    if (round.expected_winner_count <= 1 && existingWinners.length <= 1 && await isAllMatchesCompleted(round.matches)) {
         tournament.status = TournamentStatus.COMPLETED;
         tournament.end_time = new Date();
+        tournament.participants = tournament.participants.filter(p => !existingWinners.some(w => w.uuid === p.uuid));
         tournamentCache.set(code, tournament);
         const winner = round.winners[0] ? round.winners.at(0) : null;
         return new Result(StatusCodes.OK, winner, 'Tournament completed successfully');
@@ -341,7 +371,7 @@ export async function joinMatchService(code: string, body: MatchParticipant) {
                     }
                     addWinnerService(code, winner);
                 }
-            }, 3 * 60 * 1000)
+            },3 * 60 * 1000)
 
         } else if (match.status === MatchStatus.WAITING_PLAYER) {
             match.status = MatchStatus.ONGOING;

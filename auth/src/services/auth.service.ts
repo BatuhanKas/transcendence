@@ -2,7 +2,7 @@ import Result from '../bean/result';
 import randomUUID from 'crypto';
 import bcrypt from 'bcryptjs';
 import {StatusCodes} from "http-status-codes";
-import {findUserByEmail, saveUser} from "../repositories/repository";
+import {findUserByEmail, findUserByUsername, saveUser} from "../repositories/repository";
 import validator, {isAlphanumeric} from 'validator';
 import {User} from "../entities/user";
 import {FastifyInstance, FastifyRequest} from "fastify";
@@ -86,8 +86,12 @@ export async function registerService(username: string, email: string, password:
         return new Result(StatusCodes.BAD_REQUEST, null, 'Password must be at least 6 characters long');
     }
 
+    if (await findUserByUsername(username)) {
+    return new Result(StatusCodes.CONFLICT, null, 'usernameExists');
+    }
+
     if (await findUserByEmail(email)) {
-        return new Result(StatusCodes.CONFLICT, null, 'Email is already registered');
+        return new Result(StatusCodes.CONFLICT, null, 'emailExists');
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
