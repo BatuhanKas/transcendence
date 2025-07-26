@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="fix: getTournamentByUUID service returns tournament now.">
+    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="fix: middleware added to uuid service.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tournament/src/controllers/tournament.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/controllers/tournament.controller.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/src/middleware/middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/middleware/middleware.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/src/routes/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/routes/routes.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,23 +184,8 @@
       <workItem from="1753458579249" duration="1716000" />
       <workItem from="1753460350284" duration="2993000" />
       <workItem from="1753463501394" duration="4474000" />
-      <workItem from="1753524321694" duration="4960000" />
-    </task>
-    <task id="LOCAL-00030" summary="refactor: winner type name changed.">
-      <option name="closed" value="true" />
-      <created>1750105003032</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1750105003032</updated>
-    </task>
-    <task id="LOCAL-00031" summary="refactor: tournament data type changed.">
-      <option name="closed" value="true" />
-      <created>1750105116448</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1750105116448</updated>
+      <workItem from="1753524321694" duration="6013000" />
+      <workItem from="1753540325091" duration="3356000" />
     </task>
     <task id="LOCAL-00032" summary="feat: add winners method added.">
       <option name="closed" value="true" />
@@ -578,7 +563,23 @@
       <option name="project" value="LOCAL" />
       <updated>1753460835632</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="fix: middleware.">
+      <option name="closed" value="true" />
+      <created>1753533798365</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1753533798367</updated>
+    </task>
+    <task id="LOCAL-00080" summary="fix: middleware added to uuid service.">
+      <option name="closed" value="true" />
+      <created>1753533819645</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1753533819645</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -602,8 +603,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="docs: server starts changed." />
-    <MESSAGE value="docs: jwt verify and bcrypt.compare explained." />
     <MESSAGE value="docs: update repository explained." />
     <MESSAGE value="docs: update user service." />
     <MESSAGE value="docs: validate states explained." />
@@ -627,7 +626,9 @@
     <MESSAGE value="style: routes explanation added." />
     <MESSAGE value="fix: middleware changed to x_api_key." />
     <MESSAGE value="fix: getTournamentByUUID service returns tournament now." />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: getTournamentByUUID service returns tournament now." />
+    <MESSAGE value="fix: middleware." />
+    <MESSAGE value="fix: middleware added to uuid service." />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: middleware added to uuid service." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

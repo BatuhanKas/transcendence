@@ -66,13 +66,13 @@ export default async function tournamentRoutes(server: FastifyInstance) {
     server.get('/tournament/:code', getTournamentParticipants);
 
     /**
-     * Get tournament by UUID
-     * @route GET /tournament/:uuid
+     * Get tournament with UUID
+     * @route GET /tournament
      * @param {string} uuid.path.required - Tournament UUID
      * @returns {object} 200 - Tournament
      * @returns {Error} 404 - Tournament not found
      */
-    server.get('/tournament/uuid/:uuid', getTournamentByUUID);
+    server.get('/tournament', getTournamentByUUID);
 
     /**
      * Add winners to new round of a tournament
