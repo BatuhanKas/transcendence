@@ -101,6 +101,11 @@ export async function getTournamentParticipants(request: FastifyRequest, reply: 
 }
 
 export async function getTournamentByUUID(request: FastifyRequest, reply: FastifyReply) {
+    const { statusCode, message } = await authMiddleware(request);
+    if (statusCode != 200) {
+        return getResult(new Result(statusCode, null, message), reply);
+    }
+
     const { uuid } = request.params as { uuid: string };
     const result = await getTournamentByUUIDService(uuid);
     if (result.statusCode !== 200 || !result.data) {
