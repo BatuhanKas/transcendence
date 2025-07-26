@@ -8,7 +8,7 @@ import Result from "../bean/result";
  * @param request
  */
 export async function authMiddleware(request: FastifyRequest) {
-	if ((request.headers.x_api_key) === process.env.X_API_KEY) {
+	if ((request.headers['x-api-key']) === process.env.X_API_KEY) {
 		return new Result(StatusCodes.OK, {}, "Token is valid");
 	}
 
