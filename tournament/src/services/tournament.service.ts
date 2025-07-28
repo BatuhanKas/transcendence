@@ -16,6 +16,7 @@ import {
 } from "../factories/tournament.validator";
 import {setTimeoutFunc} from "../factories/tournament.settimeout";
 import {isAlphanumeric} from "validator";
+import {getDateAndHour, getHourAndAddMinutes} from "../util/get_time";
 
 export async function createTournamentService(tournamentDto: TournamentDto, participant: Participant) {
     if (!tournamentDto) {
@@ -57,10 +58,12 @@ export async function createTournamentService(tournamentDto: TournamentDto, part
         code: roomCode,
         name: tournamentDto.name,
         admin_id: participant.uuid,
+        lobby_members: [],
         participants: [],
         status: TournamentStatus.CREATED,
     }
 
+    tournamentData.lobby_members.push(participant);
     tournamentData.participants.push(participant);
     tournamentCache.set(roomCode, tournamentData);
 
@@ -90,6 +93,7 @@ export async function joinTournamentService(code: string, participant: Participa
         }
     }
 
+    tournament.lobby_members.push(participant);
     tournament.participants.push(participant);
     tournamentCache.set(code, tournament);
 
@@ -124,6 +128,7 @@ export async function leaveTournamentService(code: string, participant: Particip
         return new Result(StatusCodes.FORBIDDEN, null, 'Tournament admin cannot leave the tournament');
     }
 
+    tournament.lobby_members.splice(participantIndex, 1);
     tournament.participants.splice(participantIndex, 1);
     tournamentCache.set(code, tournament);
 
@@ -216,7 +221,7 @@ export async function startTournamentService(code: string, participant: Particip
     }
 
     tournament.status = TournamentStatus.ONGOING;
-    tournament.start_time = new Date();
+    tournament.start_time = getDateAndHour();
     tournament.tournament_start = tournamentStart;
     tournamentCache.set(code, tournament);
 
@@ -292,10 +297,14 @@ export async function addWinnerService(code: string, body: Winner) {
 
     if (round.expected_winner_count <= 1 && existingWinners.length <= 1 && await isAllMatchesCompleted(round.matches)) {
         tournament.status = TournamentStatus.COMPLETED;
-        tournament.end_time = new Date();
+        tournament.end_time = getDateAndHour();
         tournament.participants = tournament.participants.filter(p => !existingWinners.some(w => w.uuid === p.uuid));
         tournamentCache.set(code, tournament);
         const winner = round.winners[0] ? round.winners.at(0) : null;
+        setTimeout(() => {
+            // delete tournament from the cache after 5 hours
+            tournamentCache.delete(code);
+        },5 * 60 * 60 * 1000);
         return new Result(StatusCodes.OK, winner, 'Tournament completed successfully');
     }
 
@@ -359,6 +368,7 @@ export async function joinMatchService(code: string, body: MatchParticipant) {
 
         if (match.status === MatchStatus.CREATED) {
             match.status = MatchStatus.WAITING_PLAYER;
+            match.expired_at = getHourAndAddMinutes(3);
 
             setTimeout(() => {
                 if (match.status === MatchStatus.WAITING_PLAYER) {

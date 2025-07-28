@@ -1,5 +1,6 @@
 import {Participant, ParticipantStatus} from "../entities/participant";
 import {Match, MatchStatus, Round} from "../entities/tournament";
+import {getHourAndAddMinutes} from "../util/get_time";
 
 export const createMatches = (shuffledParticipants: Participant[]) => {
     const matches: Match[] = [];
@@ -23,6 +24,7 @@ export const createMatches = (shuffledParticipants: Participant[]) => {
 export const createRound = (matches: Match[], winners: any[], roundNumber: number) => {
     const newRound: Round = {
         round_number: roundNumber,
+        expired_at: getHourAndAddMinutes(5),
         matches: matches,
         winners: winners.length > 0 ? winners : null,
         expected_winner_count: matches.length,
