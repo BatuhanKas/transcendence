@@ -4,6 +4,7 @@ import {StatusCodes} from "http-status-codes";
 import bcrypt from 'bcryptjs';
 import {findUserByEmail, findUserByUuid, updateUserRepository} from "../repositories/repository";
 import validator from "validator";
+import {AuthResponseMessages} from "../constants/response.messages";
 
 /**
  * Service to update user information.
@@ -13,19 +14,19 @@ export async function updateUserService(requestUser: Partial<User>) {
     const user = await findUserByUuid(requestUser.uuid!);
 
     if (!user) {
-        return new Result(StatusCodes.NOT_FOUND, null, "User not found");
+        return new Result(StatusCodes.NOT_FOUND, null, AuthResponseMessages.USER_NOT_FOUND);
     }
 
     const fieldsToUpdate: Partial<User> = {};
 
     if (requestUser.email !== undefined) {
         if (!validator.isEmail(requestUser.email)) {
-            return new Result(StatusCodes.BAD_REQUEST, null, 'Invalid email format');
+            return new Result(StatusCodes.BAD_REQUEST, null, AuthResponseMessages.INVALID_EMAIL_FORMAT);
         }
         if (requestUser.email !== user.email) {
             const existingUser = await findUserByEmail(requestUser.email);
             if (existingUser) {
-                return new Result(StatusCodes.CONFLICT, null, 'Email is already in use');
+                return new Result(StatusCodes.CONFLICT, null, AuthResponseMessages.EMAIL_ALREADY_IN_USE);
             }
             fieldsToUpdate.email = requestUser.email;
         }
@@ -33,7 +34,7 @@ export async function updateUserService(requestUser: Partial<User>) {
 
     if (requestUser.username !== undefined) {
         if (requestUser.username.length < 3 || requestUser.username.length > 20) {
-            return new Result(StatusCodes.BAD_REQUEST, null, 'Username must be between 3 and 20 characters');
+            return new Result(StatusCodes.BAD_REQUEST, null, AuthResponseMessages.USERNAME_LENGTH_INVALID);
         }
         if (requestUser.username !== user.username) {
             fieldsToUpdate.username = requestUser.username;
@@ -42,7 +43,7 @@ export async function updateUserService(requestUser: Partial<User>) {
 
     if (requestUser.password !== undefined) {
         if (requestUser.password.length < 6 || requestUser.password.length > 25) {
-            return new Result(StatusCodes.BAD_REQUEST, null, 'Password must be 6-25 characters long');
+            return new Result(StatusCodes.BAD_REQUEST, null, AuthResponseMessages.PASSWORD_LENGTH_INVALID);
         }
         const isSame = await bcrypt.compare(requestUser.password, user.password);
         if (!isSame) {
@@ -51,12 +52,12 @@ export async function updateUserService(requestUser: Partial<User>) {
     }
 
     if (Object.keys(fieldsToUpdate).length === 0) {
-        return new Result(StatusCodes.OK, null, "No changes made to the user");
+        return new Result(StatusCodes.OK, null, AuthResponseMessages.NO_CHANGES_MADE);
     }
 
     fieldsToUpdate.uuid = requestUser.uuid!;
 
     await updateUserRepository(fieldsToUpdate);
     const updatedUser = await findUserByUuid(requestUser.uuid!);
-    return new Result(StatusCodes.OK, updatedUser, "User updated successfully");
+    return new Result(StatusCodes.OK, updatedUser, AuthResponseMessages.USER_UPDATED);
 }
