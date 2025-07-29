@@ -4,7 +4,7 @@ import {StatusCodes} from "http-status-codes";
 import bcrypt from 'bcryptjs';
 import {findUserByEmail, findUserByUuid, updateUserRepository} from "../repositories/repository";
 import validator from "validator";
-import {AuthResponseMessages} from "../constants/response.messages";
+import {AuthResponseMessages} from "../constants/auth.response.messages";
 
 /**
  * Service to update user information.

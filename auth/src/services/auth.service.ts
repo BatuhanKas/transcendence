@@ -6,7 +6,7 @@ import {findUserByEmail, findUserByUsername, saveUser} from "../repositories/rep
 import validator, {isAlphanumeric} from 'validator';
 import {User} from "../entities/user";
 import {FastifyInstance, FastifyRequest} from "fastify";
-import {AuthResponseMessages} from "../constants/response.messages";
+import {AuthResponseMessages} from "../constants/auth.response.messages";
 
 export async function validateService(request: FastifyRequest) {
     const authHeader = request.headers.authorization as string;

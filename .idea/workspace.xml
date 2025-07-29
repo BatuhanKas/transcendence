@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="refactor: lobby members and expired time added.">
-      <change afterPath="$PROJECT_DIR$/auth/src/constants/response.messages.ts" afterDir="false" />
+    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="refactor: response messages converted.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/constants/response.messages.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/constants/auth.response.messages.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/auth/src/services/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/services/auth.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/auth/src/services/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/services/user.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tournament/src/middleware/middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/middleware/middleware.ts" afterDir="false" />
@@ -189,15 +189,8 @@
       <workItem from="1753524321694" duration="6013000" />
       <workItem from="1753540325091" duration="4191000" />
       <workItem from="1753720472749" duration="249000" />
-      <workItem from="1753720868810" duration="11430000" />
-    </task>
-    <task id="LOCAL-00034" summary="feat: user.ts removed in tournament.">
-      <option name="closed" value="true" />
-      <created>1750109011685</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1750109011685</updated>
+      <workItem from="1753720868810" duration="17160000" />
+      <workItem from="1753800302356" duration="3630000" />
     </task>
     <task id="LOCAL-00035" summary="refactor: admin controls added.">
       <option name="closed" value="true" />
@@ -583,7 +576,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753728572076</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <task id="LOCAL-00083" summary="refactor: response messages converted.">
+      <option name="closed" value="true" />
+      <created>1753734441933</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1753734441933</updated>
+    </task>
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -607,7 +608,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="docs: validate states explained." />
     <MESSAGE value="build: dependency versions updated." />
     <MESSAGE value="ci: methods dockerized." />
     <MESSAGE value="chore: remember to change cors origin." />
@@ -632,6 +632,7 @@
     <MESSAGE value="fix: middleware added to uuid service." />
     <MESSAGE value="fix: getTournamentByUUID updated." />
     <MESSAGE value="refactor: lobby members and expired time added." />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: lobby members and expired time added." />
+    <MESSAGE value="refactor: response messages converted." />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: response messages converted." />
   </component>
 </project>
