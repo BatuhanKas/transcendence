@@ -18,7 +18,7 @@ import {setTimeoutFunc} from "../factories/tournament.settimeout";
 import {isAlphanumeric} from "validator";
 import {getDateAndHour, getHourAndAddMinutes} from "../util/get_time";
 
-export async function createTournamentService(tournamentDto: TournamentDto, participant: Participant) {
+async function createTournamentService(tournamentDto: TournamentDto, participant: Participant) {
     if (!tournamentDto) {
         return new Result(StatusCodes.BAD_REQUEST, null, 'Tournament name is required');
     }
@@ -70,7 +70,7 @@ export async function createTournamentService(tournamentDto: TournamentDto, part
     return new Result(StatusCodes.CREATED, tournamentData, `Tournament with ID ${roomId} created successfully`);
 }
 
-export async function joinTournamentService(code: string, participant: Participant) {
+async function joinTournamentService(code: string, participant: Participant) {
     const result = await tournamentControls(code);
     if (result.statusCode !== StatusCodes.OK || !result.data) {
         return result;
@@ -108,7 +108,7 @@ export async function tournamentControls(code: string) {
     return new Result(StatusCodes.OK, tournamentCache.get(code), '');
 }
 
-export async function leaveTournamentService(code: string, participant: Participant) {
+async function leaveTournamentService(code: string, participant: Participant) {
     const result = await tournamentControls(code);
     if (result.statusCode !== StatusCodes.OK || !result.data) {
         return result;
@@ -135,7 +135,7 @@ export async function leaveTournamentService(code: string, participant: Particip
     return new Result(StatusCodes.OK, null, `Participant ${participant.username} left tournament ${code} successfully`);
 }
 
-export async function deleteTournamentService(code: string, participant: Participant) {
+async function deleteTournamentService(code: string, participant: Participant) {
     const result = await tournamentControls(code);
     if (result.statusCode !== StatusCodes.OK || !result.data) {
         return result;
@@ -155,7 +155,7 @@ export async function deleteTournamentService(code: string, participant: Partici
     return new Result(StatusCodes.OK, null, `Tournament with ID ${code} deleted successfully`);
 }
 
-export async function getTournamentParticipantsService(code: string) {
+async function getTournamentParticipantsService(code: string) {
     const result = await tournamentControls(code);
     if (result.statusCode !== StatusCodes.OK || !result.data) {
         return new Result(result.statusCode, null, result.message);
@@ -166,7 +166,7 @@ export async function getTournamentParticipantsService(code: string) {
     return new Result(StatusCodes.OK, tournament, `Participants for tournament ${code} retrieved successfully`);
 }
 
-export async function getTournamentByUUIDService(uuid: string) {
+async function getTournamentByUUIDService(uuid: string) {
     const tournaments: TournamentData[] = Array.from(tournamentCache.values());
     const tournament = tournaments.find(t => t.participants.some(p => p.uuid === uuid));
 
@@ -177,7 +177,7 @@ export async function getTournamentByUUIDService(uuid: string) {
     return new Result(StatusCodes.OK, tournament, `Tournament for UUID ${uuid} retrieved successfully`);
 }
 
-export async function startTournamentService(code: string, participant: Participant) {
+async function startTournamentService(code: string, participant: Participant) {
     const result = await tournamentControls(code);
     if (result.statusCode !== StatusCodes.OK || !result.data) {
         return result;
@@ -229,17 +229,11 @@ export async function startTournamentService(code: string, participant: Particip
     return new Result(StatusCodes.OK, null, `Tournament ${code} started successfully`);
 }
 
-export async function addWinnerService(code: string, body: Winner) {
+async function addWinnerService(code: string, body: Winner) {
     const tournament = tournamentCache.get(code);
     if (!tournament) {
         return new Result(StatusCodes.NOT_FOUND, null, 'Tournament not found');
     }
-    
-    // const adminId: string = tournament.admin_id;
-    // const admin: Participant | undefined = tournament.participants.find(p => p.uuid == adminId);
-    // if (!admin) {
-    //     return new Result(StatusCodes.NOT_FOUND, null, 'Admin not found in the tournament.');
-    // }
 
     const result = await validateTournamentState(tournament, null as any);
     if (result.statusCode !== StatusCodes.OK || !result.data) {
@@ -328,7 +322,7 @@ export async function addWinnerService(code: string, body: Winner) {
     return new Result(StatusCodes.OK, null, 'Winner added and next round started successfully');
 }
 
-export async function joinMatchService(code: string, body: MatchParticipant) {
+async function joinMatchService(code: string, body: MatchParticipant) {
     const tournament = tournamentCache.get(code);
     if (!tournament) {
         return new Result(StatusCodes.NOT_FOUND, null, 'Tournament not found');
@@ -393,4 +387,16 @@ export async function joinMatchService(code: string, body: MatchParticipant) {
     }
 
     return new Result(StatusCodes.NOT_FOUND, null, `Participant ${body.participant.username} not found in any match of round ${roundNumber}`);
+}
+
+module.exports = {
+    createTournamentService,
+    joinTournamentService,
+    leaveTournamentService,
+    deleteTournamentService,
+    getTournamentParticipantsService,
+    getTournamentByUUIDService,
+    startTournamentService,
+    addWinnerService,
+    joinMatchService
 }

@@ -1,6 +1,6 @@
 import tournamentCache from "../cache/tournament.cache";
 import {MatchStatus, TournamentStatus} from "../entities/tournament";
-import {addWinnerService} from "../services/tournament.service";
+const TournamentService = require('../services/tournament.service');
 
 export async function setTimeoutFunc(code: string, roundNumber: number) {
     setTimeout(() => {
@@ -28,7 +28,7 @@ export async function setTimeoutFunc(code: string, roundNumber: number) {
 
         const existingWinners = round.winners || [];
         if (!hasActiveMatches && existingWinners.length >= round.expected_winner_count) {
-            addWinnerService(code, {
+            TournamentService.addWinnerService(code, {
                 round_number: roundNumber,
                 winner: null as any
             });

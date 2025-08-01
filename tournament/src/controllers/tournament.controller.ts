@@ -1,12 +1,4 @@
 import {FastifyReply, FastifyRequest} from 'fastify';
-import {
-    addWinnerService,
-    createTournamentService,
-    deleteTournamentService, getTournamentByUUIDService,
-    getTournamentParticipantsService, joinMatchService,
-    joinTournamentService,
-    leaveTournamentService, startTournamentService
-} from '../services/tournament.service';
 import {TournamentDto} from "../dto/tournament.dto";
 import {Participant} from "../entities/participant";
 import Result from "../bean/result";
@@ -14,6 +6,7 @@ import {authMiddleware} from "../middleware/middleware";
 import {getResult, getResultAndData} from "../responses/responses";
 import {AuthResponse} from "../entities/auth.response";
 import {MatchParticipant, Winner} from "../entities/winner";
+const TournamentService = require('../services/tournament.service');
 
 export async function createTournament(request: FastifyRequest, reply: FastifyReply) {
     const { statusCode, data, message } = await authMiddleware(request);
@@ -28,7 +21,7 @@ export async function createTournament(request: FastifyRequest, reply: FastifyRe
         username: authData.data.username
     }
 
-    const result = await createTournamentService(body, participant);
+    const result = await TournamentService.createTournamentService(body, participant);
     if (result.statusCode >= 400 || !result.data) {
         return getResult(result, reply);
     }
@@ -48,7 +41,7 @@ export async function joinTournament(request: FastifyRequest, reply: FastifyRepl
         username: authData.data.username
     }
 
-    const result = await joinTournamentService(code, participant);
+    const result = await TournamentService.joinTournamentService(code, participant);
     return getResult(result, reply);
 }
 
@@ -65,7 +58,7 @@ export async function leaveTournament(request: FastifyRequest, reply: FastifyRep
         username: authData.data.username
     }
 
-    const result = await leaveTournamentService(code, participant);
+    const result = await TournamentService.leaveTournamentService(code, participant);
     return getResult(result, reply);
 }
 
@@ -82,7 +75,7 @@ export async function deleteTournament(request: FastifyRequest, reply: FastifyRe
         username: authData.data.username
     }
 
-    const result = await deleteTournamentService(code, participant);
+    const result = await TournamentService.deleteTournamentService(code, participant);
     return getResult(result, reply);
 }
 
@@ -93,7 +86,7 @@ export async function getTournamentParticipants(request: FastifyRequest, reply: 
     }
 
     const { code } = request.params as { code: string };
-    const result = await getTournamentParticipantsService(code);
+    const result = await TournamentService.getTournamentParticipantsService(code);
     if (result.statusCode !== 200 || !result.data) {
         return getResult(result, reply);
     }
@@ -112,7 +105,7 @@ export async function getTournamentByUUID(request: FastifyRequest, reply: Fastif
         username: authData.data.username
     }
 
-    const result = await getTournamentByUUIDService(participant.uuid);
+    const result = await TournamentService.getTournamentByUUIDService(participant.uuid);
     if (result.statusCode !== 200 || !result.data) {
         return getResult(result, reply);
     }
@@ -131,7 +124,7 @@ export async function startTournament(request: FastifyRequest, reply: FastifyRep
         uuid: authData.data.uuid,
         username: authData.data.username
     }
-    const result = await startTournamentService(code, participant);
+    const result = await TournamentService.startTournamentService(code, participant);
     return getResult(result, reply);
 }
 
@@ -139,7 +132,7 @@ export async function addWinners(request: FastifyRequest, reply: FastifyReply) {
     const { code } = request.params as { code: string };
     const body = request.body as Winner;
 
-    const result = await addWinnerService(code, body);
+    const result = await TournamentService.addWinnerService(code, body);
     if (result.statusCode !== 200 || !result.data) {
         return getResult(result, reply);
     }
@@ -150,6 +143,6 @@ export async function joinMatch(request: FastifyRequest, reply: FastifyReply) {
     const { code } = request.params as { code: string };
     const body = request.body as MatchParticipant;
 
-    const result = await joinMatchService(code, body);
+    const result = await TournamentService.joinMatchService(code, body);
     return getResult(result, reply);
 }
