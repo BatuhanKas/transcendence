@@ -2,13 +2,13 @@ import Result from '../bean/result';
 import randomUUID from 'crypto';
 import bcrypt from 'bcryptjs';
 import {StatusCodes} from "http-status-codes";
-import {findUserByEmail, findUserByUsername, saveUser} from "../repositories/repository";
 import validator, {isAlphanumeric} from 'validator';
 import {User} from "../entities/user";
 import {FastifyInstance, FastifyRequest} from "fastify";
 import {AuthResponseMessages} from "../constants/auth.response.messages";
+const AuthRepository = require('../repositories/repository');
 
-export async function validateService(request: FastifyRequest) {
+async function validateService(request: FastifyRequest) {
     const authHeader = request.headers.authorization as string;
     const server = request.server as FastifyInstance;
 
@@ -31,7 +31,7 @@ export async function validateService(request: FastifyRequest) {
     }
 }
 
-export async function loginService(email: string, password: string) {
+async function loginService(email: string, password: string) {
     if (!email || !password) {
         return new Result(StatusCodes.BAD_REQUEST, null, AuthResponseMessages.EMAIL_AND_PASSWORD_REQUIRED);
     }
@@ -44,7 +44,7 @@ export async function loginService(email: string, password: string) {
         return new Result(StatusCodes.BAD_REQUEST, null, AuthResponseMessages.INVALID_EMAIL_FORMAT);
     }
 
-    const user = await findUserByEmail(email) as User;
+    const user = await AuthRepository.findUserByEmail(email) as User;
     if (!user || user.email !== email) {
         return new Result(StatusCodes.UNAUTHORIZED, null, AuthResponseMessages.INVALID_EMAIL);
     }
@@ -62,7 +62,7 @@ export async function loginService(email: string, password: string) {
     return new Result(StatusCodes.OK, { uuid: user.uuid, username: user.username, email: email }, AuthResponseMessages.LOGIN_SUCCESS);
 }
 
-export async function registerService(username: string, email: string, password: string) {
+async function registerService(username: string, email: string, password: string) {
     if (!username || !email || !password) {
         return new Result(StatusCodes.BAD_REQUEST, null, AuthResponseMessages.REGISTRATION_FIELDS_REQUIRED);
     }
@@ -87,11 +87,11 @@ export async function registerService(username: string, email: string, password:
         return new Result(StatusCodes.BAD_REQUEST, null, AuthResponseMessages.PASSWORD_LENGTH_INVALID);
     }
 
-    if (await findUserByUsername(username)) {
+    if (await AuthRepository.findUserByUsername(username)) {
         return new Result(StatusCodes.CONFLICT, null, AuthResponseMessages.USERNAME_EXISTS);
     }
 
-    if (await findUserByEmail(email)) {
+    if (await AuthRepository.findUserByEmail(email)) {
         return new Result(StatusCodes.CONFLICT, null, AuthResponseMessages.EMAIL_EXISTS);
     }
 
@@ -104,7 +104,13 @@ export async function registerService(username: string, email: string, password:
         password: hashedPassword,
     };
 
-    await saveUser(user);
+    await AuthRepository.saveUser(user);
 
     return new Result(StatusCodes.CREATED, user, AuthResponseMessages.USER_REGISTERED);
+}
+
+module.exports = {
+    validateService,
+    loginService,
+    registerService
 }

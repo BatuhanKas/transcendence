@@ -1,25 +1,25 @@
 import database from '../database/db';
 import {User} from '../entities/user';
 
-export async function saveUser(user: any){
+async function saveUser(user: any) {
     database
         .prepare('INSERT INTO users (uuid, username, email, password) VALUES (?, ?, ?, ?)')
         .run(user.uuid, user.username, user.email, user.password);
 }
 
-export async function findUserByUsername(username: string): Promise<User | null> {
+async function findUserByUsername(username: string): Promise<User | null> {
     return database
         .prepare('SELECT * FROM users WHERE username = ?')
         .get(username) as User | null;
 }
 
-export async function findUserByEmail(email: string): Promise<User | null> {
+async function findUserByEmail(email: string): Promise<User | null> {
     return database
         .prepare('SELECT * FROM users WHERE email = ?')
         .get(email) as User | null;
 }
 
-export async function findUserByUuid(uuid: string): Promise<User | null> {
+async function findUserByUuid(uuid: string): Promise<User | null> {
     return database
         .prepare('SELECT * FROM users WHERE uuid = ?')
         .get(uuid) as User | null;
@@ -29,7 +29,7 @@ export async function findUserByUuid(uuid: string): Promise<User | null> {
  * * Updates user information in the database.
  * @param user
  */
-export async function updateUserRepository(user: Partial<User>): Promise<void> {
+async function updateUserRepository(user: Partial<User>): Promise<void> {
     const fields: string[] = [];
     const values: any[] = [];
 
@@ -55,4 +55,12 @@ export async function updateUserRepository(user: Partial<User>): Promise<void> {
     database
         .prepare(`UPDATE users SET ${fields.join(", ")} WHERE uuid = ?`)
         .run(...values);
+}
+
+module.exports = {
+    saveUser,
+    findUserByUsername,
+    findUserByEmail,
+    findUserByUuid,
+    updateUserRepository
 }

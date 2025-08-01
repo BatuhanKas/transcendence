@@ -2,16 +2,16 @@ import {User} from "../entities/user";
 import Result from "../bean/result";
 import {StatusCodes} from "http-status-codes";
 import bcrypt from 'bcryptjs';
-import {findUserByEmail, findUserByUuid, updateUserRepository} from "../repositories/repository";
 import validator from "validator";
 import {AuthResponseMessages} from "../constants/auth.response.messages";
+const AuthRepository = require('../repositories/repository');
 
 /**
  * Service to update user information.
  * @param requestUser
  */
-export async function updateUserService(requestUser: Partial<User>) {
-    const user = await findUserByUuid(requestUser.uuid!);
+async function updateUserService(requestUser: Partial<User>) {
+    const user = await AuthRepository.findUserByUuid(requestUser.uuid!);
 
     if (!user) {
         return new Result(StatusCodes.NOT_FOUND, null, AuthResponseMessages.USER_NOT_FOUND);
@@ -24,7 +24,7 @@ export async function updateUserService(requestUser: Partial<User>) {
             return new Result(StatusCodes.BAD_REQUEST, null, AuthResponseMessages.INVALID_EMAIL_FORMAT);
         }
         if (requestUser.email !== user.email) {
-            const existingUser = await findUserByEmail(requestUser.email);
+            const existingUser = await AuthRepository.findUserByEmail(requestUser.email);
             if (existingUser) {
                 return new Result(StatusCodes.CONFLICT, null, AuthResponseMessages.EMAIL_ALREADY_IN_USE);
             }
@@ -57,7 +57,11 @@ export async function updateUserService(requestUser: Partial<User>) {
 
     fieldsToUpdate.uuid = requestUser.uuid!;
 
-    await updateUserRepository(fieldsToUpdate);
-    const updatedUser = await findUserByUuid(requestUser.uuid!);
+    await AuthRepository.updateUserRepository(fieldsToUpdate);
+    const updatedUser = await AuthRepository.findUserByUuid(requestUser.uuid!);
     return new Result(StatusCodes.OK, updatedUser, AuthResponseMessages.USER_UPDATED);
+}
+
+module.exports = {
+    updateUserService
 }
