@@ -6,9 +6,9 @@ import validator, {isAlphanumeric} from 'validator';
 import {User} from "../entities/user";
 import {FastifyInstance, FastifyRequest} from "fastify";
 import {AuthResponseMessages} from "../constants/auth.response.messages";
-const AuthRepository = require('../repositories/repository');
+import * as AuthRepository from '../repositories/repository';
 
-async function validateService(request: FastifyRequest) {
+export async function validateService(request: FastifyRequest) {
     const authHeader = request.headers.authorization as string;
     const server = request.server as FastifyInstance;
 
@@ -31,7 +31,7 @@ async function validateService(request: FastifyRequest) {
     }
 }
 
-async function loginService(email: string, password: string) {
+export async function loginService(email: string, password: string) {
     if (!email || !password) {
         return new Result(StatusCodes.BAD_REQUEST, null, AuthResponseMessages.EMAIL_AND_PASSWORD_REQUIRED);
     }
@@ -62,7 +62,7 @@ async function loginService(email: string, password: string) {
     return new Result(StatusCodes.OK, { uuid: user.uuid, username: user.username, email: email }, AuthResponseMessages.LOGIN_SUCCESS);
 }
 
-async function registerService(username: string, email: string, password: string) {
+export async function registerService(username: string, email: string, password: string) {
     if (!username || !email || !password) {
         return new Result(StatusCodes.BAD_REQUEST, null, AuthResponseMessages.REGISTRATION_FIELDS_REQUIRED);
     }
@@ -107,10 +107,4 @@ async function registerService(username: string, email: string, password: string
     await AuthRepository.saveUser(user);
 
     return new Result(StatusCodes.CREATED, user, AuthResponseMessages.USER_REGISTERED);
-}
-
-module.exports = {
-    validateService,
-    loginService,
-    registerService
 }

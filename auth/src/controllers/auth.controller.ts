@@ -1,7 +1,7 @@
 import {FastifyReply, FastifyRequest} from 'fastify';
 import {User} from "../entities/user";
 import {getResult, getResultAndDecodedToken, getResultAndToken} from "../responses/responses";
-const AuthService = require('../services/auth.service');
+import * as AuthService from '../services/auth.service';
 
 export async function login(request: FastifyRequest, reply: FastifyReply) {
     const { email, password } = request.body as User;

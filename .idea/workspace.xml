@@ -4,11 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="refactor: exports changed.">
+    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="refactor: auth response messages changed to keys.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/controllers/auth.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/controllers/auth.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/controllers/user.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/controllers/user.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/repositories/repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/repositories/repository.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/routes/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/routes/routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/services/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/services/auth.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/services/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/services/user.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tournament/src/controllers/tournament.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/controllers/tournament.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/src/factories/tournament.factory.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/factories/tournament.factory.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tournament/src/factories/tournament.settimeout.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/factories/tournament.settimeout.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tournament/src/middleware/middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/middleware/middleware.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/src/routes/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/routes/routes.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tournament/src/services/tournament.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/services/tournament.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -80,7 +88,7 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_interpreter_path&quot;: &quot;/home/batuhan/.nvm/versions/node/v22.16.0/bin/node&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.nodejs&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.tabs&quot;,
     &quot;ts.external.directory.path&quot;: &quot;/home/batuhan/Desktop/transcendence/tournament/node_modules/typescript/lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -193,23 +201,8 @@
       <workItem from="1753800302356" duration="5362000" />
       <workItem from="1753809274973" duration="4150000" />
       <workItem from="1753899122118" duration="192000" />
-      <workItem from="1754069050586" duration="4203000" />
-    </task>
-    <task id="LOCAL-00037" summary="fix: round winners added to create.">
-      <option name="closed" value="true" />
-      <created>1750185207044</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1750185207044</updated>
-    </task>
-    <task id="LOCAL-00038" summary="fix: addWinner validations added.">
-      <option name="closed" value="true" />
-      <created>1750185240050</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1750185240050</updated>
+      <workItem from="1754069050586" duration="5592000" />
+      <workItem from="1754128152695" duration="9783000" />
     </task>
     <task id="LOCAL-00039" summary="fix: reset round number after tournament finished.">
       <option name="closed" value="true" />
@@ -587,7 +580,23 @@
       <option name="project" value="LOCAL" />
       <updated>1754069187060</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="refactor: tournament exports changed.">
+      <option name="closed" value="true" />
+      <created>1754075384330</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1754075384330</updated>
+    </task>
+    <task id="LOCAL-00087" summary="refactor: auth response messages changed to keys.">
+      <option name="closed" value="true" />
+      <created>1754128656495</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1754128656495</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -611,8 +620,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="ci: methods dockerized." />
-    <MESSAGE value="chore: remember to change cors origin." />
     <MESSAGE value="feat: joinMatch service added." />
     <MESSAGE value="refactor: joinMatch service and addWinners methods refactored." />
     <MESSAGE value="fix: joinMatch service changed to patch request." />
@@ -636,6 +643,8 @@
     <MESSAGE value="refactor: lobby members and expired time added." />
     <MESSAGE value="refactor: response messages converted." />
     <MESSAGE value="refactor: exports changed." />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: exports changed." />
+    <MESSAGE value="refactor: tournament exports changed." />
+    <MESSAGE value="refactor: auth response messages changed to keys." />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: auth response messages changed to keys." />
   </component>
 </project>

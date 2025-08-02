@@ -8,17 +8,12 @@ import {MatchStatus, Round, TournamentData, TournamentStart, TournamentStatus} f
 import {shuffleArray} from "../util/shuffle";
 import {MatchParticipant, Winner} from "../entities/winner";
 import {createMatches, createRound} from "../factories/tournament.factory";
-import {
-    isAllMatchesCompleted,
-    validateRoundState,
-    validateTournamentState,
-    validateWinners
-} from "../factories/tournament.validator";
+import {isAllMatchesCompleted, validateRoundState, validateTournamentState, validateWinners} from "../factories/tournament.validator";
 import {setTimeoutFunc} from "../factories/tournament.settimeout";
 import {isAlphanumeric} from "validator";
 import {getDateAndHour, getHourAndAddMinutes} from "../util/get_time";
 
-async function createTournamentService(tournamentDto: TournamentDto, participant: Participant) {
+export async function createTournamentService(tournamentDto: TournamentDto, participant: Participant) {
     if (!tournamentDto) {
         return new Result(StatusCodes.BAD_REQUEST, null, 'Tournament name is required');
     }
@@ -70,7 +65,7 @@ async function createTournamentService(tournamentDto: TournamentDto, participant
     return new Result(StatusCodes.CREATED, tournamentData, `Tournament with ID ${roomId} created successfully`);
 }
 
-async function joinTournamentService(code: string, participant: Participant) {
+export async function joinTournamentService(code: string, participant: Participant) {
     const result = await tournamentControls(code);
     if (result.statusCode !== StatusCodes.OK || !result.data) {
         return result;
@@ -108,7 +103,7 @@ export async function tournamentControls(code: string) {
     return new Result(StatusCodes.OK, tournamentCache.get(code), '');
 }
 
-async function leaveTournamentService(code: string, participant: Participant) {
+export async function leaveTournamentService(code: string, participant: Participant) {
     const result = await tournamentControls(code);
     if (result.statusCode !== StatusCodes.OK || !result.data) {
         return result;
@@ -135,7 +130,7 @@ async function leaveTournamentService(code: string, participant: Participant) {
     return new Result(StatusCodes.OK, null, `Participant ${participant.username} left tournament ${code} successfully`);
 }
 
-async function deleteTournamentService(code: string, participant: Participant) {
+export async function deleteTournamentService(code: string, participant: Participant) {
     const result = await tournamentControls(code);
     if (result.statusCode !== StatusCodes.OK || !result.data) {
         return result;
@@ -155,7 +150,7 @@ async function deleteTournamentService(code: string, participant: Participant) {
     return new Result(StatusCodes.OK, null, `Tournament with ID ${code} deleted successfully`);
 }
 
-async function getTournamentParticipantsService(code: string) {
+export async function getTournamentParticipantsService(code: string) {
     const result = await tournamentControls(code);
     if (result.statusCode !== StatusCodes.OK || !result.data) {
         return new Result(result.statusCode, null, result.message);
@@ -166,7 +161,7 @@ async function getTournamentParticipantsService(code: string) {
     return new Result(StatusCodes.OK, tournament, `Participants for tournament ${code} retrieved successfully`);
 }
 
-async function getTournamentByUUIDService(uuid: string) {
+export async function getTournamentByUUIDService(uuid: string) {
     const tournaments: TournamentData[] = Array.from(tournamentCache.values());
     const tournament = tournaments.find(t => t.participants.some(p => p.uuid === uuid));
 
@@ -177,7 +172,7 @@ async function getTournamentByUUIDService(uuid: string) {
     return new Result(StatusCodes.OK, tournament, `Tournament for UUID ${uuid} retrieved successfully`);
 }
 
-async function startTournamentService(code: string, participant: Participant) {
+export async function startTournamentService(code: string, participant: Participant) {
     const result = await tournamentControls(code);
     if (result.statusCode !== StatusCodes.OK || !result.data) {
         return result;
@@ -229,7 +224,7 @@ async function startTournamentService(code: string, participant: Participant) {
     return new Result(StatusCodes.OK, null, `Tournament ${code} started successfully`);
 }
 
-async function addWinnerService(code: string, body: Winner) {
+export async function addWinnerService(code: string, body: Winner) {
     const tournament = tournamentCache.get(code);
     if (!tournament) {
         return new Result(StatusCodes.NOT_FOUND, null, 'Tournament not found');
@@ -322,7 +317,7 @@ async function addWinnerService(code: string, body: Winner) {
     return new Result(StatusCodes.OK, null, 'Winner added and next round started successfully');
 }
 
-async function joinMatchService(code: string, body: MatchParticipant) {
+export async function joinMatchService(code: string, body: MatchParticipant) {
     const tournament = tournamentCache.get(code);
     if (!tournament) {
         return new Result(StatusCodes.NOT_FOUND, null, 'Tournament not found');
@@ -387,16 +382,4 @@ async function joinMatchService(code: string, body: MatchParticipant) {
     }
 
     return new Result(StatusCodes.NOT_FOUND, null, `Participant ${body.participant.username} not found in any match of round ${roundNumber}`);
-}
-
-module.exports = {
-    createTournamentService,
-    joinTournamentService,
-    leaveTournamentService,
-    deleteTournamentService,
-    getTournamentParticipantsService,
-    getTournamentByUUIDService,
-    startTournamentService,
-    addWinnerService,
-    joinMatchService
 }

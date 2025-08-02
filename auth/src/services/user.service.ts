@@ -4,13 +4,13 @@ import {StatusCodes} from "http-status-codes";
 import bcrypt from 'bcryptjs';
 import validator from "validator";
 import {AuthResponseMessages} from "../constants/auth.response.messages";
-const AuthRepository = require('../repositories/repository');
+import * as AuthRepository from '../repositories/repository';
 
 /**
  * Service to update user information.
  * @param requestUser
  */
-async function updateUserService(requestUser: Partial<User>) {
+export async function updateUserService(requestUser: Partial<User>) {
     const user = await AuthRepository.findUserByUuid(requestUser.uuid!);
 
     if (!user) {
@@ -60,8 +60,4 @@ async function updateUserService(requestUser: Partial<User>) {
     await AuthRepository.updateUserRepository(fieldsToUpdate);
     const updatedUser = await AuthRepository.findUserByUuid(requestUser.uuid!);
     return new Result(StatusCodes.OK, updatedUser, AuthResponseMessages.USER_UPDATED);
-}
-
-module.exports = {
-    updateUserService
 }

@@ -6,7 +6,7 @@ import {authMiddleware} from "../middleware/middleware";
 import {getResult, getResultAndData} from "../responses/responses";
 import {AuthResponse} from "../entities/auth.response";
 import {MatchParticipant, Winner} from "../entities/winner";
-const TournamentService = require('../services/tournament.service');
+import * as TournamentService from "../services/tournament.service";
 
 export async function createTournament(request: FastifyRequest, reply: FastifyReply) {
     const { statusCode, data, message } = await authMiddleware(request);

@@ -1,11 +1,5 @@
 import { FastifyInstance } from 'fastify';
-import {
-    addWinners,
-    createTournament,
-    deleteTournament, getTournamentByUUID, getTournamentParticipants, joinMatch,
-    joinTournament,
-    leaveTournament, startTournament
-} from '../controllers/tournament.controller';
+import * as TournamentController from '../controllers/tournament.controller';
 
 /**
  * Tournament routes with the Fastify server instance.
@@ -18,7 +12,7 @@ export default async function tournamentRoutes(server: FastifyInstance) {
      * @returns {object} 201 - The created tournament object.
      * @returns {Error} 400 - Invalid input.
      */
-    server.post('/tournament', createTournament);
+    server.post('/tournament', TournamentController.createTournament);
 
     /**
      * Join a tournament using its code
@@ -27,7 +21,7 @@ export default async function tournamentRoutes(server: FastifyInstance) {
      * @returns {object} 200 - Successfully joined
      * @returns {Error} 404 - Tournament not found
      */
-    server.post('/tournament/:code/join', joinTournament);
+    server.post('/tournament/:code/join', TournamentController.joinTournament);
 
     /**
      * Leave a tournament using its code
@@ -36,7 +30,7 @@ export default async function tournamentRoutes(server: FastifyInstance) {
      * @returns {object} 200 - Successfully left the tournament
      * @returns {Error} 404 - Tournament not found or participant not in tournament
      */
-    server.post('/tournament/:code/leave', leaveTournament);
+    server.post('/tournament/:code/leave', TournamentController.leaveTournament);
 
     /**
      * Delete a tournament using its code
@@ -45,7 +39,7 @@ export default async function tournamentRoutes(server: FastifyInstance) {
      * @returns {object} 200 - Tournament deleted successfully
      * @returns {Error} 404 - Tournament not found or participant not authorized
      */
-    server.delete('/tournament/:code', deleteTournament);
+    server.delete('/tournament/:code', TournamentController.deleteTournament);
 
     /**
      * Start a tournament using its code
@@ -54,7 +48,7 @@ export default async function tournamentRoutes(server: FastifyInstance) {
      * @returns {object} 200 - Tournament started successfully
      * @returns {Error} 404 - Tournament not found or not in a state to start
      */
-    server.post('/tournament/:code/start', startTournament);
+    server.post('/tournament/:code/start', TournamentController.startTournament);
 
     /**
      * Get tournament
@@ -63,7 +57,7 @@ export default async function tournamentRoutes(server: FastifyInstance) {
      * @returns {TournamentData} 200 - Tournament
      * @returns {Error} 404 - Tournament not found
      */
-    server.get('/tournament/:code', getTournamentParticipants);
+    server.get('/tournament/:code', TournamentController.getTournamentParticipants);
 
     /**
      * Get tournament with UUID
@@ -72,7 +66,7 @@ export default async function tournamentRoutes(server: FastifyInstance) {
      * @returns {object} 200 - Tournament
      * @returns {Error} 404 - Tournament not found
      */
-    server.get('/tournament', getTournamentByUUID);
+    server.get('/tournament', TournamentController.getTournamentByUUID);
 
     /**
      * Add winners to new round of a tournament
@@ -81,7 +75,7 @@ export default async function tournamentRoutes(server: FastifyInstance) {
      * @returns {object} 200 - Winners added successfully
      * @returns {Error} 400 - Invalid winners data
      */
-    server.patch('/tournament/:code', addWinners);
+    server.patch('/tournament/:code', TournamentController.addWinners);
 
     /**
      * Join a match in a tournament
@@ -91,5 +85,5 @@ export default async function tournamentRoutes(server: FastifyInstance) {
      * @returns {object} 200 - Successfully joined match
      * @returns {Error} 404 - Tournament or match not found
      */
-    server.patch('/tournament/:code/join-match', joinMatch);
+    server.patch('/tournament/:code/join-match', TournamentController.joinMatch);
 }

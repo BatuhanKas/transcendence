@@ -1,6 +1,6 @@
 import tournamentCache from "../cache/tournament.cache";
 import {MatchStatus, TournamentStatus} from "../entities/tournament";
-const TournamentService = require('../services/tournament.service');
+import * as TournamentService from '../services/tournament.service' ;
 
 export async function setTimeoutFunc(code: string, roundNumber: number) {
     setTimeout(() => {
