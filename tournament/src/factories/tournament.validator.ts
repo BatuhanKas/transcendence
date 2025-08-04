@@ -6,13 +6,8 @@ import {Participant} from "../entities/participant";
 /**
  * Validate states of the tournament before adding winners.
  * @param tournament
- * @param admin
  */
-export async function validateTournamentState(tournament: TournamentData, admin: Participant) {
-    // if (tournament.admin_id !== admin.uuid) {
-    //     return new Result(StatusCodes.FORBIDDEN, null, 'You are not authorized to perform this action on the tournament');
-    // }
-
+export async function validateTournamentState(tournament: TournamentData) {
     if (tournament.status !== TournamentStatus.ONGOING) {
         return new Result(StatusCodes.BAD_REQUEST, null, 'Tournament is not in a state to add winners');
     }
