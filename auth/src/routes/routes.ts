@@ -14,4 +14,11 @@ export default async function routes(server: FastifyInstance) {
      * User Management Routes
      */
     server.put('/auth/:uuid', UserController.update);
+
+    /**
+     * Health Check Route
+     */
+    server.get('/health', async () => {
+        return {status: 'OK'};
+    })
 }

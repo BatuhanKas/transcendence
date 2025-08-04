@@ -1,4 +1,4 @@
-import { FastifyInstance } from 'fastify';
+import {FastifyInstance} from 'fastify';
 import * as TournamentController from '../controllers/tournament.controller';
 
 /**
@@ -86,4 +86,11 @@ export default async function tournamentRoutes(server: FastifyInstance) {
      * @returns {Error} 404 - Tournament or match not found
      */
     server.patch('/tournament/:code/join-match', TournamentController.joinMatch);
+
+    /**
+     * Health check route
+     */
+    server.get('/health', async () => {
+        return {status: 'OK'};
+    })
 }
