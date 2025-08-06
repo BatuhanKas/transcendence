@@ -318,6 +318,7 @@ export async function addWinnerService(code: string, body: Winner) {
 }
 
 export async function joinMatchService(code: string, body: MatchParticipant) {
+    console.log("joinMatchService");
     const tournament = tournamentCache.get(code);
     if (!tournament) {
         return new Result(StatusCodes.NOT_FOUND, null, 'Tournament not found');
@@ -327,7 +328,11 @@ export async function joinMatchService(code: string, body: MatchParticipant) {
         return new Result(StatusCodes.BAD_REQUEST, null, 'Tournament is not in a state to join matches');
     }
 
+    console.log("body", body);
+    console.log("type of body", typeof body);
+    console.log("round_number", body.round_number);
     const roundNumber = body.round_number;
+    console.log("roundNumber", roundNumber);
     const round = tournament.tournament_start!.rounds.find(r => r.round_number === roundNumber);
     if (!round) {
         return new Result(StatusCodes.NOT_FOUND, null, `Round ${roundNumber} not found in tournament ${code}`);
