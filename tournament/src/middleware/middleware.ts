@@ -2,6 +2,7 @@ import {FastifyReply, FastifyRequest} from "fastify";
 import {request as unitRequest} from "undici";
 import {StatusCodes} from "http-status-codes";
 import {AuthResponse} from "../entities/auth.response";
+import {TournamentResponseMessages} from "../constants/tournament.response.messages";
 
 /**
  * Middleware to authenticate requests by validating the token.
@@ -14,7 +15,7 @@ export async function authMiddleware(request: FastifyRequest, reply: FastifyRepl
     }
 
     try {
-        const responseData = await unitRequest('http://auth.transendence.com:8081/api/auth/validate', {
+        const responseData = await unitRequest('http://auth.transendence.com/api/auth/validate', {
             method: 'POST',
             headers: {
                 'Authorization': request.headers.authorization as string,
@@ -30,9 +31,9 @@ export async function authMiddleware(request: FastifyRequest, reply: FastifyRepl
             return;
         }
 
-        return reply.status(StatusCodes.UNAUTHORIZED).send({message: "Invalid token"});
+        return reply.status(StatusCodes.UNAUTHORIZED).send({message: TournamentResponseMessages.ERR_INVALID_TOKEN});
     } catch (error) {
         console.error("Error validating token:", error);
-        return reply.status(StatusCodes.INTERNAL_SERVER_ERROR).send({message: "An error occurred while validating the token"});
+        return reply.status(StatusCodes.INTERNAL_SERVER_ERROR).send({message: TournamentResponseMessages.ERR_INTERNAL_SERVER});
     }
 }

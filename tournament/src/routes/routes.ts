@@ -8,12 +8,6 @@ import {authMiddleware} from "../middleware/middleware";
  */
 export default async function tournamentRoutes(server: FastifyInstance) {
     /**
-     * Middleware to authenticate requests by validating the token.
-     * This middleware checks for a valid API key or token in the request headers.
-     */
-    server.addHook('preHandler', authMiddleware);
-
-    /**
      * Creates a new tournament.
      * @route POST /tournament
      * @returns {object} 201 - The created tournament object.
