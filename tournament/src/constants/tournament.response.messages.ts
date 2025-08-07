@@ -1,7 +1,4 @@
 export enum TournamentResponseMessages {
-    // Error occurred when validating the authentication token
-    ERR_VALIDATE_TOKEN = "ERR_VALIDATE_TOKEN",
-
     // Invalid or expired authentication token
     ERR_INVALID_TOKEN = "ERR_INVALID_TOKEN",
 
@@ -23,7 +20,7 @@ export enum TournamentResponseMessages {
     // Participant is already in another tournament
     ERR_PARTICIPANT_ALREADY_IN_TOURNAMENT = "ERR_PARTICIPANT_ALREADY_IN_TOURNAMENT",
 
-    // Tournament name exceeds maximum length of 20 characters
+    // Tournament name exceeds the maximum length of 20 characters
     ERR_TOURNAMENT_NAME_TOO_LONG = "ERR_TOURNAMENT_NAME_TOO_LONG",
 
     // Tournament created successfully
@@ -41,7 +38,7 @@ export enum TournamentResponseMessages {
     // Tournament not found
     ERR_TOURNAMENT_NOT_FOUND = "ERR_TOURNAMENT_NOT_FOUND",
 
-    // Participant not found in the tournament
+    // Participant isn't found in the tournament
     ERR_PARTICIPANT_NOT_FOUND = "ERR_PARTICIPANT_NOT_FOUND",
 
     // Tournament admin cannot leave the tournament
@@ -59,7 +56,7 @@ export enum TournamentResponseMessages {
     // Only the tournament admin can delete the tournament
     ERR_ONLY_ADMIN_CAN_DELETE = "ERR_ONLY_ADMIN_CAN_DELETE",
 
-    // Tournament not found for the given UUID
+    // Tournament isn't found for the given UUID
     ERR_TOURNAMENT_NOT_FOUND_UUID = "ERR_TOURNAMENT_NOT_FOUND_UUID",
 
     // Only the tournament admin can start the tournament
@@ -71,7 +68,7 @@ export enum TournamentResponseMessages {
     // Not enough participants to start the tournament
     ERR_NOT_ENOUGH_PARTICIPANTS = "ERR_NOT_ENOUGH_PARTICIPANTS",
 
-    // Match status for participant is not joinable
+    // Match status for a participant is not joinable
     ERR_MATCH_NOT_JOINABLE = "ERR_MATCH_NOT_JOINABLE",
 
     // Participant is disconnected and cannot be a winner
@@ -83,22 +80,22 @@ export enum TournamentResponseMessages {
     // Tournament completed successfully
     SUCCESS_TOURNAMENT_COMPLETED = "SUCCESS_TOURNAMENT_COMPLETED",
 
-    // Winner added and next round started successfully
+    // Winner added and the next round started successfully
     SUCCESS_NEXT_ROUND_STARTED = "SUCCESS_NEXT_ROUND_STARTED",
 
     // Tournament is not in a state to join matches
     ERR_TOURNAMENT_NOT_MATCH_JOINABLE = "ERR_TOURNAMENT_NOT_MATCH_JOINABLE",
 
-    // Round not found in tournament
+    // Round isn't found in a tournament
     ERR_ROUND_NOT_FOUND = "ERR_ROUND_NOT_FOUND",
 
     // Round is already completed
     ERR_ROUND_COMPLETED = "ERR_ROUND_COMPLETED",
 
-    // Match for participant is not in a state to join
+    // Match for a participant is not in a state to join
     ERR_MATCH_STATE_NOT_JOINABLE = "ERR_MATCH_STATE_NOT_JOINABLE",
 
-    // Match for participant is not in a state to leave
+    // Match for a participant is not in a state to leave
     ERR_MATCH_STATE_NOT_LEAVABLE = "ERR_MATCH_STATE_NOT_LEAVABLE",
 
     // Participant is not in the tournament
@@ -134,7 +131,7 @@ export enum TournamentResponseMessages {
     // Participant leaved the match successfully
     SUCCESS_PARTICIPANT_LEAVED_MATCH = "SUCCESS_PARTICIPANT_LEAVED_MATCH",
 
-    // Participant not found in any match of round
+    // Participant isn't found in any match of round
     ERR_PARTICIPANT_NOT_FOUND_ROUND = "ERR_PARTICIPANT_NOT_FOUND_ROUND",
 
     // Tournament is not in a state to add winners
