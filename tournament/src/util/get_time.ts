@@ -8,11 +8,11 @@ const getHour = () => {
     return new Date().toLocaleTimeString('tr-TR');
 }
 
-// "20:01:15" - Time in the format HH:MM:SS with added minutes
-const getHourAndAddMinutes = (minutes: number) => {
+// Epoch time in (seconds) with added minutes
+const getEpochTime = (minutes: number): number => {
     const date = new Date();
     date.setMinutes(date.getMinutes() + minutes);
-    return date.toLocaleTimeString('tr-TR');
+    return Math.floor(date.getTime() / 1000);
 }
 
 // "28.07.2025" - Date in the format DD.MM.YYYY
@@ -20,4 +20,4 @@ const getDate = () => {
     return new Date().toLocaleDateString('tr-TR');
 }
 
-export { getDateAndHour, getHour, getDate, getHourAndAddMinutes };
+export {getDateAndHour, getHour, getDate, getEpochTime};

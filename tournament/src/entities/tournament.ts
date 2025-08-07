@@ -1,4 +1,4 @@
-import { Participant } from "./participant";
+import {Participant} from "./participant";
 
 export enum TournamentStatus {
     CREATED = 'created',
@@ -33,7 +33,7 @@ export type TournamentStart = {
 
 export type Round = {
     round_number: number;
-    expired_at?: string;
+    expired_at?: number;
     matches: Match[];
     winners: Participant[] | null;
     expected_winner_count: number;
@@ -41,7 +41,6 @@ export type Round = {
 }
 
 export type Match = {
-    expired_at?: string;
     participant1: Participant;
     participant2: Participant;
     status: MatchStatus;

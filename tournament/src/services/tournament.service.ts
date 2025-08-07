@@ -16,7 +16,7 @@ import {
 } from "../factories/tournament.validator";
 import {setTimeoutFunc} from "../factories/tournament.settimeout";
 import {isAlphanumeric} from "validator";
-import {getDateAndHour, getHourAndAddMinutes} from "../util/get_time";
+import {getDateAndHour} from "../util/get_time";
 import {TournamentResponseMessages} from "../constants/tournament.response.messages";
 
 export async function createTournamentService(tournamentDto: TournamentDto, participant: Participant) {
@@ -403,20 +403,20 @@ export async function joinMatchService(code: string, body: MatchParticipant) {
 
         if (match.status === MatchStatus.CREATED) {
             match.status = MatchStatus.WAITING_PLAYER;
-            match.expired_at = getHourAndAddMinutes(3);
-
-            setTimeout(() => {
-                if (match.status === MatchStatus.WAITING_PLAYER) {
-                    const winner: Winner = {
-                        round_number: roundNumber,
-                        winner: {
-                            'uuid': participant.uuid,
-                            'username': participant.username
-                        }
-                    }
-                    addWinnerService(code, winner);
-                }
-            }, 3 * 60 * 1000)
+            // match.expired_at = getHourAndAddMinutes(3);
+            //
+            // setTimeout(() => {
+            //     if (match.status === MatchStatus.WAITING_PLAYER) {
+            //         const winner: Winner = {
+            //             round_number: roundNumber,
+            //             winner: {
+            //                 'uuid': participant.uuid,
+            //                 'username': participant.username
+            //             }
+            //         }
+            //         addWinnerService(code, winner);
+            //     }
+            // }, 3 * 60 * 1000)
 
         } else if (match.status === MatchStatus.WAITING_PLAYER) {
             match.status = MatchStatus.ONGOING;

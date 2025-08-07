@@ -1,14 +1,14 @@
 import {Participant, ParticipantStatus} from "../entities/participant";
 import {Match, MatchStatus, Round} from "../entities/tournament";
-import {getHourAndAddMinutes} from "../util/get_time";
+import {getEpochTime} from "../util/get_time";
 
 export const createMatches = (shuffledParticipants: Participant[]) => {
     const matches: Match[] = [];
     for (let i = 0; i < shuffledParticipants.length; i += 2) {
-        const firstParticipant = { ...shuffledParticipants[i] };
+        const firstParticipant = {...shuffledParticipants[i]};
         firstParticipant.status = ParticipantStatus.DISCONNECTED;
 
-        const secondParticipant = { ...shuffledParticipants[i + 1] };
+        const secondParticipant = {...shuffledParticipants[i + 1]};
         secondParticipant.status = ParticipantStatus.DISCONNECTED;
 
         const match: Match = {
@@ -24,7 +24,7 @@ export const createMatches = (shuffledParticipants: Participant[]) => {
 export const createRound = (matches: Match[], winners: any[], roundNumber: number) => {
     const newRound: Round = {
         round_number: roundNumber,
-        expired_at: getHourAndAddMinutes(5),
+        expired_at: getEpochTime(5),
         matches: matches,
         winners: winners.length > 0 ? winners : [],
         expected_winner_count: matches.length,
