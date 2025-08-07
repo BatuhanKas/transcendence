@@ -109,6 +109,16 @@ export default async function tournamentRoutes(server: FastifyInstance) {
     server.patch('/tournament/:code/join-match', TournamentController.joinMatch);
 
     /**
+     * Leave a match in a tournament
+     * @route PATCH /tournament/:code/leave-match
+     * @param {string} code.path.required - Tournament code
+     * @param {string} participantId.query.required - Participant UUID
+     * @returns {object} 200 - Successfully left match
+     * @returns {Error} 404 - Tournament or match not found
+     */
+    server.patch('/tournament/:code/leave-match', TournamentController.leaveMatch);
+
+    /**
      * Health check route
      */
     server.get('/health', async () => {

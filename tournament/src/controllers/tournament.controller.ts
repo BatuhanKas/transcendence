@@ -86,3 +86,11 @@ export async function joinMatch(request: FastifyRequest, reply: FastifyReply) {
     const result = await TournamentService.joinMatchService(params.code, body);
     return getResult(result, reply);
 }
+
+export async function leaveMatch(request: FastifyRequest, reply: FastifyReply) {
+    const params = request.params as { code: string };
+    const body = request.body as MatchParticipant;
+
+    const result = await TournamentService.leaveMatchService(params.code, body);
+    return getResult(result, reply);
+}
