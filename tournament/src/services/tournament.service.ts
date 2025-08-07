@@ -355,7 +355,6 @@ export async function addWinnerService(code: string, body: Winner) {
 }
 
 export async function joinMatchService(code: string, body: MatchParticipant) {
-    console.log("joinMatchService");
     const tournament = tournamentCache.get(code);
     if (!tournament) {
         return new Result(StatusCodes.NOT_FOUND, null, TournamentResponseMessages.ERR_TOURNAMENT_NOT_FOUND);
@@ -365,11 +364,7 @@ export async function joinMatchService(code: string, body: MatchParticipant) {
         return new Result(StatusCodes.BAD_REQUEST, null, TournamentResponseMessages.ERR_TOURNAMENT_NOT_MATCH_JOINABLE);
     }
 
-    console.log("body", body);
-    console.log("type of body", typeof body);
-    console.log("round_number", body.round_number);
     const roundNumber = body.round_number;
-    console.log("roundNumber", roundNumber);
     const round = tournament.tournament_start!.rounds.find(r => r.round_number === roundNumber);
     if (!round) {
         return new Result(StatusCodes.NOT_FOUND, null, TournamentResponseMessages.ERR_ROUND_NOT_FOUND);
@@ -403,21 +398,6 @@ export async function joinMatchService(code: string, body: MatchParticipant) {
 
         if (match.status === MatchStatus.CREATED) {
             match.status = MatchStatus.WAITING_PLAYER;
-            // match.expired_at = getHourAndAddMinutes(3);
-            //
-            // setTimeout(() => {
-            //     if (match.status === MatchStatus.WAITING_PLAYER) {
-            //         const winner: Winner = {
-            //             round_number: roundNumber,
-            //             winner: {
-            //                 'uuid': participant.uuid,
-            //                 'username': participant.username
-            //             }
-            //         }
-            //         addWinnerService(code, winner);
-            //     }
-            // }, 3 * 60 * 1000)
-
         } else if (match.status === MatchStatus.WAITING_PLAYER) {
             match.status = MatchStatus.ONGOING;
         }
@@ -425,6 +405,68 @@ export async function joinMatchService(code: string, body: MatchParticipant) {
         tournament.tournament_start!.rounds = tournament.tournament_start!.rounds.map(r => r.round_number === roundNumber ? round : r);
         tournamentCache.set(code, tournament);
         return new Result(StatusCodes.OK, null, TournamentResponseMessages.SUCCESS_PARTICIPANT_JOINED_MATCH);
+    }
+
+    return new Result(StatusCodes.NOT_FOUND, null, TournamentResponseMessages.ERR_PARTICIPANT_NOT_FOUND_ROUND);
+}
+
+export async function leaveMatchService(code: string, body: MatchParticipant) {
+    const result = await tournamentControls(code);
+    if (result.statusCode !== StatusCodes.OK || !result.data) {
+        return result;
+    }
+
+    const validateTournament = await validateTournamentState(result.data);
+    if (validateTournament.statusCode !== StatusCodes.OK || !validateTournament.data) {
+        return validateTournament;
+    }
+
+    const tournament = validateTournament.data as TournamentData;
+    const validateRound = await validateRoundState(tournament, body.round_number);
+    if (validateRound.statusCode !== StatusCodes.OK || !validateRound.data) {
+        return validateRound;
+    }
+
+    const roundNumber = body.round_number;
+    const round = validateRound.data as Round;
+    for (const match of round.matches) {
+        const isP1 = match.participant1.uuid === body.participant.uuid;
+        const isP2 = match.participant2.uuid === body.participant.uuid;
+
+        if (!isP1 && !isP2) continue;
+
+        if (match.status === MatchStatus.COMPLETED)
+            return new Result(StatusCodes.BAD_REQUEST, null, TournamentResponseMessages.ERR_MATCH_STATE_NOT_LEAVABLE);
+
+        const participant = isP1 ? match.participant1 : match.participant2;
+
+        if (!tournament.lobby_members.find(p => p.uuid === participant.uuid)) {
+            return new Result(StatusCodes.BAD_REQUEST, null, TournamentResponseMessages.ERR_PARTICIPANT_NOT_IN_TOURNAMENT);
+        }
+
+        if (participant.status === ParticipantStatus.DISCONNECTED) {
+            return new Result(StatusCodes.BAD_REQUEST, null, TournamentResponseMessages.ERR_PARTICIPANT_ALREADY_DISCONNECTED);
+        }
+
+        participant.status = ParticipantStatus.DISCONNECTED;
+
+        switch (match.status) {
+            case MatchStatus.ONGOING:
+                match.status = MatchStatus.WAITING_PLAYER;
+                break;
+
+            case MatchStatus.WAITING_PLAYER:
+                match.status = MatchStatus.CREATED;
+                break;
+
+            case MatchStatus.CREATED:
+                match.status = MatchStatus.CREATED;
+                break;
+        }
+
+        tournament.tournament_start!.rounds = tournament.tournament_start!.rounds.map(r => r.round_number === roundNumber ? round : r);
+        tournamentCache.set(code, tournament);
+        return new Result(StatusCodes.OK, null, TournamentResponseMessages.SUCCESS_PARTICIPANT_LEAVED_MATCH);
     }
 
     return new Result(StatusCodes.NOT_FOUND, null, TournamentResponseMessages.ERR_PARTICIPANT_NOT_FOUND_ROUND);

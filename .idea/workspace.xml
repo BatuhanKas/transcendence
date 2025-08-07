@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="refactor: all exports changed again.">
+    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="refactor: tournament expire date is 5 min.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/src/factories/tournament.validator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/factories/tournament.validator.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/entities/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/entities/user.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/src/constants/tournament.response.messages.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/constants/tournament.response.messages.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/src/controllers/tournament.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/controllers/tournament.controller.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tournament/src/middleware/middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/middleware/middleware.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/src/routes/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/routes/routes.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tournament/src/services/tournament.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/services/tournament.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -96,11 +99,11 @@
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/tournament/src" />
       <recent name="$PROJECT_DIR$/auth/src/database/sqlite" />
       <recent name="$PROJECT_DIR$/auth" />
       <recent name="$PROJECT_DIR$/auth/src/database" />
       <recent name="$PROJECT_DIR$/auth/src/services" />
-      <recent name="$PROJECT_DIR$/auth/src" />
     </key>
   </component>
   <component name="RunManager" selected="Node.js.tournament.ts">
@@ -205,55 +208,13 @@
       <workItem from="1754214573809" duration="3441000" />
       <workItem from="1754222112779" duration="3599000" />
       <workItem from="1754227061980" duration="14185000" />
-      <workItem from="1754323835011" duration="7862000" />
-    </task>
-    <task id="LOCAL-00040" summary="fix: round number bug fixed.">
-      <option name="closed" value="true" />
-      <created>1750518189567</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1750518189567</updated>
-    </task>
-    <task id="LOCAL-00041" summary="fix: cors error fixed.">
-      <option name="closed" value="true" />
-      <created>1750537135344</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1750537135344</updated>
-    </task>
-    <task id="LOCAL-00042" summary="fix: cors error fixed.">
-      <option name="closed" value="true" />
-      <created>1750538727046</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1750538727046</updated>
-    </task>
-    <task id="LOCAL-00043" summary="fix: cors error fixed hopefully.">
-      <option name="closed" value="true" />
-      <created>1750792057915</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1750792057915</updated>
-    </task>
-    <task id="LOCAL-00044" summary="fix: server port changed.">
-      <option name="closed" value="true" />
-      <created>1750879347091</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1750879347091</updated>
-    </task>
-    <task id="LOCAL-00045" summary="refactor: port changes.">
-      <option name="closed" value="true" />
-      <created>1750891087425</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1750891087426</updated>
+      <workItem from="1754323835011" duration="15190000" />
+      <workItem from="1754406733393" duration="5155000" />
+      <workItem from="1754490508891" duration="2725000" />
+      <workItem from="1754505125957" duration="593000" />
+      <workItem from="1754506138978" duration="7816000" />
+      <workItem from="1754517239259" duration="52000" />
+      <workItem from="1754578872979" duration="11051000" />
     </task>
     <task id="LOCAL-00046" summary="refactor: addWinners round conflict fixed.">
       <option name="closed" value="true" />
@@ -599,7 +560,55 @@
       <option name="project" value="LOCAL" />
       <updated>1754140956499</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="refactor: major tournament and leave endpoint changes.">
+      <option name="closed" value="true" />
+      <created>1754334617393</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1754334617393</updated>
+    </task>
+    <task id="LOCAL-00090" summary="feat: health check added for both servers.">
+      <option name="closed" value="true" />
+      <created>1754335219198</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1754335219198</updated>
+    </task>
+    <task id="LOCAL-00091" summary="feat: middleware changes.">
+      <option name="closed" value="true" />
+      <created>1754409784075</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1754409784075</updated>
+    </task>
+    <task id="LOCAL-00092" summary="refactor: tournament response messages converted to keys.">
+      <option name="closed" value="true" />
+      <created>1754506406375</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1754506406377</updated>
+    </task>
+    <task id="LOCAL-00093" summary="refactor: .gitignore.">
+      <option name="closed" value="true" />
+      <created>1754507475029</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1754507475029</updated>
+    </task>
+    <task id="LOCAL-00094" summary="refactor: tournament expire date is 5 min.">
+      <option name="closed" value="true" />
+      <created>1754582946389</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1754582946390</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -623,12 +632,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="refactor: joinMatch service and addWinners methods refactored." />
-    <MESSAGE value="fix: joinMatch service changed to patch request." />
-    <MESSAGE value="refactor: MatchParticipant added." />
-    <MESSAGE value="fix: joinMatch service fixed and 3 minute delay added." />
-    <MESSAGE value="fix: joinMatch participant fix." />
-    <MESSAGE value="fix: .gitignore fixes." />
     <MESSAGE value="fix: major tournament changes." />
     <MESSAGE value="fix: setTimeout func for round start." />
     <MESSAGE value="unversioned files" />
@@ -648,6 +651,12 @@
     <MESSAGE value="refactor: tournament exports changed." />
     <MESSAGE value="refactor: auth response messages changed to keys." />
     <MESSAGE value="refactor: all exports changed again." />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: all exports changed again." />
+    <MESSAGE value="refactor: major tournament and leave endpoint changes." />
+    <MESSAGE value="feat: health check added for both servers." />
+    <MESSAGE value="feat: middleware changes." />
+    <MESSAGE value="refactor: tournament response messages converted to keys." />
+    <MESSAGE value="refactor: .gitignore." />
+    <MESSAGE value="refactor: tournament expire date is 5 min." />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: tournament expire date is 5 min." />
   </component>
 </project>
