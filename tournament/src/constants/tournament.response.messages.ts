@@ -98,11 +98,17 @@ export enum TournamentResponseMessages {
     // Match for participant is not in a state to join
     ERR_MATCH_STATE_NOT_JOINABLE = "ERR_MATCH_STATE_NOT_JOINABLE",
 
+    // Match for participant is not in a state to leave
+    ERR_MATCH_STATE_NOT_LEAVABLE = "ERR_MATCH_STATE_NOT_LEAVABLE",
+
     // Participant is not in the tournament
     ERR_PARTICIPANT_NOT_IN_TOURNAMENT = "ERR_PARTICIPANT_NOT_IN_TOURNAMENT",
 
     // Participant is already joined in the match
     ERR_PARTICIPANT_ALREADY_IN_MATCH = "ERR_PARTICIPANT_ALREADY_IN_MATCH",
+
+    // Participant is already disconnected
+    ERR_PARTICIPANT_ALREADY_DISCONNECTED = "ERR_PARTICIPANT_ALREADY_DISCONNECTED",
 
     // Participant joined tournament successfully
     SUCCESS_PARTICIPANT_JOINED = "SUCCESS_PARTICIPANT_JOINED",
@@ -124,6 +130,9 @@ export enum TournamentResponseMessages {
 
     // Participant joined the match successfully
     SUCCESS_PARTICIPANT_JOINED_MATCH = "SUCCESS_PARTICIPANT_JOINED_MATCH",
+
+    // Participant leaved the match successfully
+    SUCCESS_PARTICIPANT_LEAVED_MATCH = "SUCCESS_PARTICIPANT_LEAVED_MATCH",
 
     // Participant not found in any match of round
     ERR_PARTICIPANT_NOT_FOUND_ROUND = "ERR_PARTICIPANT_NOT_FOUND_ROUND",
