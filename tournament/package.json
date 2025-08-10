@@ -11,7 +11,9 @@
     "nanoid": "^5.1.5",
     "undici": "^7.10.0",
     "dotenv": "^16.5.0",
-    "validator": "^13.15.15"
+    "validator": "^13.15.15",
+    "@fastify/swagger": "^9.5.1",
+    "@fastify/swagger-ui": "^5.2.3"
   },
   "repository": {
     "type": "git",
@@ -36,7 +38,7 @@
   "scripts": {
     "build": "tsc",
     "start": "npm run build && node dist/server/server.js",
-    "dev": "ts-node src/server/server.ts",
+    "dev": "ts-node --files src/server/server.ts",
     "clean": "rm -rf dist"
   }
 }

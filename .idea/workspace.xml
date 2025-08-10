@@ -4,14 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="refactor: tournament expire date is 5 min.">
+    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="refactor: tournament key explanations changed.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/src/entities/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/entities/user.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/src/constants/tournament.response.messages.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/constants/tournament.response.messages.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/src/controllers/tournament.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/controllers/tournament.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/auth/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/auth/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/routes/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/routes/routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/server/auth.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/server/auth.server.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tournament/src/middleware/middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/middleware/middleware.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tournament/src/routes/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/routes/routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/src/services/tournament.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/services/tournament.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/src/server/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/server/server.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/src/types/fastify.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/types/fastify.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +111,7 @@
       <recent name="$PROJECT_DIR$/auth/src/services" />
     </key>
   </component>
-  <component name="RunManager" selected="Node.js.tournament.ts">
+  <component name="RunManager" selected="Node.js.auth.ts">
     <configuration name="auth.ts" type="NodeJSConfigurationType" path-to-js-file="src/server/auth.server.ts" typescript-loader="bundled" working-dir="$PROJECT_DIR$/auth">
       <method v="2" />
     </configuration>
@@ -214,39 +219,11 @@
       <workItem from="1754505125957" duration="593000" />
       <workItem from="1754506138978" duration="7816000" />
       <workItem from="1754517239259" duration="52000" />
-      <workItem from="1754578872979" duration="11051000" />
-    </task>
-    <task id="LOCAL-00046" summary="refactor: addWinners round conflict fixed.">
-      <option name="closed" value="true" />
-      <created>1750891098807</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1750891098808</updated>
-    </task>
-    <task id="LOCAL-00047" summary="fix: tournament name length fixed.">
-      <option name="closed" value="true" />
-      <created>1750891279024</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1750891279024</updated>
-    </task>
-    <task id="LOCAL-00048" summary="fix: cache deleted.">
-      <option name="closed" value="true" />
-      <created>1750891323930</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1750891323930</updated>
-    </task>
-    <task id="LOCAL-00049" summary="fix: only admin can use addWinners method.">
-      <option name="closed" value="true" />
-      <created>1750892114476</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1750892114476</updated>
+      <workItem from="1754578872979" duration="16817000" />
+      <workItem from="1754672110439" duration="3622000" />
+      <workItem from="1754838534945" duration="1431000" />
+      <workItem from="1754841032788" duration="59000" />
+      <workItem from="1754843555811" duration="221000" />
     </task>
     <task id="LOCAL-00050" summary="fix: http-status-codes added to package.json.">
       <option name="closed" value="true" />
@@ -608,7 +585,39 @@
       <option name="project" value="LOCAL" />
       <updated>1754582946390</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="feat: leave match service added.">
+      <option name="closed" value="true" />
+      <created>1754593494839</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1754593494839</updated>
+    </task>
+    <task id="LOCAL-00096" summary="feat: tournament keys updated.">
+      <option name="closed" value="true" />
+      <created>1754593510506</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1754593510506</updated>
+    </task>
+    <task id="LOCAL-00097" summary="feat: leave match service added.">
+      <option name="closed" value="true" />
+      <created>1754593546881</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1754593546881</updated>
+    </task>
+    <task id="LOCAL-00098" summary="refactor: tournament key explanations changed.">
+      <option name="closed" value="true" />
+      <created>1754594212119</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1754594212120</updated>
+    </task>
+    <option name="localTasksCounter" value="99" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -632,9 +641,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="fix: major tournament changes." />
-    <MESSAGE value="fix: setTimeout func for round start." />
-    <MESSAGE value="unversioned files" />
     <MESSAGE value="fix: tournament name isAlphanumeric added." />
     <MESSAGE value="fix: validator lib imported to tournament service." />
     <MESSAGE value="fix: .gitignore .env added." />
@@ -657,6 +663,9 @@
     <MESSAGE value="refactor: tournament response messages converted to keys." />
     <MESSAGE value="refactor: .gitignore." />
     <MESSAGE value="refactor: tournament expire date is 5 min." />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: tournament expire date is 5 min." />
+    <MESSAGE value="feat: tournament keys updated." />
+    <MESSAGE value="feat: leave match service added." />
+    <MESSAGE value="refactor: tournament key explanations changed." />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: tournament key explanations changed." />
   </component>
 </project>

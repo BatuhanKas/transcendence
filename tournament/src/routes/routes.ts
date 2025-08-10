@@ -1,6 +1,7 @@
 import {FastifyInstance} from 'fastify';
 import * as TournamentController from '../controllers/tournament.controller';
 import {authMiddleware} from "../middleware/middleware";
+import { tournamentSchemas, systemSchemas } from "../schemas/swagger.schemas";
 
 /**
  * Tournament routes with the Fastify server instance.
@@ -14,6 +15,7 @@ export default async function tournamentRoutes(server: FastifyInstance) {
      * @returns {Error} 400 - Invalid input.
      */
     server.post('/tournament', {
+        schema: tournamentSchemas.create,
         preHandler: authMiddleware,
         handler: TournamentController.createTournament
     });
@@ -26,6 +28,7 @@ export default async function tournamentRoutes(server: FastifyInstance) {
      * @returns {Error} 404 - Tournament not found
      */
     server.post('/tournament/:code/join', {
+        schema: tournamentSchemas.join,
         preHandler: authMiddleware,
         handler: TournamentController.joinTournament
     });
@@ -38,6 +41,7 @@ export default async function tournamentRoutes(server: FastifyInstance) {
      * @returns {Error} 404 - Tournament not found or participant not in tournament
      */
     server.post('/tournament/:code/leave', {
+        schema: tournamentSchemas.leave,
         preHandler: authMiddleware,
         handler: TournamentController.leaveTournament
     });
@@ -50,6 +54,7 @@ export default async function tournamentRoutes(server: FastifyInstance) {
      * @returns {Error} 404 - Tournament not found or participant not authorized
      */
     server.delete('/tournament/:code', {
+        schema: tournamentSchemas.delete,
         preHandler: authMiddleware,
         handler: TournamentController.deleteTournament
     });
@@ -62,6 +67,7 @@ export default async function tournamentRoutes(server: FastifyInstance) {
      * @returns {Error} 404 - Tournament not found or not in a state to start
      */
     server.post('/tournament/:code/start', {
+        schema: tournamentSchemas.start,
         preHandler: authMiddleware,
         handler: TournamentController.startTournament
     });
@@ -74,6 +80,7 @@ export default async function tournamentRoutes(server: FastifyInstance) {
      * @returns {Error} 404 - Tournament not found
      */
     server.get('/tournament/:code', {
+        schema: tournamentSchemas.get,
         handler: TournamentController.getTournamentParticipants
     });
 
@@ -85,6 +92,7 @@ export default async function tournamentRoutes(server: FastifyInstance) {
      * @returns {Error} 404 - Tournament not found
      */
     server.get('/tournament', {
+        schema: tournamentSchemas.getByUUID,
         preHandler: authMiddleware,
         handler: TournamentController.getTournamentByUUID
     });
@@ -96,7 +104,10 @@ export default async function tournamentRoutes(server: FastifyInstance) {
      * @returns {object} 200 - Winners added successfully
      * @returns {Error} 400 - Invalid winners data
      */
-    server.patch('/tournament/:code', TournamentController.addWinners);
+    server.patch('/tournament/:code', { 
+        schema: tournamentSchemas.addWinners,
+        handler: TournamentController.addWinners 
+    });
 
     /**
      * Join a match in a tournament
@@ -106,7 +117,10 @@ export default async function tournamentRoutes(server: FastifyInstance) {
      * @returns {object} 200 - Successfully joined match
      * @returns {Error} 404 - Tournament or match not found
      */
-    server.patch('/tournament/:code/join-match', TournamentController.joinMatch);
+    server.patch('/tournament/:code/join-match', { 
+        schema: tournamentSchemas.joinMatch,
+        handler: TournamentController.joinMatch 
+    });
 
     /**
      * Leave a match in a tournament
@@ -116,12 +130,17 @@ export default async function tournamentRoutes(server: FastifyInstance) {
      * @returns {object} 200 - Successfully left match
      * @returns {Error} 404 - Tournament or match not found
      */
-    server.patch('/tournament/:code/leave-match', TournamentController.leaveMatch);
+    server.patch('/tournament/:code/leave-match', { 
+        schema: tournamentSchemas.leaveMatch,
+        handler: TournamentController.leaveMatch 
+    });
 
     /**
      * Health check route
      */
-    server.get('/health', async () => {
+    server.get('/health', { 
+        schema: systemSchemas.health
+    }, async () => {
         return {status: 'OK'};
     })
 }

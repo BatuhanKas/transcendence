@@ -1,24 +1,38 @@
 import {FastifyInstance} from "fastify";
 import * as AuthController from "../controllers/auth.controller";
 import * as UserController from "../controllers/user.controller";
+import { authSchemas, userSchemas, systemSchemas } from "../schemas/swagger.schemas";
 
 export default async function routes(server: FastifyInstance) {
     /**
      * User Authentication Routes
      */
-    server.post('/auth/login', AuthController.login);
-    server.post('/auth/register', AuthController.register);
-    server.post('/auth/validate', AuthController.validate);
+    server.post('/auth/login', { 
+        schema: authSchemas.login,
+        handler: AuthController.login
+    });
+
+    server.post('/auth/register', { 
+        schema: authSchemas.register, 
+        handler: AuthController.register
+    });
+    
+    server.post('/auth/validate', { 
+        schema: authSchemas.validate, 
+        handler: AuthController.validate
+    });
 
     /**
      * User Management Routes
      */
-    server.put('/auth/:uuid', UserController.update);
+    server.put('/auth/:uuid', { schema: userSchemas.update, handler: UserController.update });
 
     /**
      * Health Check Route
      */
-    server.get('/health', async () => {
+    server.get('/health', { 
+        schema: systemSchemas.health 
+    }, async () => {
         return {status: 'OK'};
-    })
+    });
 }
