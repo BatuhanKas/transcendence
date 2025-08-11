@@ -59,7 +59,8 @@ export const userSchemas = {
             properties: {
                 username: {type: 'string', minLength: 3, maxLength: 20},
                 email: {type: 'string', format: 'email', minLength: 5, maxLength: 50},
-                password: {type: 'string', minLength: 6, maxLength: 25}
+                password: {type: 'string', minLength: 6, maxLength: 25},
+                new_password: {type: 'string', minLength: 6, maxLength: 25}
             }
         }
     }
