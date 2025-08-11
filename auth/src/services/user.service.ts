@@ -9,9 +9,10 @@ import * as AuthRepository from '../repositories/repository';
 /**
  * Service to update user information.
  * @param requestUser
+ * @param uuid
  */
-export async function updateUserService(requestUser: Partial<User>) {
-    const user = await AuthRepository.findUserByUuid(requestUser.uuid!);
+export async function updateUserService(requestUser: Partial<User>, uuid: string) {
+    const user = await AuthRepository.findUserByUuid(uuid);
 
     if (!user) {
         return new Result(StatusCodes.NOT_FOUND, null, AuthResponseMessages.USER_NOT_FOUND);
