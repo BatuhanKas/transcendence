@@ -67,9 +67,9 @@ export async function updateUserService(requestUser: Partial<User>, uuid: string
         return new Result(StatusCodes.OK, null, AuthResponseMessages.NO_CHANGES_MADE);
     }
 
-    fieldsToUpdate.uuid = requestUser.uuid!;
+    fieldsToUpdate.uuid = uuid;
 
     await AuthRepository.updateUserRepository(fieldsToUpdate);
-    const updatedUser = await AuthRepository.findUserByUuid(requestUser.uuid!);
+    const updatedUser = await AuthRepository.findUserByUuid(uuid);
     return new Result(StatusCodes.OK, updatedUser, AuthResponseMessages.USER_UPDATED);
 }
