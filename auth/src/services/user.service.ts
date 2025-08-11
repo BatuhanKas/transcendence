@@ -41,14 +41,25 @@ export async function updateUserService(requestUser: Partial<User>) {
         }
     }
 
-    if (requestUser.password !== undefined) {
-        if (requestUser.password.length < 6 || requestUser.password.length > 25) {
+    if (requestUser.password !== undefined || requestUser.new_password !== undefined) {
+        if (!requestUser.password || !requestUser.new_password) {
+            return new Result(StatusCodes.BAD_REQUEST, null, "Both current password and new password are required");
+        }
+
+        const isCurrentPasswordValid = await bcrypt.compare(requestUser.password, user.password);
+        if (!isCurrentPasswordValid) {
+            return new Result(StatusCodes.UNAUTHORIZED, null, "Current password is incorrect");
+        }
+
+        if (requestUser.new_password.length < 6 || requestUser.new_password.length > 25) {
             return new Result(StatusCodes.BAD_REQUEST, null, AuthResponseMessages.PASSWORD_LENGTH_INVALID);
         }
-        const isSame = await bcrypt.compare(requestUser.password, user.password);
-        if (!isSame) {
-            fieldsToUpdate.password = await bcrypt.hash(requestUser.password, 10);
+
+        if (requestUser.password === requestUser.new_password) {
+            return new Result(StatusCodes.BAD_REQUEST, null, "New password must be different from current password");
         }
+
+        fieldsToUpdate.password = await bcrypt.hash(requestUser.new_password, 10);
     }
 
     if (Object.keys(fieldsToUpdate).length === 0) {

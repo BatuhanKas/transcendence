@@ -53,6 +53,8 @@ export async function updateUserRepository(user: Partial<User>): Promise<void> {
     values.push(user.uuid);
 
     database
-        .prepare(`UPDATE users SET ${fields.join(", ")} WHERE uuid = ?`)
+        .prepare(`UPDATE users
+                  SET ${fields.join(", ")}
+                  WHERE uuid = ?`)
         .run(...values);
 }
