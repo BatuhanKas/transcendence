@@ -1,7 +1,7 @@
 import {FastifyInstance} from 'fastify';
-import * as TournamentController from '../controllers/tournament.controller';
+import {TournamentController} from '../controllers/tournament.controller';
 import {authMiddleware} from "../middleware/middleware";
-import { tournamentSchemas, systemSchemas } from "../schemas/swagger.schemas";
+import {systemSchemas, tournamentSchemas} from "../schemas/swagger.schemas";
 
 /**
  * Tournament routes with the Fastify server instance.

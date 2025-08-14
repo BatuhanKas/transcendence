@@ -36,7 +36,20 @@ export const authSchemas = {
                 authorization: {type: 'string'}
             }
         }
-    }
+    },
+
+    sendMail: {
+        tags: ['mail'],
+        summary: 'Send verification email',
+        description: 'Send a verification email to the user',
+        body: {
+            type: 'object',
+            properties: {
+                email: {type: 'string'},
+            }
+        },
+    },
+
 };
 
 export const userSchemas = {
