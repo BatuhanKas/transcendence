@@ -6,9 +6,10 @@ import validator, {isAlphanumeric} from 'validator';
 import {User} from "../entities/user";
 import {FastifyInstance, FastifyRequest} from "fastify";
 import {AuthResponseMessages} from "../constants/auth.response.messages";
-import * as AuthRepository from '../repositories/repository';
+import {AuthRepository} from '../repositories/repository';
+import {MailService} from "./mail.service";
 
-export async function validateService(request: FastifyRequest) {
+async function validateService(request: FastifyRequest) {
     const authHeader = request.headers.authorization as string;
     const server = request.server as FastifyInstance;
 
@@ -31,7 +32,7 @@ export async function validateService(request: FastifyRequest) {
     }
 }
 
-export async function loginService(email: string, password: string) {
+async function loginService(email: string, password: string) {
     if (!email || !password) {
         return new Result(StatusCodes.BAD_REQUEST, null, AuthResponseMessages.EMAIL_AND_PASSWORD_REQUIRED);
     }
@@ -49,6 +50,10 @@ export async function loginService(email: string, password: string) {
         return new Result(StatusCodes.UNAUTHORIZED, null, AuthResponseMessages.INVALID_EMAIL);
     }
 
+    if (!user.verified) {
+        return new Result(StatusCodes.UNAUTHORIZED, null, AuthResponseMessages.USER_NOT_VERIFIED);
+    }
+
     if (password.length < 6 || password.length > 25) {
         return new Result(StatusCodes.BAD_REQUEST, null, AuthResponseMessages.PASSWORD_LENGTH_INVALID);
     }
@@ -62,7 +67,7 @@ export async function loginService(email: string, password: string) {
     return new Result(StatusCodes.OK, { uuid: user.uuid, username: user.username, email: email }, AuthResponseMessages.LOGIN_SUCCESS);
 }
 
-export async function registerService(username: string, email: string, password: string) {
+async function registerService(username: string, email: string, password: string) {
     if (!username || !email || !password) {
         return new Result(StatusCodes.BAD_REQUEST, null, AuthResponseMessages.REGISTRATION_FIELDS_REQUIRED);
     }
@@ -106,5 +111,39 @@ export async function registerService(username: string, email: string, password:
 
     await AuthRepository.saveUser(user);
 
-    return new Result(StatusCodes.CREATED, user, AuthResponseMessages.USER_REGISTERED);
+    return await MailService.sendMail(email);
 }
+
+async function verifyService(token: string) {
+    if (!token) {
+        return new Result(StatusCodes.BAD_REQUEST, null, "Missing token");
+    }
+
+    if (!MailService.emailCache.has(token)) {
+        return new Result(StatusCodes.NOT_FOUND, null, "Invalid or expired token");
+    }
+
+    const email = MailService.emailCache.get(token);
+    if (!email) {
+        return new Result(StatusCodes.NOT_FOUND, null, "Invalid or expired token");
+    }
+
+    MailService.emailCache.delete(token);
+
+    const user = await AuthRepository.findUserByEmail(email);
+    if (!user) {
+        return new Result(StatusCodes.NOT_FOUND, null, "User not found");
+    }
+
+    user.verified = true;
+    await AuthRepository.updateUserRepository(user);
+
+    return new Result(StatusCodes.OK, null, AuthResponseMessages.USER_REGISTERED);
+}
+
+export const AuthService = {
+    validateService,
+    loginService,
+    registerService,
+    verifyService
+};
