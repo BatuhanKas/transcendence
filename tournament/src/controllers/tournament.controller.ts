@@ -3,9 +3,9 @@ import {TournamentDto} from "../dto/tournament.dto";
 import {Participant} from "../entities/participant";
 import {getResult, getResultAndData} from "../responses/responses";
 import {MatchParticipant, Winner} from "../entities/winner";
-import * as TournamentService from "../services/tournament.service";
+import {TournamentService} from "../services/tournament.service";
 
-export async function createTournament(request: FastifyRequest, reply: FastifyReply) {
+async function createTournament(request: FastifyRequest, reply: FastifyReply) {
     const body = request.body as TournamentDto;
     const participant = request.participant as Participant;
 
@@ -16,7 +16,7 @@ export async function createTournament(request: FastifyRequest, reply: FastifyRe
     return getResultAndData(result, reply);
 }
 
-export async function joinTournament(request: FastifyRequest, reply: FastifyReply) {
+async function joinTournament(request: FastifyRequest, reply: FastifyReply) {
     const params = request.params as { code: string };
     const participant = request.participant as Participant;
 
@@ -24,7 +24,7 @@ export async function joinTournament(request: FastifyRequest, reply: FastifyRepl
     return getResult(result, reply);
 }
 
-export async function leaveTournament(request: FastifyRequest, reply: FastifyReply) {
+async function leaveTournament(request: FastifyRequest, reply: FastifyReply) {
     const params = request.params as { code: string };
     const participant = request.participant as Participant;
 
@@ -32,7 +32,7 @@ export async function leaveTournament(request: FastifyRequest, reply: FastifyRep
     return getResult(result, reply);
 }
 
-export async function deleteTournament(request: FastifyRequest, reply: FastifyReply) {
+async function deleteTournament(request: FastifyRequest, reply: FastifyReply) {
     const params = request.params as { code: string };
     const participant = request.participant as Participant;
 
@@ -40,7 +40,7 @@ export async function deleteTournament(request: FastifyRequest, reply: FastifyRe
     return getResult(result, reply);
 }
 
-export async function getTournamentParticipants(request: FastifyRequest, reply: FastifyReply) {
+async function getTournamentParticipants(request: FastifyRequest, reply: FastifyReply) {
     const params = request.params as { code: string };
 
     const result = await TournamentService.getTournamentParticipantsService(params.code);
@@ -50,7 +50,7 @@ export async function getTournamentParticipants(request: FastifyRequest, reply: 
     return getResultAndData(result, reply);
 }
 
-export async function getTournamentByUUID(request: FastifyRequest, reply: FastifyReply) {
+async function getTournamentByUUID(request: FastifyRequest, reply: FastifyReply) {
     const participant = request.participant as Participant;
 
     const result = await TournamentService.getTournamentByUUIDService(participant.uuid);
@@ -60,7 +60,7 @@ export async function getTournamentByUUID(request: FastifyRequest, reply: Fastif
     return getResultAndData(result, reply);
 }
 
-export async function startTournament(request: FastifyRequest, reply: FastifyReply) {
+async function startTournament(request: FastifyRequest, reply: FastifyReply) {
     const params = request.params as { code: string };
     const participant = request.participant as Participant;
 
@@ -68,7 +68,7 @@ export async function startTournament(request: FastifyRequest, reply: FastifyRep
     return getResult(result, reply);
 }
 
-export async function addWinners(request: FastifyRequest, reply: FastifyReply) {
+async function addWinners(request: FastifyRequest, reply: FastifyReply) {
     const params = request.params as { code: string };
     const body = request.body as Winner;
 
@@ -79,7 +79,7 @@ export async function addWinners(request: FastifyRequest, reply: FastifyReply) {
     return getResultAndData(result, reply);
 }
 
-export async function joinMatch(request: FastifyRequest, reply: FastifyReply) {
+async function joinMatch(request: FastifyRequest, reply: FastifyReply) {
     const params = request.params as { code: string };
     const body = request.body as MatchParticipant;
 
@@ -87,10 +87,23 @@ export async function joinMatch(request: FastifyRequest, reply: FastifyReply) {
     return getResult(result, reply);
 }
 
-export async function leaveMatch(request: FastifyRequest, reply: FastifyReply) {
+async function leaveMatch(request: FastifyRequest, reply: FastifyReply) {
     const params = request.params as { code: string };
     const body = request.body as MatchParticipant;
 
     const result = await TournamentService.leaveMatchService(params.code, body);
     return getResult(result, reply);
 }
+
+export const TournamentController = {
+    createTournament,
+    joinTournament,
+    leaveTournament,
+    deleteTournament,
+    getTournamentParticipants,
+    getTournamentByUUID,
+    startTournament,
+    addWinners,
+    joinMatch,
+    leaveMatch,
+};
