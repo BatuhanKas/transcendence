@@ -4,4 +4,5 @@ export type User = {
     password: string;
     new_password?: string;
     email: string;
+    verified?: boolean;
 };

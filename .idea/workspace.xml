@@ -4,19 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="refactor: tournament key explanations changed.">
+    <list default="true" id="c367b142-0d23-48b3-9737-188e3649f2cd" name="Changes" comment="fix: swagger fix.">
+      <change afterPath="$PROJECT_DIR$/auth/src/services/mail.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth/src/util/simple.html.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/auth/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/auth/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/auth/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/auth/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/constants/auth.response.messages.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/constants/auth.response.messages.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/controllers/auth.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/controllers/auth.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/controllers/user.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/controllers/user.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/database/db.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/database/db.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/database/sqlite/data.sqlite" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/entities/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/entities/user.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/repositories/repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/repositories/repository.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/auth/src/routes/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/routes/routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth/src/server/auth.server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/server/auth.server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/schemas/swagger.schemas.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/schemas/swagger.schemas.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/services/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/services/auth.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth/src/services/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/auth/src/services/user.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/src/controllers/tournament.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/controllers/tournament.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/src/factories/tournament.settimeout.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/factories/tournament.settimeout.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tournament/src/middleware/middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/middleware/middleware.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tournament/src/routes/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/routes/routes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/src/server/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/server/server.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/src/types/fastify.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/types/fastify.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tournament/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tournament/src/services/tournament.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/tournament/src/services/tournament.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,9 +40,6 @@
         <option value="TypeScript File" />
       </list>
     </option>
-  </component>
-  <component name="FormatOnSaveOptions">
-    <option name="myRunOnSave" value="true" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -64,6 +70,9 @@
   <component name="OptimizeOnSaveOptions">
     <option name="myRunOnSave" value="true" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
@@ -72,33 +81,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Node.js.auth.server.ts.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.auth.ts.executor&quot;: &quot;Debug&quot;,
-    &quot;Node.js.greet.ts.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.server.ts.executor&quot;: &quot;Debug&quot;,
-    &quot;Node.js.tournament.controller.ts.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.tournament.repository.ts.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.tournament.ts.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/batuhan/Desktop/front&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_interpreter_path&quot;: &quot;/home/batuhan/.nvm/versions/node/v22.16.0/bin/node&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;rearrange.code.on.save&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/home/batuhan/Desktop/transcendence/tournament/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Node.js.auth.server.ts.executor": "Run",
+    "Node.js.auth.ts.executor": "Debug",
+    "Node.js.greet.ts.executor": "Run",
+    "Node.js.server.ts.executor": "Debug",
+    "Node.js.tournament.controller.ts.executor": "Run",
+    "Node.js.tournament.repository.ts.executor": "Run",
+    "Node.js.tournament.ts.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/home/batuhan/Desktop/transcendence/auth/src/database/sqlite/data.sqlite",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "/home/batuhan/.nvm/versions/node/v22.16.0/bin/node",
+    "nodejs_package_manager_path": "npm",
+    "rearrange.code.on.save": "true",
+    "settings.editor.selected.configurable": "actions.on.save",
+    "sql.codeStylePanel.last.previewDialect": "SQL2016",
+    "ts.external.directory.path": "/home/batuhan/Desktop/transcendence/auth/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite"
+    ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -126,7 +141,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-WS-251.27812.50" />
+        <option value="bundled-js-predefined-d6986cc7102b-e03c56caf84a-JavaScript-WS-252.23892.411" />
       </set>
     </attachedChunks>
   </component>
@@ -223,55 +238,11 @@
       <workItem from="1754672110439" duration="3622000" />
       <workItem from="1754838534945" duration="1431000" />
       <workItem from="1754841032788" duration="59000" />
-      <workItem from="1754843555811" duration="221000" />
-    </task>
-    <task id="LOCAL-00050" summary="fix: http-status-codes added to package.json.">
-      <option name="closed" value="true" />
-      <created>1750893127117</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1750893127117</updated>
-    </task>
-    <task id="LOCAL-00051" summary="chore: removed node_modules files removed and package jsons updated.">
-      <option name="closed" value="true" />
-      <created>1750893963332</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1750893963332</updated>
-    </task>
-    <task id="LOCAL-00052" summary="perf: server starts changed.">
-      <option name="closed" value="true" />
-      <created>1751031824750</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1751031824751</updated>
-    </task>
-    <task id="LOCAL-00053" summary="docs: server starts changed.">
-      <option name="closed" value="true" />
-      <created>1751034893934</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1751034893934</updated>
-    </task>
-    <task id="LOCAL-00054" summary="docs: jwt verify and bcrypt.compare explained.">
-      <option name="closed" value="true" />
-      <created>1751034939662</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1751034939662</updated>
-    </task>
-    <task id="LOCAL-00055" summary="docs: update repository explained.">
-      <option name="closed" value="true" />
-      <created>1751034975436</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1751034975436</updated>
+      <workItem from="1754843555811" duration="2309000" />
+      <workItem from="1754929793732" duration="9964000" />
+      <workItem from="1755019363182" duration="14629000" />
+      <workItem from="1755034403535" duration="7000" />
+      <workItem from="1755189630313" duration="7536000" />
     </task>
     <task id="LOCAL-00056" summary="docs: update user service.">
       <option name="closed" value="true" />
@@ -617,7 +588,55 @@
       <option name="project" value="LOCAL" />
       <updated>1754594212120</updated>
     </task>
-    <option name="localTasksCounter" value="99" />
+    <task id="LOCAL-00099" summary="feat: swagger added to both projects.">
+      <option name="closed" value="true" />
+      <created>1754843950214</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1754843950215</updated>
+    </task>
+    <task id="LOCAL-00100" summary="refactor: update user method updated to change to set a new password.">
+      <option name="closed" value="true" />
+      <created>1754937254633</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1754937254634</updated>
+    </task>
+    <task id="LOCAL-00101" summary="refactor: new password swagger updated.">
+      <option name="closed" value="true" />
+      <created>1754937487023</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1754937487023</updated>
+    </task>
+    <task id="LOCAL-00102" summary="fix: little uuid fix.">
+      <option name="closed" value="true" />
+      <created>1754938526627</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1754938526627</updated>
+    </task>
+    <task id="LOCAL-00103" summary="fix: little uuid fix.">
+      <option name="closed" value="true" />
+      <created>1754938838777</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1754938838777</updated>
+    </task>
+    <task id="LOCAL-00104" summary="fix: swagger fix.">
+      <option name="closed" value="true" />
+      <created>1755195000104</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1755195000104</updated>
+    </task>
+    <option name="localTasksCounter" value="105" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -641,11 +660,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="fix: tournament name isAlphanumeric added." />
-    <MESSAGE value="fix: validator lib imported to tournament service." />
-    <MESSAGE value="fix: .gitignore .env added." />
-    <MESSAGE value="fix &amp; feat: major changes." />
-    <MESSAGE value="style: routes explanation added." />
     <MESSAGE value="fix: middleware changed to x_api_key." />
     <MESSAGE value="fix: getTournamentByUUID service returns tournament now." />
     <MESSAGE value="fix: middleware." />
@@ -666,6 +680,11 @@
     <MESSAGE value="feat: tournament keys updated." />
     <MESSAGE value="feat: leave match service added." />
     <MESSAGE value="refactor: tournament key explanations changed." />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: tournament key explanations changed." />
+    <MESSAGE value="feat: swagger added to both projects." />
+    <MESSAGE value="refactor: update user method updated to change to set a new password." />
+    <MESSAGE value="refactor: new password swagger updated." />
+    <MESSAGE value="fix: little uuid fix." />
+    <MESSAGE value="fix: swagger fix." />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: swagger fix." />
   </component>
 </project>
