@@ -1,6 +1,6 @@
 import {FastifyInstance} from "fastify";
-import * as AuthController from "../controllers/auth.controller";
-import * as UserController from "../controllers/user.controller";
+import {AuthController} from "../controllers/auth.controller";
+import {UserController} from "../controllers/user.controller";
 import {authSchemas, systemSchemas, userSchemas} from "../schemas/swagger.schemas";
 
 export default async function routes(server: FastifyInstance) {
@@ -21,6 +21,15 @@ export default async function routes(server: FastifyInstance) {
         schema: authSchemas.validate,
         handler: AuthController.validate
     });
+
+    server.post('/auth/send', {
+        schema: authSchemas.sendMail,
+        handler: AuthController.sendMail
+    })
+
+    server.get('/auth/verify', {
+        handler: AuthController.verify
+    })
 
     /**
      * User Management Routes
