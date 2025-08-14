@@ -5,10 +5,9 @@ export const authSchemas = {
         description: 'Authenticate user with email and password',
         body: {
             type: 'object',
-            required: ['email', 'password'],
             properties: {
-                email: {type: 'string', format: 'email', minLength: 5, maxLength: 50},
-                password: {type: 'string', minLength: 6, maxLength: 25}
+                email: {type: 'string'},
+                password: {type: 'string'}
             }
         },
     },
@@ -19,11 +18,10 @@ export const authSchemas = {
         description: 'Register a new user account',
         body: {
             type: 'object',
-            required: ['username', 'email', 'password'],
             properties: {
-                username: {type: 'string', minLength: 3, maxLength: 20},
-                email: {type: 'string', format: 'email', minLength: 5, maxLength: 50},
-                password: {type: 'string', minLength: 6, maxLength: 25}
+                username: {type: 'string'},
+                email: {type: 'string'},
+                password: {type: 'string'}
             }
         }
     },
@@ -34,9 +32,8 @@ export const authSchemas = {
         description: 'Validate JWT token and get user information',
         headers: {
             type: 'object',
-            required: ['authorization'],
             properties: {
-                authorization: {type: 'string', pattern: '^Bearer .+'}
+                authorization: {type: 'string'}
             }
         }
     }
@@ -49,18 +46,17 @@ export const userSchemas = {
         description: 'Update user information',
         params: {
             type: 'object',
-            required: ['uuid'],
             properties: {
-                uuid: {type: 'string', format: 'uuid'}
+                uuid: {type: 'string'}
             }
         },
         body: {
             type: 'object',
             properties: {
-                username: {type: 'string', minLength: 3, maxLength: 20},
-                email: {type: 'string', format: 'email', minLength: 5, maxLength: 50},
-                password: {type: 'string', minLength: 6, maxLength: 25},
-                new_password: {type: 'string', minLength: 6, maxLength: 25}
+                username: {type: 'string'},
+                email: {type: 'string'},
+                password: {type: 'string'},
+                new_password: {type: 'string'}
             }
         }
     }

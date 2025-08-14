@@ -5,16 +5,14 @@ export const tournamentSchemas = {
         description: 'Create a new tournament',
         headers: {
             type: 'object',
-            required: ['authorization'],
             properties: {
-                authorization: {type: 'string', pattern: '^Bearer .+'}
+                authorization: {type: 'string'}
             }
         },
         body: {
             type: 'object',
-            required: ['name'],
             properties: {
-                name: {type: 'string', minLength: 1, maxLength: 100}
+                name: {type: 'string'}
             }
         }
     },
@@ -25,14 +23,12 @@ export const tournamentSchemas = {
         description: 'Join a tournament using its code',
         headers: {
             type: 'object',
-            required: ['authorization'],
             properties: {
-                authorization: {type: 'string', pattern: '^Bearer .+'}
+                authorization: {type: 'string'}
             }
         },
         params: {
             type: 'object',
-            required: ['code'],
             properties: {
                 code: {type: 'string'}
             }
@@ -45,14 +41,12 @@ export const tournamentSchemas = {
         description: 'Leave a tournament using its code',
         headers: {
             type: 'object',
-            required: ['authorization'],
             properties: {
-                authorization: {type: 'string', pattern: '^Bearer .+'}
+                authorization: {type: 'string'}
             }
         },
         params: {
             type: 'object',
-            required: ['code'],
             properties: {
                 code: {type: 'string'}
             }
@@ -65,14 +59,12 @@ export const tournamentSchemas = {
         description: 'Delete a tournament using its code',
         headers: {
             type: 'object',
-            required: ['authorization'],
             properties: {
-                authorization: {type: 'string', pattern: '^Bearer .+'}
+                authorization: {type: 'string'}
             }
         },
         params: {
             type: 'object',
-            required: ['code'],
             properties: {
                 code: {type: 'string'}
             }
@@ -85,14 +77,12 @@ export const tournamentSchemas = {
         description: 'Start a tournament using its code',
         headers: {
             type: 'object',
-            required: ['authorization'],
             properties: {
-                authorization: {type: 'string', pattern: '^Bearer .+'}
+                authorization: {type: 'string'}
             }
         },
         params: {
             type: 'object',
-            required: ['code'],
             properties: {
                 code: {type: 'string'}
             }
@@ -105,7 +95,6 @@ export const tournamentSchemas = {
         description: 'Get tournament by code',
         params: {
             type: 'object',
-            required: ['code'],
             properties: {
                 code: {type: 'string'}
             }
@@ -118,9 +107,8 @@ export const tournamentSchemas = {
         description: 'Get tournament by participant UUID',
         headers: {
             type: 'object',
-            required: ['authorization'],
             properties: {
-                authorization: {type: 'string', pattern: '^Bearer .+'}
+                authorization: {type: 'string'}
             }
         }
     },
@@ -131,23 +119,19 @@ export const tournamentSchemas = {
         description: 'Add winners to new round of a tournament',
         params: {
             type: 'object',
-            required: ['code'],
             properties: {
                 code: {type: 'string'}
             }
         },
         body: {
             type: 'object',
-            required: ['round_number', 'winner'],
             properties: {
-                round_number: {type: 'number', minimum: 1},
+                round_number: {type: 'number'},
                 winner: {
                     type: 'object',
-                    required: ['uuid', 'username'],
                     properties: {
-                        uuid: {type: 'string', format: 'uuid'},
+                        uuid: {type: 'string'},
                         username: {type: 'string'},
-                        status: {type: 'string', enum: ['disconnected', 'joined']}
                     }
                 }
             }
@@ -160,23 +144,19 @@ export const tournamentSchemas = {
         description: 'Join a match in a tournament',
         params: {
             type: 'object',
-            required: ['code'],
             properties: {
                 code: {type: 'string'}
             }
         },
         body: {
             type: 'object',
-            required: ['round_number', 'participant'],
             properties: {
-                round_number: {type: 'number', minimum: 1},
+                round_number: {type: 'number'},
                 participant: {
                     type: 'object',
-                    required: ['uuid', 'username'],
                     properties: {
-                        uuid: {type: 'string', format: 'uuid'},
+                        uuid: {type: 'string'},
                         username: {type: 'string'},
-                        status: {type: 'string', enum: ['disconnected', 'joined']}
                     }
                 }
             }
@@ -189,23 +169,19 @@ export const tournamentSchemas = {
         description: 'Leave a match in a tournament',
         params: {
             type: 'object',
-            required: ['code'],
             properties: {
                 code: {type: 'string'}
             }
         },
         body: {
             type: 'object',
-            required: ['round_number', 'participant'],
             properties: {
-                round_number: {type: 'number', minimum: 1},
+                round_number: {type: 'number'},
                 participant: {
                     type: 'object',
-                    required: ['uuid', 'username'],
                     properties: {
-                        uuid: {type: 'string', format: 'uuid'},
+                        uuid: {type: 'string'},
                         username: {type: 'string'},
-                        status: {type: 'string', enum: ['disconnected', 'joined']}
                     }
                 }
             }
