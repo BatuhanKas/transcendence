@@ -1,6 +1,6 @@
 import tournamentCache from "../cache/tournament.cache";
 import {MatchStatus, TournamentStatus} from "../entities/tournament";
-import * as TournamentService from '../services/tournament.service';
+import {TournamentService} from '../services/tournament.service';
 import {ParticipantStatus} from "../entities/participant";
 
 export async function setTimeoutFunc(code: string, roundNumber: number) {

@@ -19,7 +19,7 @@ import {isAlphanumeric} from "validator";
 import {getDateAndHour} from "../util/get_time";
 import {TournamentResponseMessages} from "../constants/tournament.response.messages";
 
-export async function createTournamentService(tournamentDto: TournamentDto, participant: Participant) {
+async function createTournamentService(tournamentDto: TournamentDto, participant: Participant) {
     if (!tournamentDto) {
         return new Result(StatusCodes.BAD_REQUEST, null, TournamentResponseMessages.ERR_TOURNAMENT_NAME_REQUIRED);
     }
@@ -71,7 +71,7 @@ export async function createTournamentService(tournamentDto: TournamentDto, part
     return new Result(StatusCodes.CREATED, tournamentData, TournamentResponseMessages.SUCCESS_TOURNAMENT_CREATED);
 }
 
-export async function joinTournamentService(code: string, participant: Participant) {
+async function joinTournamentService(code: string, participant: Participant) {
     const result = await tournamentControls(code);
     if (result.statusCode !== StatusCodes.OK || !result.data) {
         return result;
@@ -101,7 +101,7 @@ export async function joinTournamentService(code: string, participant: Participa
     return new Result(StatusCodes.OK, null, TournamentResponseMessages.SUCCESS_PARTICIPANT_JOINED);
 }
 
-export async function tournamentControls(code: string) {
+async function tournamentControls(code: string) {
     if (!tournamentCache.has(code)) {
         return new Result(StatusCodes.NOT_FOUND, null, TournamentResponseMessages.ERR_TOURNAMENT_NOT_FOUND);
     }
@@ -109,7 +109,7 @@ export async function tournamentControls(code: string) {
     return new Result(StatusCodes.OK, tournamentCache.get(code), '');
 }
 
-export async function leaveTournamentService(code: string, participant: Participant) {
+async function leaveTournamentService(code: string, participant: Participant) {
     const result = await tournamentControls(code);
     if (result.statusCode !== StatusCodes.OK || !result.data) {
         return result;
@@ -162,7 +162,7 @@ export async function leaveTournamentService(code: string, participant: Particip
     return new Result(StatusCodes.OK, null, TournamentResponseMessages.SUCCESS_PARTICIPANT_LEFT);
 }
 
-export async function deleteTournamentService(code: string, participant: Participant) {
+async function deleteTournamentService(code: string, participant: Participant) {
     const result = await tournamentControls(code);
     if (result.statusCode !== StatusCodes.OK || !result.data) {
         return result;
@@ -182,7 +182,7 @@ export async function deleteTournamentService(code: string, participant: Partici
     return new Result(StatusCodes.OK, null, TournamentResponseMessages.SUCCESS_TOURNAMENT_DELETED);
 }
 
-export async function getTournamentParticipantsService(code: string) {
+async function getTournamentParticipantsService(code: string) {
     const result = await tournamentControls(code);
     if (result.statusCode !== StatusCodes.OK || !result.data) {
         return new Result(result.statusCode, null, result.message);
@@ -193,7 +193,7 @@ export async function getTournamentParticipantsService(code: string) {
     return new Result(StatusCodes.OK, tournament, TournamentResponseMessages.SUCCESS_PARTICIPANTS_RETRIEVED);
 }
 
-export async function getTournamentByUUIDService(uuid: string) {
+async function getTournamentByUUIDService(uuid: string) {
     const tournaments: TournamentData[] = Array.from(tournamentCache.values());
     const tournament = tournaments.find(t => t.lobby_members.some(l => l.uuid === uuid));
 
@@ -204,7 +204,7 @@ export async function getTournamentByUUIDService(uuid: string) {
     return new Result(StatusCodes.OK, tournament, TournamentResponseMessages.SUCCESS_TOURNAMENT_RETRIEVED_UUID);
 }
 
-export async function startTournamentService(code: string, participant: Participant) {
+async function startTournamentService(code: string, participant: Participant) {
     const result = await tournamentControls(code);
     if (result.statusCode !== StatusCodes.OK || !result.data) {
         return result;
@@ -256,7 +256,7 @@ export async function startTournamentService(code: string, participant: Particip
     return new Result(StatusCodes.OK, null, TournamentResponseMessages.SUCCESS_TOURNAMENT_STARTED);
 }
 
-export async function addWinnerService(code: string, body: Winner) {
+async function addWinnerService(code: string, body: Winner) {
     const tournament = tournamentCache.get(code);
     if (!tournament) {
         return new Result(StatusCodes.NOT_FOUND, null, TournamentResponseMessages.ERR_TOURNAMENT_NOT_FOUND);
@@ -354,7 +354,7 @@ export async function addWinnerService(code: string, body: Winner) {
     return new Result(StatusCodes.OK, null, TournamentResponseMessages.SUCCESS_NEXT_ROUND_STARTED);
 }
 
-export async function joinMatchService(code: string, body: MatchParticipant) {
+async function joinMatchService(code: string, body: MatchParticipant) {
     const tournament = tournamentCache.get(code);
     if (!tournament) {
         return new Result(StatusCodes.NOT_FOUND, null, TournamentResponseMessages.ERR_TOURNAMENT_NOT_FOUND);
@@ -410,7 +410,7 @@ export async function joinMatchService(code: string, body: MatchParticipant) {
     return new Result(StatusCodes.NOT_FOUND, null, TournamentResponseMessages.ERR_PARTICIPANT_NOT_FOUND_ROUND);
 }
 
-export async function leaveMatchService(code: string, body: MatchParticipant) {
+async function leaveMatchService(code: string, body: MatchParticipant) {
     const result = await tournamentControls(code);
     if (result.statusCode !== StatusCodes.OK || !result.data) {
         return result;
@@ -470,4 +470,17 @@ export async function leaveMatchService(code: string, body: MatchParticipant) {
     }
 
     return new Result(StatusCodes.NOT_FOUND, null, TournamentResponseMessages.ERR_PARTICIPANT_NOT_FOUND_ROUND);
+}
+
+export const TournamentService = {
+    createTournamentService,
+    joinTournamentService,
+    leaveTournamentService,
+    deleteTournamentService,
+    getTournamentParticipantsService,
+    getTournamentByUUIDService,
+    startTournamentService,
+    addWinnerService,
+    joinMatchService,
+    leaveMatchService,
 }

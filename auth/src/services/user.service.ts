@@ -4,14 +4,14 @@ import {StatusCodes} from "http-status-codes";
 import bcrypt from 'bcryptjs';
 import validator from "validator";
 import {AuthResponseMessages} from "../constants/auth.response.messages";
-import * as AuthRepository from '../repositories/repository';
+import {AuthRepository} from '../repositories/repository';
 
 /**
  * Service to update user information.
  * @param requestUser
  * @param uuid
  */
-export async function updateUserService(requestUser: Partial<User>, uuid: string) {
+async function updateUserService(requestUser: Partial<User>, uuid: string) {
     const user = await AuthRepository.findUserByUuid(uuid);
 
     if (!user) {
@@ -72,4 +72,8 @@ export async function updateUserService(requestUser: Partial<User>, uuid: string
     await AuthRepository.updateUserRepository(fieldsToUpdate);
     const updatedUser = await AuthRepository.findUserByUuid(uuid);
     return new Result(StatusCodes.OK, updatedUser, AuthResponseMessages.USER_UPDATED);
+}
+
+export const UserService = {
+    updateUserService
 }
