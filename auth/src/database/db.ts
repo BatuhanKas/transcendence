@@ -6,7 +6,7 @@ const DB_DIRECTORY = path.resolve(__dirname, './sqlite');
 const DB_PATH = path.resolve(DB_DIRECTORY, 'data.sqlite');
 
 if (!fs.existsSync(DB_DIRECTORY)) {
-    fs.mkdirSync(DB_DIRECTORY, { recursive: true });
+    fs.mkdirSync(DB_DIRECTORY, {recursive: true});
 }
 
 const db = new Database(DB_PATH);
@@ -18,6 +18,7 @@ db.prepare(`
      username TEXT NOT NULL,
      email TEXT NOT NULL UNIQUE,
      password TEXT NOT NULL,
+     verified BOOLEAN DEFAULT FALSE,
      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     )
 `).run();
