@@ -1,4 +1,4 @@
-import dotenv from 'dotenv';
+import 'dotenv/config'
 import nodemailer from 'nodemailer';
 import Result from "../bean/result";
 import {StatusCodes} from "http-status-codes";
@@ -6,17 +6,15 @@ import {AuthResponseMessages} from "../constants/auth.response.messages";
 import validator from "validator";
 import {AuthRepository} from "../repositories/repository";
 
-dotenv.config();
-
 const emailCache = new Map<string, string>();
 
 const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
-    port: Number(process.env.SMTP_PORT),
+    port: Number(process.env.PORT),
     secure: process.env.SMTP_SECURE === 'true',
     auth: {
         user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS
+        pass: process.env.SMTP_PASS,
     }
 });
 
@@ -40,7 +38,6 @@ const sendMail = async (to: string) => {
     }
 
     const token = generateToken();
-    const verifyLink = `http://auth.transendence.com:8081/api/auth/verify?token=${token}`;
 
     const mailOptions = {
         from: process.env.SMTP_USER,
@@ -49,8 +46,8 @@ const sendMail = async (to: string) => {
         html: `
             <h1>Welcome to Verification Service</h1>
             <p>The mail expires in 10 minutes</p>
-            <p>To complete your registration, please verify your email address by clicking the link below;</p>
-            <p><a href="${verifyLink}">Click here to Verify Email</a></p>
+            <p>To complete your registration, please use the code to activate your account;</p>
+            <p> Code: <strong>${token}</strong></p>
         `
     };
 
@@ -67,6 +64,7 @@ const sendMail = async (to: string) => {
         await transporter.sendMail(mailOptions);
         return new Result(StatusCodes.OK, null, AuthResponseMessages.EMAIL_SENT_SUCCESSFULLY);
     } catch (error) {
+        console.log("Error sending email:", error);
         return new Result(StatusCodes.INTERNAL_SERVER_ERROR, null, AuthResponseMessages.EMAIL_SEND_FAILED);
     }
 }
