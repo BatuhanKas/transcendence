@@ -111,7 +111,8 @@ async function registerService(username: string, email: string, password: string
 
     await AuthRepository.saveUser(user);
 
-    return await MailService.sendMail(email);
+    await MailService.sendMail(email);
+    return new Result(StatusCodes.OK, null, AuthResponseMessages.USER_REGISTERED);
 }
 
 async function verifyService(token: string) {
