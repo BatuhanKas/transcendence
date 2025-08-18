@@ -64,10 +64,17 @@ async function updateUserRepository(user: Partial<User>): Promise<void> {
         .run(...values);
 }
 
+async function deleteUserByEmail(email: string): Promise<void> {
+    database
+        .prepare('DELETE FROM users WHERE email = ?')
+        .run(email);
+}
+
 export const AuthRepository = {
     saveUser,
     findUserByUsername,
     findUserByEmail,
     findUserByUuid,
     updateUserRepository,
+    deleteUserByEmail
 }

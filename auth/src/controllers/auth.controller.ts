@@ -2,7 +2,6 @@ import {FastifyReply, FastifyRequest} from 'fastify';
 import {User} from "../entities/user";
 import {getResult, getResultAndDecodedToken, getResultAndToken} from "../responses/responses";
 import {AuthService} from '../services/auth.service';
-import {simpleHtml} from "../util/simple.html";
 import {MailService} from "../services/mail.service";
 
 async function login(request: FastifyRequest, reply: FastifyReply) {
@@ -32,19 +31,10 @@ async function sendMail(request: FastifyRequest, reply: FastifyReply) {
 }
 
 async function verify(request: FastifyRequest, reply: FastifyReply) {
-    const params = request.query as { token: string };
+    const params = request.body as { token: string };
 
     const result = await AuthService.verifyService(params.token);
-    if (result.statusCode !== 200) {
-        return reply
-            .code(result.statusCode)
-            .type('text/html')
-            .send(simpleHtml("Verification Failed! ", result.message!));
-    }
-    return reply
-        .code(result.statusCode)
-        .type('text/html')
-        .send(simpleHtml("Verification successful!", "You can close this window!"));
+    return getResult(result, reply);
 }
 
 export const AuthController = {
