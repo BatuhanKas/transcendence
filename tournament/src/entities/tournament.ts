@@ -22,8 +22,8 @@ export type TournamentData = {
     lobby_members: Participant[];
     participants: Participant[];
     status: TournamentStatus
-    start_time?: string;
-    end_time?: string;
+    start_time?: number;
+    end_time?: number;
     tournament_start?: TournamentStart | null;
 };
 

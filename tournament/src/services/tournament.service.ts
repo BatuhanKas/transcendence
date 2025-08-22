@@ -16,7 +16,7 @@ import {
 } from "../factories/tournament.validator";
 import {setTimeoutFunc} from "../factories/tournament.settimeout";
 import {isAlphanumeric} from "validator";
-import {getDateAndHour} from "../util/get_time";
+import {getEpochTime} from "../util/get_time";
 import {TournamentResponseMessages} from "../constants/tournament.response.messages";
 
 async function createTournamentService(tournamentDto: TournamentDto, participant: Participant) {
@@ -248,7 +248,7 @@ async function startTournamentService(code: string, participant: Participant) {
     }
 
     tournament.status = TournamentStatus.ONGOING;
-    tournament.start_time = getDateAndHour();
+    tournament.start_time = getEpochTime(0);
     tournament.tournament_start = tournamentStart;
     tournamentCache.set(code, tournament);
 
@@ -323,7 +323,7 @@ async function addWinnerService(code: string, body: Winner) {
 
     if (round.expected_winner_count <= 1 && existingWinners.length <= 1 && await isAllMatchesCompleted(round.matches)) {
         tournament.status = TournamentStatus.COMPLETED;
-        tournament.end_time = getDateAndHour();
+        tournament.end_time = getEpochTime(0);
         tournament.participants = tournament.participants.filter(p => !existingWinners.some(w => w.uuid === p.uuid));
         tournamentCache.set(code, tournament);
         const winner = round.winners[0] ? round.winners.at(0) : null;
