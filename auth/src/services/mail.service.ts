@@ -11,12 +11,12 @@ dotenv.config();
 const emailCache = new Map<string, string>();
 
 const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: Number(process.env.SMTP_PORT),
-    secure: process.env.SMTP_SECURE === 'true',
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
     auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS
+        user: "batuhannkas@gmail.com",
+        pass: "ylqy clrj xmfe oftu"
     }
 });
 
@@ -40,7 +40,7 @@ const sendMail = async (to: string) => {
     }
 
     const token = generateToken();
-    const verifyLink = `http://auth.transendence.com:8081/api/auth/verify?token=${token}`;
+    const verifyLink = `http://auth.transendence.com/api/auth/verify?token=${token}`;
 
     const mailOptions = {
         from: process.env.SMTP_USER,
@@ -64,9 +64,10 @@ const sendMail = async (to: string) => {
             emailCache.delete(token);
         }, 10 * 60 * 1000);
 
-        await transporter.sendMail(mailOptions);
+        // await transporter.sendMail(mailOptions);
         return new Result(StatusCodes.OK, null, AuthResponseMessages.EMAIL_SENT_SUCCESSFULLY);
     } catch (error) {
+        console.log('Error sending email:', error);
         return new Result(StatusCodes.INTERNAL_SERVER_ERROR, null, AuthResponseMessages.EMAIL_SEND_FAILED);
     }
 }

@@ -50,9 +50,9 @@ async function loginService(email: string, password: string) {
         return new Result(StatusCodes.UNAUTHORIZED, null, AuthResponseMessages.INVALID_EMAIL);
     }
 
-    if (!user.verified) {
-        return new Result(StatusCodes.UNAUTHORIZED, null, AuthResponseMessages.USER_NOT_VERIFIED);
-    }
+    // if (!user.verified) {
+    //     return new Result(StatusCodes.UNAUTHORIZED, null, AuthResponseMessages.USER_NOT_VERIFIED);
+    // }
 
     if (password.length < 6 || password.length > 25) {
         return new Result(StatusCodes.BAD_REQUEST, null, AuthResponseMessages.PASSWORD_LENGTH_INVALID);
@@ -111,7 +111,8 @@ async function registerService(username: string, email: string, password: string
 
     await AuthRepository.saveUser(user);
 
-    return await MailService.sendMail(email);
+    return new Result(StatusCodes.CREATED, user, AuthResponseMessages.USER_REGISTERED);
+    // return await MailService.sendMail(email);
 }
 
 async function verifyService(token: string) {
