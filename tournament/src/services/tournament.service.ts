@@ -135,6 +135,7 @@ async function leaveTournamentService(code: string, participant: Participant) {
             if (!round)
                 return new Result(StatusCodes.BAD_REQUEST, null, TournamentResponseMessages.ERR_NO_ONGOING_ROUNDS);
 
+            let isInMatches: boolean = false;
             for (const match of round.matches) {
                 const isP1: boolean = match.participant1.uuid === participant.uuid;
                 const isP2: boolean = match.participant2.uuid === participant.uuid;
@@ -143,7 +144,19 @@ async function leaveTournamentService(code: string, participant: Participant) {
 
                 const loser = isP1 ? match.participant1 : match.participant2;
                 tournament.lobby_members = tournament.lobby_members.filter(p => p.uuid !== loser.uuid);
+                isInMatches = true;
                 break;
+            }
+
+            if (!isInMatches) {
+                const existingWinners = round.winners || [];
+                const participantIndex = existingWinners.findIndex(p => p.uuid === participant.uuid);
+                if (participantIndex !== -1) {
+                    existingWinners.splice(participantIndex, 1);
+                    round.winners = existingWinners;
+                    round.expected_winner_count--;
+                }
+                tournament.lobby_members = tournament.lobby_members.filter(p => p.uuid !== participant.uuid);
             }
             break;
 
