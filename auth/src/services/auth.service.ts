@@ -110,7 +110,7 @@ async function registerService(username: string, email: string, password: string
     };
 
     await AuthRepository.saveUser(user);
-    // await MailService.sendMail(email);
+    await MailService.sendMail(email);
 
     return new Result(StatusCodes.CREATED, user, AuthResponseMessages.USER_REGISTERED);
 }

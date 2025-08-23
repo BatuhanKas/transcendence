@@ -75,7 +75,7 @@ const sendMail = async (to: string) => {
             emailCache.delete(token);
         }, 10 * 60 * 1000);
 
-        // await transporter.sendMail(mailOptions);
+        await transporter.sendMail(mailOptions);
         return new Result(StatusCodes.OK, null, AuthResponseMessages.EMAIL_SENT_SUCCESSFULLY);
     } catch (error) {
         console.log("Error sending email:", error);
