@@ -50,9 +50,9 @@ async function loginService(email: string, password: string) {
         return new Result(StatusCodes.UNAUTHORIZED, null, AuthResponseMessages.INVALID_EMAIL);
     }
 
-    // if (!user.verified) {
-    //     return new Result(StatusCodes.UNAUTHORIZED, null, AuthResponseMessages.USER_NOT_VERIFIED);
-    // }
+    if (!user.verified) {
+        return new Result(StatusCodes.UNAUTHORIZED, null, AuthResponseMessages.USER_NOT_VERIFIED);
+    }
 
     if (password.length < 6 || password.length > 25) {
         return new Result(StatusCodes.BAD_REQUEST, null, AuthResponseMessages.PASSWORD_LENGTH_INVALID);
