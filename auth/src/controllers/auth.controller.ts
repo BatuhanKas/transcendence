@@ -31,9 +31,9 @@ async function sendMail(request: FastifyRequest, reply: FastifyReply) {
 }
 
 async function verify(request: FastifyRequest, reply: FastifyReply) {
-    const params = request.body as { token: string };
+    const params = request.body as { token: string, new_email?: string };
 
-    const result = await AuthService.verifyService(params.token);
+    const result = await AuthService.verifyService(params.token, params.new_email);
     return getResult(result, reply);
 }
 

@@ -42,10 +42,6 @@ const sendMail = async (to: string) => {
     if (!existingUser)
         return new Result(StatusCodes.CONFLICT, null, AuthResponseMessages.USER_NOT_FOUND);
 
-    if (existingUser.verified) {
-        return new Result(StatusCodes.BAD_REQUEST, null, AuthResponseMessages.USER_ALREADY_VERIFIED);
-    }
-
     const token = generateToken();
 
     const mailOptions = {

@@ -115,7 +115,7 @@ async function registerService(username: string, email: string, password: string
     return new Result(StatusCodes.CREATED, user, AuthResponseMessages.USER_REGISTERED);
 }
 
-async function verifyService(token: string) {
+async function verifyService(token: string, new_email?: string) {
     if (!token) {
         return new Result(StatusCodes.BAD_REQUEST, null, AuthResponseMessages.TOKEN_MISSING);
     }
@@ -131,14 +131,27 @@ async function verifyService(token: string) {
 
     MailService.emailCache.delete(token);
 
+    if (new_email) {
+        if (new_email.length < 5 || new_email.length > 50) {
+            return new Result(StatusCodes.BAD_REQUEST, null, AuthResponseMessages.EMAIL_LENGTH_INVALID);
+        }
+
+        if (!validator.isEmail(new_email)) {
+            return new Result(StatusCodes.BAD_REQUEST, null, AuthResponseMessages.INVALID_EMAIL_FORMAT);
+        }
+
+        const existingUser = await AuthRepository.findUserByEmail(new_email);
+        if (existingUser) {
+            return new Result(StatusCodes.CONFLICT, null, AuthResponseMessages.EMAIL_EXISTS);
+        }
+    }
+
     const user = await AuthRepository.findUserByEmail(email);
     if (!user) {
         return new Result(StatusCodes.NOT_FOUND, null, AuthResponseMessages.USER_NOT_FOUND);
     }
 
-    if (user.verified) {
-        return new Result(StatusCodes.BAD_REQUEST, null, AuthResponseMessages.USER_ALREADY_VERIFIED);
-    }
+    user.email = new_email || email;
 
     user.verified = true;
     await AuthRepository.updateUserRepository(user);
