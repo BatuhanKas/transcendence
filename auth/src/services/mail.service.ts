@@ -11,7 +11,7 @@ const emailCache = new Map<string, string>();
 
 const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
-    port: Number(process.env.PORT),
+    port: Number(process.env.SMTP_PORT),
     secure: process.env.SMTP_SECURE === 'false',
     auth: {
         user: process.env.SMTP_USER,
