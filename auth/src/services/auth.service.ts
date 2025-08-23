@@ -110,36 +110,40 @@ async function registerService(username: string, email: string, password: string
     };
 
     await AuthRepository.saveUser(user);
+    // await MailService.sendMail(email);
 
     return new Result(StatusCodes.CREATED, user, AuthResponseMessages.USER_REGISTERED);
-    // return await MailService.sendMail(email);
 }
 
 async function verifyService(token: string) {
     if (!token) {
-        return new Result(StatusCodes.BAD_REQUEST, null, "Missing token");
+        return new Result(StatusCodes.BAD_REQUEST, null, AuthResponseMessages.TOKEN_MISSING);
     }
 
     if (!MailService.emailCache.has(token)) {
-        return new Result(StatusCodes.NOT_FOUND, null, "Invalid or expired token");
+        return new Result(StatusCodes.NOT_FOUND, null, AuthResponseMessages.INVALID_TOKEN);
     }
 
     const email = MailService.emailCache.get(token);
     if (!email) {
-        return new Result(StatusCodes.NOT_FOUND, null, "Invalid or expired token");
+        return new Result(StatusCodes.NOT_FOUND, null, AuthResponseMessages.INVALID_TOKEN);
     }
 
     MailService.emailCache.delete(token);
 
     const user = await AuthRepository.findUserByEmail(email);
     if (!user) {
-        return new Result(StatusCodes.NOT_FOUND, null, "User not found");
+        return new Result(StatusCodes.NOT_FOUND, null, AuthResponseMessages.USER_NOT_FOUND);
+    }
+
+    if (user.verified) {
+        return new Result(StatusCodes.BAD_REQUEST, null, AuthResponseMessages.USER_ALREADY_VERIFIED);
     }
 
     user.verified = true;
     await AuthRepository.updateUserRepository(user);
 
-    return new Result(StatusCodes.OK, null, AuthResponseMessages.USER_REGISTERED);
+    return new Result(StatusCodes.OK, null, AuthResponseMessages.USER_VERIFIED);
 }
 
 export const AuthService = {

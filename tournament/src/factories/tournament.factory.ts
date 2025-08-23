@@ -27,7 +27,7 @@ export const createRound = (matches: Match[], winners: any[], roundNumber: numbe
         expired_at: getEpochTime(5),
         matches: matches,
         winners: winners.length > 0 ? winners : [],
-        expected_winner_count: matches.length,
+        expected_winner_count: winners.length > 0 ? matches.length + 1 : matches.length,
         is_completed: false
     }
     return newRound;

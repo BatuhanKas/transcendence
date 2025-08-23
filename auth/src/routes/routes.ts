@@ -22,12 +22,12 @@ export default async function routes(server: FastifyInstance) {
         handler: AuthController.validate
     });
 
-    server.post('/auth/send', {
+    server.post('/auth/send-mail', {
         schema: authSchemas.sendMail,
         handler: AuthController.sendMail
     })
 
-    server.get('/auth/verify', {
+    server.patch('/auth/verify', {
         handler: AuthController.verify
     })
 
