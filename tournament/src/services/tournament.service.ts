@@ -143,6 +143,10 @@ async function leaveTournamentService(code: string, participant: Participant) {
                 if (!isP1 && !isP2) continue;
 
                 const loser = isP1 ? match.participant1 : match.participant2;
+                await TournamentService.leaveMatchService(code, {
+                    round_number: round.round_number,
+                    participant: loser,
+                })
                 tournament.lobby_members = tournament.lobby_members.filter(p => p.uuid !== loser.uuid);
                 isInMatches = true;
                 break;
