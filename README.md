@@ -1,5 +1,6 @@
 # Transcendence Project (ft_transcendence)
 
+[![CI](https://github.com/BatuhanKas/transcendence/actions/workflows/ci.yaml/badge.svg)](https://github.com/BatuhanKas/transcendence/actions/workflows/ci.yaml)
 [![CD](https://github.com/BatuhanKas/transcendence/actions/workflows/cd.yaml/badge.svg)](https://github.com/BatuhanKas/transcendence/actions/workflows/cd.yaml)
 
 This repository contains the source code for the `ft_transcendence` project, a 42 school assignment. The primary goal is to create a full-stack, single-page web application for a real-time multiplayer Pong contest, complete with user management, chat, and other modern web features.
