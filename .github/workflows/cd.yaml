@@ -1,0 +1,25 @@
+name: CD
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        service: [auth, tournament]
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Login to Docker Hub
+      run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Push Docker Image
+      run: |
+        DATE_TAG=$(date +%d-%m-%y)
+        docker push ${{ secrets.DOCKER_USERNAME }}/${{ matrix.service }}:$DATE_TAG
